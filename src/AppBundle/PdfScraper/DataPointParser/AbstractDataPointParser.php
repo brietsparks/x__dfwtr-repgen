@@ -1,21 +1,37 @@
-<?php namespace AppBundle\PdfScraper\Stat;
+<?php
 
+namespace AppBundle\PdfScraper\DataPointParser;
 
-class AbstractDataPointParser
+abstract class AbstractDataPointParser
 {
 
     /**
      * @var string the text at the beginning of the parsed row
      */
     protected $columnTitle;
-    
+
+    /**
+     * @var string the prefix of the corresponding field in the CityReport entity. Ex: in avgPrice_monthPrev it is avgPrice
+     */
+    protected $entityFieldPrefix;
+
+    /**
+     * Take a text string and return cleaned, parsed data
+     *
+     * @param string $row
+     * @return array
+     */
     public function parse($row) 
     {
         $row = $this->clean($row);
-        
+
         $data = explode(" ", $row);
 
-        return $this->makeOutput($data);
+//        dump(get_class($this));
+//        dump($data);
+//        exit;
+
+        return $this->makeOutputArray($data);
     }
 
     /**
@@ -26,7 +42,38 @@ class AbstractDataPointParser
      * @param array $data
      * @return array
      */
-    abstract public function makeOutput(array $data);
+    protected function makeOutputArray(array $data)
+    {
+        $outputData = [];
+
+        $prefix = $this->entityFieldPrefix;
+
+        if (array_key_exists(0, $data)) {
+            $outputData["{$prefix}_monthPrev"] = $data[0];
+        }
+
+        if (array_key_exists(1, $data)) {
+            $outputData["{$prefix}_monthCurr"] = $data[1];
+        }
+
+        if (array_key_exists(2, $data)) {
+            $outputData["{$prefix}_monthChange"] = $data[2];
+        }
+
+        if (array_key_exists(3, $data)) {
+            $outputData["{$prefix}_ytdPrev"] = $data[3];
+        }
+
+        if (array_key_exists(4, $data)) {
+            $outputData["{$prefix}_ytdCurr"] = $data[4];
+        }
+
+        if (array_key_exists(5, $data)) {
+            $outputData["{$prefix}_ytdChange"] = $data[5];
+        }
+
+        return $outputData;
+    }
 
     /**
      * @param string $row
@@ -39,6 +86,7 @@ class AbstractDataPointParser
         $row = $this->correctPosNegSigns($row);
         $row = $this->removeSpecialChars($row);
         $row = $this->removeConsecutiveSpaces($row);
+        $row = trim($row);
         
         return $row;
     }
@@ -76,11 +124,14 @@ class AbstractDataPointParser
         $str = str_replace("- ", "-", $str);
         $str = str_replace("  -", "-", $str);
         $str = str_replace(" -", "-", $str);
+        $str = str_replace("-", " -", $str);
 
         $str = str_replace("+", " +", $str);
         $str = str_replace("+ ", "+", $str);
         $str = str_replace("  +", "+", $str);
         $str = str_replace(" +", "+", $str);
+        $str = str_replace("+", " +", $str);
+        $str = str_replace("+", "", $str);
         
         return $str;
     }
@@ -91,8 +142,15 @@ class AbstractDataPointParser
      */
     protected function removeSpecialChars($str)
     {
+        // $
+        $str = str_replace("$", " $", $str);
         $str = str_replace("$", "", $str);
+
+        // %
+        $str = str_replace("%", "% ", $str);
         $str = str_replace("%", "", $str);
+
+        // ,
         $str = str_replace(",", "", $str);
 
         return $str;

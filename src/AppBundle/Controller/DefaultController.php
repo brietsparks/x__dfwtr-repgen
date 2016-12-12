@@ -10,26 +10,22 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{city}", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $city)
     {
-        $fileName = "Addison.pdf";
+        $fileName = "$city.pdf";
         $filePath = $this->get('kernel')->getRootDir() . "\\..\\web\\uploads\\" . $fileName;
 
         $file = $this->get('file_locator')->locate($filePath);
 
-        $q = $this->get('kreatys.pdf_parser')->parseFile($filePath)->getObjects();
+        $text = $this->get('kreatys.pdf_parser')->parseFile($filePath)->getText();
 
-        $e = [];
-        /** @var Object $w */
-        foreach ($q as $w) {
-            if ($w->getContent() !== "") {
-                $e[] = $w;
-            }
-        }
+        $scraper = $this->get('app.pdf_scraper');
 
-        dump($e);exit;
+        $q = $scraper->scrape($text);
+
+        dump($q);exit;
 
     }
 }

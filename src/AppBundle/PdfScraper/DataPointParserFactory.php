@@ -1,17 +1,17 @@
 <?php 
 
-namespace AppBundle\PdfScraper\Extractor;
+namespace AppBundle\PdfScraper;
 
-use AppBundle\PdfScraper\Stat\AbstractDataPointParser;
-use AppBundle\PdfScraper\Stat\AverageSalesPrice;
-use AppBundle\PdfScraper\Stat\ClosedSalesProjected;
-use AppBundle\PdfScraper\Stat\ClosedSalesReported;
-use AppBundle\PdfScraper\Stat\DaysOnMarket;
-use AppBundle\PdfScraper\Stat\Inventory;
-use AppBundle\PdfScraper\Stat\ListingsUnderContract;
-use AppBundle\PdfScraper\Stat\MedianSalesPrice;
-use AppBundle\PdfScraper\Stat\MonthsSupply;
-use AppBundle\PdfScraper\Stat\PercentOriginalListPrice;
+use AppBundle\PdfScraper\DataPointParser\AbstractDataPointParser;
+use AppBundle\PdfScraper\DataPointParser\AverageSalesPrice;
+use AppBundle\PdfScraper\DataPointParser\ClosedSalesProjected;
+use AppBundle\PdfScraper\DataPointParser\ClosedSalesReported;
+use AppBundle\PdfScraper\DataPointParser\DaysOnMarket;
+use AppBundle\PdfScraper\DataPointParser\Inventory;
+use AppBundle\PdfScraper\DataPointParser\ListingsUnderContract;
+use AppBundle\PdfScraper\DataPointParser\MedianSalesPrice;
+use AppBundle\PdfScraper\DataPointParser\MonthsSupply;
+use AppBundle\PdfScraper\DataPointParser\PercentOriginalListPrice;
 
 /**
  * Takes a city report row and returns a DataPointParser if possible
@@ -28,15 +28,15 @@ class DataPointParserFactory
      * @var array
      */
     protected $map = [
-        '(Reported)' => ClosedSalesReported::class,
-        '(Projected)' => ClosedSalesProjected::class,
-        'Listings Under' => ListingsUnderContract::class,
-        'Average Sales' => AverageSalesPrice::class,
-        'Median Sales' => MedianSalesPrice::class,
-        'Percent of' => PercentOriginalListPrice::class,
-        'Days on' => DaysOnMarket::class,
-        'Inventory of' => Inventory::class,
-        'Months Supply' => MonthsSupply::class,
+        'Closed Sales (Reported)' => ClosedSalesReported::class,
+        'Closed Sales (Projected)' => ClosedSalesProjected::class,
+        'Listings Under Contract' => ListingsUnderContract::class,
+        'Average Sales Price**' => AverageSalesPrice::class,
+        'Median Sales Price**' => MedianSalesPrice::class,
+        'Percent of Original List Price Received**' => PercentOriginalListPrice::class,
+        'Days on Market Until Sale' => DaysOnMarket::class,
+        'Inventory of Homes for Sale' => Inventory::class,
+        'Months Supply of Inventory' => MonthsSupply::class,
     ];
 
     /**
@@ -49,7 +49,7 @@ class DataPointParserFactory
         $result = null;
 
         foreach ($this->map as $searchFor => $class) {
-            if(strpos($row, $searchFor) !== 0) {
+            if(strpos($row, $searchFor) === 0) {
                 return new $class;
             }
         }

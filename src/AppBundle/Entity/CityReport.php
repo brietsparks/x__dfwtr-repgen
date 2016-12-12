@@ -25,465 +25,453 @@ class CityReport
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="reports")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
-    protected $city;
+    public $city;
 
     /**
      * @var int
      *
      * @ORM\Column(name="year", type="integer")
      */
-    protected $year;
+    public $year;
 
     /**
      * @var int
      *
      * @ORM\Column(name="month", type="integer")
      */
-    protected $month;
+    public $month;
 
     
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="newListings_monthPrev", type="integer", nullable=true)
-     */
-    protected $newListings_monthPrev;
+//    /**
+//     * @var int
+//     *
+//     * @ORM\Column(name="newListings_monthPrev", type="integer", nullable=true)
+//     */
+//    public $newListings_monthPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesReported_monthPrev", type="integer", nullable=true)
      */
-    protected $salesReported_monthPrev;
+    public $salesReported_monthPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesProjected_monthPrev", type="integer", nullable=true)
      */
-    protected $salesProjected_monthPrev;
+    public $salesProjected_monthPrev;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="listings_monthPrev", type="integer", nullable=true)
+     * @ORM\Column(name="contractListings_monthPrev", type="integer", nullable=true)
      */
-    protected $listings_monthPrev;
+    public $contractListings_monthPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="avgPrice_monthPrev", type="integer", nullable=true)
      */
-    protected $avgPrice_monthPrev;
+    public $avgPrice_monthPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="medianPrice_monthPrev", type="integer", nullable=true)
      */
-    protected $medianPrice_monthPrev;
+    public $medianPrice_monthPrev;
 
     /**
      * @var float
      *
      * @ORM\Column(name="percentReceived_monthPrev", type="float", nullable=true)
      */
-    protected $percentReceived_monthPrev;
+    public $percentReceived_monthPrev;
 
     /**
      * @var float
      *
      * @ORM\Column(name="daysOnMarket_monthPrev", type="float", nullable=true)
      */
-    protected $daysOnMarket_monthPrev;
+    public $daysOnMarket_monthPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="inventory_monthPrev", type="integer", nullable=true)
      */
-    protected $inventory_monthPrev;
+    public $inventory_monthPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="monthsSupply_monthPrev", type="integer", nullable=true)
      */
-    protected $monthsSupply_monthPrev;
+    public $monthsSupply_monthPrev;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="newListings_monthCurr", type="integer", nullable=true)
-     */
-    protected $newListings_monthCurr;
+//    /**
+//     * @var int
+//     *
+//     * @ORM\Column(name="newListings_monthCurr", type="integer", nullable=true)
+//     */
+//    public $newListings_monthCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesReported_monthCurr", type="integer", nullable=true)
      */
-    protected $salesReported_monthCurr;
+    public $salesReported_monthCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesProjected_monthCurr", type="integer", nullable=true)
      */
-    protected $salesProjected_monthCurr;
+    public $salesProjected_monthCurr;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="listings_monthCurr", type="integer", nullable=true)
+     * @ORM\Column(name="contractListings_monthCurr", type="integer", nullable=true)
      */
-    protected $listings_monthCurr;
+    public $contractListings_monthCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="avgPrice_monthCurr", type="integer", nullable=true)
      */
-    protected $avgPrice_monthCurr;
+    public $avgPrice_monthCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="medianPrice_monthCurr", type="integer", nullable=true)
      */
-    protected $medianPrice_monthCurr;
+    public $medianPrice_monthCurr;
 
     /**
      * @var float
      *
      * @ORM\Column(name="percentReceived_monthCurr", type="float", nullable=true)
      */
-    protected $percentReceived_monthCurr;
+    public $percentReceived_monthCurr;
 
     /**
      * @var float
      *
      * @ORM\Column(name="daysOnMarket_monthCurr", type="float", nullable=true)
      */
-    protected $daysOnMarket_monthCurr;
+    public $daysOnMarket_monthCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="inventory_monthCurr", type="integer", nullable=true)
      */
-    protected $inventory_monthCurr;
+    public $inventory_monthCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="monthsSupply_monthCurr", type="integer", nullable=true)
      */
-    protected $monthsSupply_monthCurr;
+    public $monthsSupply_monthCurr;
 
 
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="newListings_monthChange", type="float", nullable=true)
-     */
-    protected $newListings_monthChange;
+//    /**
+//     * @var float
+//     *
+//     * @ORM\Column(name="newListings_monthChange", type="float", nullable=true)
+//     */
+//    public $newListings_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="salesReported_monthChange", type="float", nullable=true)
      */
-    protected $salesReported_monthChange;
+    public $salesReported_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="salesProjected_monthChange", type="float", nullable=true)
      */
-    protected $salesProjected_monthChange;
+    public $salesProjected_monthChange;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="listings_monthChange", type="float", nullable=true)
+     * @ORM\Column(name="contractListings_monthChange", type="float", nullable=true)
      */
-    protected $listings_monthChange;
+    public $contractListings_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="avgPrice_monthChange", type="float", nullable=true)
      */
-    protected $avgPrice_monthChange;
+    public $avgPrice_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="medianPrice_monthChange", type="float", nullable=true)
      */
-    protected $medianPrice_monthChange;
+    public $medianPrice_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="percentReceived_monthChange", type="float", nullable=true)
      */
-    protected $percentReceived_monthChange;
+    public $percentReceived_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="daysOnMarket_monthChange", type="float", nullable=true)
      */
-    protected $daysOnMarket_monthChange;
+    public $daysOnMarket_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="inventory_monthChange", type="float", nullable=true)
      */
-    protected $inventory_monthChange;
+    public $inventory_monthChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="monthsSupply_monthChange", type="float", nullable=true)
      */
-    protected $monthsSupply_monthChange;
+    public $monthsSupply_monthChange;
 
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="newListings_ytdPrev", type="integer", nullable=true)
-     */
-    protected $newListings_ytdPrev;
+//    /**
+//     * @var int
+//     *
+//     * @ORM\Column(name="newListings_ytdPrev", type="integer", nullable=true)
+//     */
+//    public $newListings_ytdPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesReported_ytdPrev", type="integer", nullable=true)
      */
-    protected $salesReported_ytdPrev;
+    public $salesReported_ytdPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesProjected_ytdPrev", type="integer", nullable=true)
      */
-    protected $salesProjected_ytdPrev;
+    public $salesProjected_ytdPrev;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="listings_ytdPrev", type="integer", nullable=true)
+     * @ORM\Column(name="contractListings_ytdPrev", type="integer", nullable=true)
      */
-    protected $listings_ytdPrev;
+    public $contractListings_ytdPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="avgPrice_ytdPrev", type="integer", nullable=true)
      */
-    protected $avgPrice_ytdPrev;
+    public $avgPrice_ytdPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="medianPrice_ytdPrev", type="integer", nullable=true)
      */
-    protected $medianPrice_ytdPrev;
+    public $medianPrice_ytdPrev;
 
     /**
      * @var float
      *
      * @ORM\Column(name="percentReceived_ytdPrev", type="float", nullable=true)
      */
-    protected $percentReceived_ytdPrev;
+    public $percentReceived_ytdPrev;
 
     /**
      * @var float
      *
      * @ORM\Column(name="daysOnMarket_ytdPrev", type="float", nullable=true)
      */
-    protected $daysOnMarket_ytdPrev;
+    public $daysOnMarket_ytdPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="inventory_ytdPrev", type="integer", nullable=true)
      */
-    protected $inventory_ytdPrev;
+    public $inventory_ytdPrev;
 
     /**
      * @var int
      *
      * @ORM\Column(name="monthsSupply_ytdPrev", type="integer", nullable=true)
      */
-    protected $monthsSupply_ytdPrev;
+    public $monthsSupply_ytdPrev;
 
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="newListings_ytdCurr", type="integer", nullable=true)
-     */
-    protected $newListings_ytdCurr;
+//    /**
+//     * @var int
+//     *
+//     * @ORM\Column(name="newListings_ytdCurr", type="integer", nullable=true)
+//     */
+//    public $newListings_ytdCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesReported_ytdCurr", type="integer", nullable=true)
      */
-    protected $salesReported_ytdCurr;
+    public $salesReported_ytdCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="salesProjected_ytdCurr", type="integer", nullable=true)
      */
-    protected $salesProjected_ytdCurr;
+    public $salesProjected_ytdCurr;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="listings_ytdCurr", type="integer", nullable=true)
+     * @ORM\Column(name="contractListings_ytdCurr", type="integer", nullable=true)
      */
-    protected $listings_ytdCurr;
+    public $contractListings_ytdCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="avgPrice_ytdCurr", type="integer", nullable=true)
      */
-    protected $avgPrice_ytdCurr;
+    public $avgPrice_ytdCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="medianPrice_ytdCurr", type="integer", nullable=true)
      */
-    protected $medianPrice_ytdCurr;
+    public $medianPrice_ytdCurr;
 
     /**
      * @var float
      *
      * @ORM\Column(name="percentReceived_ytdCurr", type="float", nullable=true)
      */
-    protected $percentReceived_ytdCurr;
+    public $percentReceived_ytdCurr;
 
     /**
      * @var float
      *
      * @ORM\Column(name="daysOnMarket_ytdCurr", type="float", nullable=true)
      */
-    protected $daysOnMarket_ytdCurr;
+    public $daysOnMarket_ytdCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="inventory_ytdCurr", type="integer", nullable=true)
      */
-    protected $inventory_ytdCurr;
+    public $inventory_ytdCurr;
 
     /**
      * @var int
      *
      * @ORM\Column(name="monthsSupply_ytdCurr", type="integer", nullable=true)
      */
-    protected $monthsSupply_ytdCurr;
+    public $monthsSupply_ytdCurr;
 
 
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="newListings_ytdChange", type="float", nullable=true)
-     */
-    protected $newListings_ytdChange;
+//    /**
+//     * @var float
+//     *
+//     * @ORM\Column(name="newListings_ytdChange", type="float", nullable=true)
+//     */
+//    public $newListings_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="salesReported_ytdChange", type="float", nullable=true)
      */
-    protected $salesReported_ytdChange;
+    public $salesReported_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="salesProjected_ytdChange", type="float", nullable=true)
      */
-    protected $salesProjected_ytdChange;
+    public $salesProjected_ytdChange;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="listings_ytdChange", type="float", nullable=true)
+     * @ORM\Column(name="contractListings_ytdChange", type="float", nullable=true)
      */
-    protected $listings_ytdChange;
+    public $contractListings_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="avgPrice_ytdChange", type="float", nullable=true)
      */
-    protected $avgPrice_ytdChange;
+    public $avgPrice_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="medianPrice_ytdChange", type="float", nullable=true)
      */
-    protected $medianPrice_ytdChange;
+    public $medianPrice_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="percentReceived_ytdChange", type="float", nullable=true)
      */
-    protected $percentReceived_ytdChange;
+    public $percentReceived_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="daysOnMarket_ytdChange", type="float", nullable=true)
      */
-    protected $daysOnMarket_ytdChange;
+    public $daysOnMarket_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="inventory_ytdChange", type="float", nullable=true)
      */
-    protected $inventory_ytdChange;
+    public $inventory_ytdChange;
 
     /**
      * @var float
      *
      * @ORM\Column(name="monthsSupply_ytdChange", type="float", nullable=true)
      */
-    protected $monthsSupply_ytdChange;
+    public $monthsSupply_ytdChange;
 
-
-//
-//    protected function foo() {
-//
-//        $newListings;
-//        $salesReported;
-//        $salesProjected;
-//        $listings;
-//        $avgPrice;
-//        $medianPrice;
-//        $percentReceived;
-//        $daysOnMarket;
-//        $inventory;
-//        $monthsSupply;
-//
-//
-//
-//    }
-
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 }

@@ -1,4 +1,4 @@
-<?php namespace AppBundle\PdfScraper\Stat;
+<?php namespace AppBundle\PdfScraper\DataPointParser;
 
 
 class AverageSalesPrice extends AbstractDataPointParser
@@ -6,9 +6,6 @@ class AverageSalesPrice extends AbstractDataPointParser
 
     protected $columnTitle = 'Average Sales Price**';
 
-    public function makeOutput(array $data)
-    {
-
-    }
+    protected $entityFieldPrefix = 'avgPrice';
 
 }

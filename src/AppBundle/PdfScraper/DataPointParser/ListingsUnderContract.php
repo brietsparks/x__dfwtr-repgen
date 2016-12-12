@@ -1,7 +1,9 @@
 <?php namespace AppBundle\PdfScraper\Stat;
 
 
-class ListingsUnderContract
+class ListingsUnderContract extends AbstractDataPointParser
 {
+
+    protected $columnTitle = 'Listings Under Contract';
 
 }

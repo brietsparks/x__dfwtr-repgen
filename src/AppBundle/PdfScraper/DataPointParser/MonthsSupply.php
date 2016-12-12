@@ -1,7 +1,9 @@
 <?php namespace AppBundle\PdfScraper\Stat;
 
 
-class MonthsSupply
+class MonthsSupply extends AbstractDataPointParser
 {
+
+    protected $columnTitle = 'Months Supply of Inventory';
 
 }

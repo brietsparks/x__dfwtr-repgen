@@ -1,7 +1,9 @@
 <?php namespace AppBundle\PdfScraper\Stat;
 
 
-class ClosedSalesReported
+class ClosedSalesReported extends AbstractDataPointParser
 {
+
+    protected $columnTitle = 'Closed Sales (Reported)';
 
 }

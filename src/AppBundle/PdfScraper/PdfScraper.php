@@ -2,7 +2,9 @@
 
 namespace AppBundle\PdfScraper;
 
-use Smalot\PdfParser\Parser;
+use AppBundle\Entity\CityReport;
+use AppBundle\PdfScraper\Extractor\DataPointParserFactory;
+use Smalot\PdfParser\Parser as PdfParser;
 
 /**
  * A service for scraping city report pdf's
@@ -14,9 +16,14 @@ class PdfScraper implements ScraperInterface
 {
 
     /**
-     * @var Parser
+     * @var PdfParser
      */
-    protected $parser;
+    protected $pdfParser;
+
+    /**
+     * @var DataPointParserFactory
+     */
+    protected $dataPointParserFactory;
 
     /**
      * @var string
@@ -24,17 +31,28 @@ class PdfScraper implements ScraperInterface
     protected $city;
 
     /**
-     * Scraper constructor.
-     * @param Parser $parser
+     * PdfScraper constructor.
+     * @param PdfParser $pdfParser
+     * @param DataPointParserFactory $dataPointParserFactory
      */
-    public function __construct(Parser $parser)
+    public function __construct(PdfParser $pdfParser, DataPointParserFactory $dataPointParserFactory)
     {
-        $this->parser = $parser;
+        $this->pdfParser = $pdfParser;
+        $this->dataPointParserFactory = $dataPointParserFactory;
     }
+
 
     public function scrape($text)
     {
+        $report = new CityReport();
+
         $rows = explode("\n", $text);
+
+        foreach ($rows as $row) {
+            if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {
+
+            }
+        }
     }
 
     protected function scrapeCity($text)

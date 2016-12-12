@@ -3,6 +3,8 @@
 parameters:
 #    parameter_name: value
 
+
+
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
@@ -10,4 +12,7 @@ services:
 
     app.pdf_scraper:
         class: AppBundle\PdfScraper\PdfScraper
-        arguments: ["@kreatys.pdf_parser"]
+        arguments: ["@kreatys.pdf_parser", "@app.pdf_scraper.data_point_parser_factory"]
+
+    app.pdf_scraper.data_point_parser_factory:
+        class: AppBundle\PdfScraper\Extractor\DataPointParserFactory

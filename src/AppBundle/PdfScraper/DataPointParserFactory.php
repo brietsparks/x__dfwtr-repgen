@@ -2,6 +2,7 @@
 
 namespace AppBundle\PdfScraper\Extractor;
 
+use AppBundle\PdfScraper\Stat\AbstractDataPointParser;
 use AppBundle\PdfScraper\Stat\AverageSalesPrice;
 use AppBundle\PdfScraper\Stat\ClosedSalesProjected;
 use AppBundle\PdfScraper\Stat\ClosedSalesReported;
@@ -13,16 +14,16 @@ use AppBundle\PdfScraper\Stat\MonthsSupply;
 use AppBundle\PdfScraper\Stat\PercentOriginalListPrice;
 
 /**
- * Extracts the stats from the pdf text 
- * 
- * Class StatRowExtractor
+ * Takes a city report row and returns a DataPointParser if possible
+ *
+ * Class DataPointParserFactory
  * @package AppBundle\PdfScraper\Extractor
  */
-class StatRowExtractor
+class DataPointParserFactory
 {
 
     /**
-     * maps search phrase to the stat type
+     * maps a searchable string to the DataPointParser type
      * 
      * @var array
      */
@@ -39,21 +40,20 @@ class StatRowExtractor
     ];
 
     /**
-     * @var array
+     * @param string $row
+     *
+     * @return null|AbstractDataPointParser
      */
-    protected $rows;
+    public function getParser($row)
+    {
+        $result = null;
 
-    /**
-     * StatRowExtractor constructor.
-     * @param array $rows
-     */
-    public function __construct($rows)
-    {
-        $this->rows = $rows;
-    }
-    
-    public function extract()
-    {
-        
+        foreach ($this->map as $searchFor => $class) {
+            if(strpos($row, $searchFor) !== 0) {
+                return new $class;
+            }
+        }
+
+        return $result;
     }
 }

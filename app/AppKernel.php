@@ -17,7 +17,11 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
 
-            new Kreatys\PdfParserBundle\KreatysPdfParserBundle()
+            new Kreatys\PdfParserBundle\KreatysPdfParserBundle(),
+            new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
+            new Petkopara\MultiSearchBundle\PetkoparaMultiSearchBundle(),
+            new Petkopara\CrudGeneratorBundle\PetkoparaCrudGeneratorBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

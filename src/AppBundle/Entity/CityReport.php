@@ -40,7 +40,7 @@ class CityReport
      */
     public $month;
 
-    
+
 //    /**
 //     * @var int
 //     *

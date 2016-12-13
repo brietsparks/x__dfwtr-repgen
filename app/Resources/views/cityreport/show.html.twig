@@ -1,0 +1,444 @@
+{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+
+{% block title %}
+{{ parent() }} - cityReport
+{% endblock %}
+
+{% block body %}
+
+<div id="top" class="row">
+    <div class="page-header">
+        <h2>View cityReport <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <p><strong>Id</strong></p>
+        <p>
+            {{ cityReport.id }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Year</strong></p>
+        <p>
+            {{ cityReport.year }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Month</strong></p>
+        <p>
+            {{ cityReport.month }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesreported_monthprev</strong></p>
+        <p>
+            {{ cityReport.salesReportedmonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesprojected_monthprev</strong></p>
+        <p>
+            {{ cityReport.salesProjectedmonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Contractlistings_monthprev</strong></p>
+        <p>
+            {{ cityReport.contractListingsmonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Avgprice_monthprev</strong></p>
+        <p>
+            {{ cityReport.avgPricemonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Medianprice_monthprev</strong></p>
+        <p>
+            {{ cityReport.medianPricemonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Percentreceived_monthprev</strong></p>
+        <p>
+            {{ cityReport.percentReceivedmonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Daysonmarket_monthprev</strong></p>
+        <p>
+            {{ cityReport.daysOnMarketmonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Inventory_monthprev</strong></p>
+        <p>
+            {{ cityReport.inventorymonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Monthssupply_monthprev</strong></p>
+        <p>
+            {{ cityReport.monthsSupplymonthPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesreported_monthcurr</strong></p>
+        <p>
+            {{ cityReport.salesReportedmonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesprojected_monthcurr</strong></p>
+        <p>
+            {{ cityReport.salesProjectedmonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Contractlistings_monthcurr</strong></p>
+        <p>
+            {{ cityReport.contractListingsmonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Avgprice_monthcurr</strong></p>
+        <p>
+            {{ cityReport.avgPricemonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Medianprice_monthcurr</strong></p>
+        <p>
+            {{ cityReport.medianPricemonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Percentreceived_monthcurr</strong></p>
+        <p>
+            {{ cityReport.percentReceivedmonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Daysonmarket_monthcurr</strong></p>
+        <p>
+            {{ cityReport.daysOnMarketmonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Inventory_monthcurr</strong></p>
+        <p>
+            {{ cityReport.inventorymonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Monthssupply_monthcurr</strong></p>
+        <p>
+            {{ cityReport.monthsSupplymonthCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesreported_monthchange</strong></p>
+        <p>
+            {{ cityReport.salesReportedmonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesprojected_monthchange</strong></p>
+        <p>
+            {{ cityReport.salesProjectedmonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Contractlistings_monthchange</strong></p>
+        <p>
+            {{ cityReport.contractListingsmonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Avgprice_monthchange</strong></p>
+        <p>
+            {{ cityReport.avgPricemonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Medianprice_monthchange</strong></p>
+        <p>
+            {{ cityReport.medianPricemonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Percentreceived_monthchange</strong></p>
+        <p>
+            {{ cityReport.percentReceivedmonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Daysonmarket_monthchange</strong></p>
+        <p>
+            {{ cityReport.daysOnMarketmonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Inventory_monthchange</strong></p>
+        <p>
+            {{ cityReport.inventorymonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Monthssupply_monthchange</strong></p>
+        <p>
+            {{ cityReport.monthsSupplymonthChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesreported_ytdprev</strong></p>
+        <p>
+            {{ cityReport.salesReportedytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesprojected_ytdprev</strong></p>
+        <p>
+            {{ cityReport.salesProjectedytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Contractlistings_ytdprev</strong></p>
+        <p>
+            {{ cityReport.contractListingsytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Avgprice_ytdprev</strong></p>
+        <p>
+            {{ cityReport.avgPriceytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Medianprice_ytdprev</strong></p>
+        <p>
+            {{ cityReport.medianPriceytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Percentreceived_ytdprev</strong></p>
+        <p>
+            {{ cityReport.percentReceivedytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Daysonmarket_ytdprev</strong></p>
+        <p>
+            {{ cityReport.daysOnMarketytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Inventory_ytdprev</strong></p>
+        <p>
+            {{ cityReport.inventoryytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Monthssupply_ytdprev</strong></p>
+        <p>
+            {{ cityReport.monthsSupplyytdPrev }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesreported_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.salesReportedytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesprojected_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.salesProjectedytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Contractlistings_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.contractListingsytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Avgprice_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.avgPriceytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Medianprice_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.medianPriceytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Percentreceived_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.percentReceivedytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Daysonmarket_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.daysOnMarketytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Inventory_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.inventoryytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Monthssupply_ytdcurr</strong></p>
+        <p>
+            {{ cityReport.monthsSupplyytdCurr }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesreported_ytdchange</strong></p>
+        <p>
+            {{ cityReport.salesReportedytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Salesprojected_ytdchange</strong></p>
+        <p>
+            {{ cityReport.salesProjectedytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Contractlistings_ytdchange</strong></p>
+        <p>
+            {{ cityReport.contractListingsytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Avgprice_ytdchange</strong></p>
+        <p>
+            {{ cityReport.avgPriceytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Medianprice_ytdchange</strong></p>
+        <p>
+            {{ cityReport.medianPriceytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Percentreceived_ytdchange</strong></p>
+        <p>
+            {{ cityReport.percentReceivedytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Daysonmarket_ytdchange</strong></p>
+        <p>
+            {{ cityReport.daysOnMarketytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Inventory_ytdchange</strong></p>
+        <p>
+            {{ cityReport.inventoryytdChange }}
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        <p><strong>Monthssupply_ytdchange</strong></p>
+        <p>
+            {{ cityReport.monthsSupplyytdChange }}
+        </p>
+
+    </div></div>
+
+<hr/>
+
+
+<div class="form-group">
+    <a class="btn btn-default" href="{{ path('cityreport') }}">
+        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        Back to list
+    </a>
+    <a class="btn btn-primary" href="{{ path('cityreport_edit', { 'id':  cityReport.id }) }}">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        Edit
+    </a>
+    <a class="btn btn-info" href="{{ path('cityreport_new') }}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        New
+    </a>
+    <form action="{{ path('cityreport_delete', { 'id': cityReport.id }) }}" method="post" style="display: inline-block">
+        <input type="hidden" name="_method" value="DELETE" />
+        {{ form_widget(delete_form) }}
+        <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure');">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            Delete
+        </button>
+    </form>
+</div>
+
+
+{% endblock %}
+

@@ -7,6 +7,9 @@ use Smalot\PdfParser\Object;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Route("/home")
+ */
 class DefaultController extends Controller
 {
     /**

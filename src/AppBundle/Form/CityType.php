@@ -15,8 +15,8 @@ class CityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('mls')
             ->add('name')
+            ->add('mls')
         ;
     }
     

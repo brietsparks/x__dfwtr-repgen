@@ -1,14 +1,14 @@
-{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-{{ parent() }} - New cityReport
+{{ parent() }} - New City Report
 {% endblock %}
 
 {% block body %}
 
 <div id="top" class="row">
     <div class="page-header">
-        <h2>New cityReport <span class="glyphicon glyphicon-file" aria-hidden="true"></span> </h2>
+        <h2>New City Report <span class="glyphicon glyphicon-file" aria-hidden="true"></span> </h2>
     </div>
 </div>
     
@@ -26,15 +26,14 @@
          {% endfor %} 
     </div>
 </div>
-    
 
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <p>
-        <button type="submit" name="submit" value="save" class="btn btn-primary"> 
+        <button type="submit" name="submit" value="save" class="btn btn-primary">
             Save <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
         </button>
-        <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info"> 
+        <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info">
             Save and Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
     </p>

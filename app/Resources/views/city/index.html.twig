@@ -1,7 +1,7 @@
-{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-    Cities
+    {{ parent() }} - Cities
 {% endblock %}
 
 {% block body %}
@@ -88,7 +88,6 @@
                         <th width="20px"><input type="checkbox" class="check-all" onclick="toggleAll(this)"></th>
 
                         {% import "PetkoparaCrudGeneratorBundle::macros/th_sortable.html.twig" as macros %}
-                        {#<th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'city')}}</th>#}
                         <th>{{ macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'city') }}</th>
                         <th>{{ macros.th_sortable('mls',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'city') }}</th>
 
@@ -101,7 +100,7 @@
                         <tr>
                             <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all"
                                        value="{{ city.id }}"/></td>
-                            <td><a href="{{ path('city_edit', { 'id': city.id }) }}">{{ city.name }}</a></td>
+                            <td><a href="{{ path('city_show', { 'id': city.id }) }}">{{ city.name }}</a></td>
                             <td>{{ city.mls }}</td>
 
                             <td class="actions">

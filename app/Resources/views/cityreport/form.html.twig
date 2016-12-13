@@ -1,0 +1,135 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col-sm-3">
+        {{ form_row(form.city) }}
+    </div>
+    <div class="col-sm-3 col-sm-offset-3">
+        {{ form_row(form.month) }}
+    </div>
+    <div class="col-sm-3">
+        {{ form_row(form.year) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3 col-sm-offset-6">
+        <strong>Month</strong>
+    </div>
+    <div class="col-sm-3">
+        <strong>YTD</strong>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-1 col-sm-offset-6">
+        <strong>Prev Year</strong>
+    </div>
+    <div class="col-sm-1">
+        <strong>Curr Year</strong>
+    </div>
+    <div class="col-sm-1">
+        <strong>+/-</strong>
+    </div>
+    <div class="col-sm-1">
+        <strong>Prev Year</strong>
+    </div>
+    <div class="col-sm-1">
+        <strong>Curr Year</strong>
+    </div>
+    <div class="col-sm-1">
+        <strong>+/-</strong>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Closed Sales (Reported)</div>
+    <div class="col-sm-1">{{ form_row(form.salesReported_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesReported_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesReported_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesReported_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesReported_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesReported_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Closed Sales (Projected)</div>
+    <div class="col-sm-1">{{ form_row(form.salesProjected_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesProjected_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesProjected_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesProjected_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesProjected_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.salesProjected_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Listings Under Contract</div>
+    <div class="col-sm-1">{{ form_row(form.contractListings_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.contractListings_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.contractListings_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.contractListings_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.contractListings_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.contractListings_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Average Sales Price</div>
+    <div class="col-sm-1">{{ form_row(form.avgPrice_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.avgPrice_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.avgPrice_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.avgPrice_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.avgPrice_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.avgPrice_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Median Sales Price</div>
+    <div class="col-sm-1">{{ form_row(form.medianPrice_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.medianPrice_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.medianPrice_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.medianPrice_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.medianPrice_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.medianPrice_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Percent of Original List Price Received*</div>
+    <div class="col-sm-1">{{ form_row(form.percentReceived_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.percentReceived_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.percentReceived_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.percentReceived_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.percentReceived_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.percentReceived_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Days on Market Until Sale</div>
+    <div class="col-sm-1">{{ form_row(form.daysOnMarket_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.daysOnMarket_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.daysOnMarket_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.daysOnMarket_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.daysOnMarket_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.daysOnMarket_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">Inventory of Homes for Sale</div>
+    <div class="col-sm-1">{{ form_row(form.inventory_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.inventory_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.inventory_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.inventory_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.inventory_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.inventory_ytdChange) }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-6">_months Supply of Inventory</div>
+    <div class="col-sm-1">{{ form_row(form.monthsSupply_monthPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.monthsSupply_monthCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.monthsSupply_monthChange) }}</div>
+    <div class="col-sm-1">{{ form_row(form.monthsSupply_ytdPrev) }}</div>
+    <div class="col-sm-1">{{ form_row(form.monthsSupply_ytdCurr) }}</div>
+    <div class="col-sm-1">{{ form_row(form.monthsSupply_ytdChange) }}</div>
+</div>
+
+<p>
+    <button type="submit" name="submit" value="save" class="btn btn-primary">
+        Save <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+    </button>
+    <button type="submit" name="submit" value="saveAndAdd" class="btn btn-info">
+        Save and Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+</p>
+
+
+{{ form_end(form) }}

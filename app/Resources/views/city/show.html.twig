@@ -40,11 +40,16 @@
     <div class="row">
         <div class="col-md-6">
             <p><strong>Reports</strong></p>
-            {% for report in city.getReports() %}
-                <a href="{{ path('cityreport_show', {'id': report.id})}}">
-                    (id: {{ report.id }})... {{ report.year}}-{{ report.month }}
-                </a>
-            {% endfor %}
+            <ul>
+                {% for report in city.getReports() %}
+                    <li>
+                        <a href="{{ path('cityreport_show', {'id': report.id})}}">
+                            (id: {{ report.id }})... {{ report.year}}-{{ report.month }}
+                        </a>
+                    </li>
+
+                {% endfor %}
+            </ul>
         </div>
     </div>
 

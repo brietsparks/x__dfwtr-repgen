@@ -28,7 +28,7 @@ class City
     protected $mls;
 
     /**
-     * @var int
+     * @var string
      *
      * @ORM\Column(name="name", type="string", nullable=true)
      */
@@ -38,5 +38,10 @@ class City
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CityReport", mappedBy="city")
      */
     protected $reports;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subdivision", mappedBy="city")
+     */
+    protected $subdivisions;
 
 }

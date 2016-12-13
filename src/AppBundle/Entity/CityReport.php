@@ -21,7 +21,6 @@ class CityReport
     private $id;
 
     /**
-     * @var int
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="reports")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */

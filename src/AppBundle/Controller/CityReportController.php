@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\CityReportImportType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -167,9 +169,37 @@ class CityReportController extends Controller
      */
     public function importAction(Request $request)
     {
+        $form = $this->createForm(CityReportImportType::class)->add('Upload', SubmitType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $importer = $this->get('app.importer.default');
+
+            $results = $importer
+                ->import($form->get('upload')->getData())
+                ->getResults();
+
+            $request->request->add(['results' => $results]);
+
+            return $this->redirectToRoute('cityreport_import_results', [
+                'results' => $results
+            ], 307);
+        }
+
         return $this->render('cityreport/import.html.twig', array(
-//            'cityReport' => $cityReport,
-//            'form'   => $form->createView(),
+            'form'   => $form->createView(),
+        ));
+    }
+
+    /**
+     * @Route("/import/results", name="cityreport_import_results")
+     */
+    public function importResultsAction(Request $request)
+    {
+        $results = $request->query->get('results');
+        return $this->render('cityreport/import_results.html.twig', array(
+            'results' => $results
         ));
     }
     

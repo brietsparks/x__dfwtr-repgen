@@ -174,7 +174,7 @@ class CityReportController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $importer = $this->get('app.importer.default');
+            $importer = $this->get('app.city_report.importer');
 
             $results = $importer
                 ->import($form->get('upload')->getData())

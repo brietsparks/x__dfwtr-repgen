@@ -1,75 +1,88 @@
 <?php
 
-namespace AppBundle\Importer;
+namespace AppBundle\Services;
 
 use AppBundle\Form\CityReportImportType;
-use Doctrine\ORM\EntityManager;
+use Smalot\PdfParser\Parser as PdfParser;
+use Symfony\Component\Debug\Exception\ContextErrorException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class CityReportImporter
+class PdfScraper
 {
-
-    /**
-     * @var EntityManager
-     */
-    protected $entityManager;
 
     /**
      * @var string
      */
     protected $uploadDirPath;
 
-    protected $results;
+    /**
+     * @var PdfParser
+     */
+    protected $pdfParser;
 
     /**
-     * CityReportImporter constructor.
-     * @param EntityManager $entityManager
+     * PdfScraper constructor.
      * @param string $uploadDirPath
+     * @param PdfParser $pdfParser
      */
-    public function __construct(EntityManager $entityManager, $uploadDirPath)
+    public function __construct($uploadDirPath, PdfParser $pdfParser)
     {
-        $this->entityManager = $entityManager;
         $this->uploadDirPath = $uploadDirPath;
+        $this->pdfParser = $pdfParser;
     }
 
-
-    public function import(UploadedFile $file)
+    /**
+     * @param UploadedFile $file
+     * @return array
+     */
+    public function scrape(UploadedFile $file)
     {
-        if ($this->fileIsArchive($file)) {
-            $zip = new \ZipArchive();
+        $scrapes = [];
 
-            $zip->open($file);
-            
-            $zip->extractTo($this->uploadDirPath);
+        if ($this->fileIsArchive($file)) {
+            $this->extractFiles($file, $this->uploadDirPath);
         } else {
-            dump(2);exit;
+            $file->move($this->uploadDirPath);
         }
 
-        return $this;
+        $dir = new \DirectoryIterator($this->uploadDirPath);
+
+        foreach ($dir as $fileInfo) {
+            if(!$fileInfo->isDot() && $fileInfo->getExtension() === 'pdf') {
+                $scrape = new ScrapeResult($fileInfo->getFilename());
+
+                try {
+                    $document = $this->pdfParser->parseFile(
+                        $this->uploadDirPath . '/' . $fileInfo->getFilename()
+                    );
+                    $scrape->setText($document->getText());
+                } catch (\Exception $e) {
+                    die($e->getMessage());
+                }
+
+                $scrapes[] = $scrape;
+            }
+        }
+
+        return $scrapes;
     }
 
-
-    public function getResults()
+    protected function extractFiles(UploadedFile $file, $path)
     {
-        return $this->results;
+        try {
+            $zip = new \ZipArchive();
+            $zip->open($file);
+            $zip->extractTo($path);
+        } catch (ContextErrorException $e) {
+            die('rar file');
+        } finally {
+            return false;
+        }
     }
 
     protected function fileIsArchive(UploadedFile $file)
     {
         return in_array($file->getMimeType(), CityReportImportType::ARCHIVE_MIME_TYPES);
     }
-
-    /**
-     * @param string $uploadDirPath
-     * @return CityReportImporter
-     */
-    public function setUploadDirPath($uploadDirPath)
-    {
-        $this->uploadDirPath = $uploadDirPath;
-
-        return $this;
-    }
-
-
 
 }

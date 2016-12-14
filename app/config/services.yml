@@ -3,15 +3,22 @@ parameters:
 
 
 services:
-    app.pdf_scraper:
-        class: AppBundle\PdfScraper\PdfScraper
-        arguments: ["@kreatys.pdf_parser", "@app.pdf_scraper.data_point_parser_factory"]
-
-    app.pdf_scraper.data_point_parser_factory:
-        class: AppBundle\PdfScraper\DataPointParserFactory
-
-    app.importer.default:
-        class: AppBundle\Importer\CityReportImporter
+    app.city_report.importer:
+        class: AppBundle\CityReport\Importer
         arguments:
+          - "@app.services.pdf_scraper"
+          - "@app.city_report.parser"
           - "@doctrine.orm.default_entity_manager"
+
+    app.city_report.parser:
+        class: AppBundle\CityReport\CityReportParser
+        arguments: ["@app.pdf_scraper.row_parser_factory"]
+
+    app.pdf_scraper.row_parser_factory:
+        class: AppBundle\CityReport\RowParserFactory
+
+    app.services.pdf_scraper:
+        class: AppBundle\Services\PdfScraper
+        arguments:
           - "%uploads_dir_path%"
+          - "@kreatys.pdf_parser"

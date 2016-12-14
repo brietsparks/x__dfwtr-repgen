@@ -160,6 +160,18 @@ class CityReportController extends Controller
             'form'   => $form->createView(),
         ));
     }
+
+    /**
+     * @Route("/import", name="cityreport_import")
+     * @Method({"GET", "POST"})
+     */
+    public function importAction(Request $request)
+    {
+        return $this->render('cityreport/import.html.twig', array(
+//            'cityReport' => $cityReport,
+//            'form'   => $form->createView(),
+        ));
+    }
     
 
     /**

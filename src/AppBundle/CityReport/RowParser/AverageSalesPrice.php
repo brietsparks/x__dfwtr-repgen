@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class AverageSalesPrice extends AbstractDataPointParser
+class AverageSalesPrice extends RowParser
 {
 
     protected $columnTitle = 'Average Sales Price**';

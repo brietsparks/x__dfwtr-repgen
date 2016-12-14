@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class MonthsSupply extends AbstractDataPointParser
+class MonthsSupply extends RowParser
 {
 
     protected $columnTitle = 'Months Supply of Inventory';

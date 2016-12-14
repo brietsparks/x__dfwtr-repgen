@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class ClosedSalesProjected extends AbstractDataPointParser
+class ClosedSalesProjected extends RowParser
 {
 
     protected $columnTitle = 'Closed Sales (Projected)*';

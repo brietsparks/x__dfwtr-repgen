@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class Inventory extends AbstractDataPointParser
+class Inventory extends RowParser
 {
 
     protected $columnTitle = 'Inventory of Homes for Sale';

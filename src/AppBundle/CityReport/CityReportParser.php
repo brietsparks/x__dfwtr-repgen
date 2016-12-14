@@ -1,27 +1,20 @@
 <?php
 
-namespace AppBundle\PdfScraper;
+namespace AppBundle\CityReport;
 
 use AppBundle\Entity\CityReport;
-use AppBundle\PdfScraper\DataPointParserFactory;
-use Smalot\PdfParser\Parser as PdfParser;
 
 /**
- * A service for scraping city report pdf's
+ * Parses city report text row by row into a CityReport object
  *
- * Class PdfScraper
- * @package AppBundle\PdfScraper
+ * Class CityReportParser
+ * @package AppBundle\CityReportParser
  */
-class PdfScraper implements ScraperInterface
+class CityReportParser
 {
 
     /**
-     * @var PdfParser
-     */
-    protected $pdfParser;
-
-    /**
-     * @var DataPointParserFactory
+     * @var RowParserFactory
      */
     protected $dataPointParserFactory;
 
@@ -31,29 +24,25 @@ class PdfScraper implements ScraperInterface
     protected $city;
 
     /**
-     * PdfScraper constructor.
-     * @param PdfParser $pdfParser
-     * @param DataPointParserFactory $dataPointParserFactory
+     * CityReportParser constructor.
+     * @param RowParserFactory $dataPointParserFactory
      */
-    public function __construct(PdfParser $pdfParser, DataPointParserFactory $dataPointParserFactory)
+    public function __construct(RowParserFactory $dataPointParserFactory)
     {
-        $this->pdfParser = $pdfParser;
         $this->dataPointParserFactory = $dataPointParserFactory;
     }
 
     /**
-     * Takes the parsed text from a report and returns the scraped data via CityReport entity
+     * Takes the parsed text from a report and returns the parsed data via CityReport entity
      *
      * @param string $text
      * @return CityReport
      */
-    public function scrape($text)
+    public function parse($text)
     {
         $report = new CityReport();
 
         $rows = explode("\n", $text);
-
-//        dump($rows); exit;
 
         foreach ($rows as $row) {
             if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {

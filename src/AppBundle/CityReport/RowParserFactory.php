@@ -1,25 +1,25 @@
 <?php 
 
-namespace AppBundle\PdfScraper;
+namespace AppBundle\CityReport;
 
-use AppBundle\PdfScraper\DataPointParser\AbstractDataPointParser;
-use AppBundle\PdfScraper\DataPointParser\AverageSalesPrice;
-use AppBundle\PdfScraper\DataPointParser\ClosedSalesProjected;
-use AppBundle\PdfScraper\DataPointParser\ClosedSalesReported;
-use AppBundle\PdfScraper\DataPointParser\DaysOnMarket;
-use AppBundle\PdfScraper\DataPointParser\Inventory;
-use AppBundle\PdfScraper\DataPointParser\ListingsUnderContract;
-use AppBundle\PdfScraper\DataPointParser\MedianSalesPrice;
-use AppBundle\PdfScraper\DataPointParser\MonthsSupply;
-use AppBundle\PdfScraper\DataPointParser\PercentOriginalListPrice;
+use AppBundle\CityReport\RowParser\RowParser;
+use AppBundle\CityReport\RowParser\AverageSalesPrice;
+use AppBundle\CityReport\RowParser\ClosedSalesProjected;
+use AppBundle\CityReport\RowParser\ClosedSalesReported;
+use AppBundle\CityReport\RowParser\DaysOnMarket;
+use AppBundle\CityReport\RowParser\Inventory;
+use AppBundle\CityReport\RowParser\ListingsUnderContract;
+use AppBundle\CityReport\RowParser\MedianSalesPrice;
+use AppBundle\CityReport\RowParser\MonthsSupply;
+use AppBundle\CityReport\RowParser\PercentOriginalListPrice;
 
 /**
  * Takes a city report row and returns a DataPointParser if possible
  *
- * Class DataPointParserFactory
- * @package AppBundle\PdfScraper\Extractor
+ * Class RowParserFactory
+ * @package AppBundle\CityReportParser\Extractor
  */
-class DataPointParserFactory
+class RowParserFactory
 {
 
     /**
@@ -42,7 +42,7 @@ class DataPointParserFactory
     /**
      * @param string $row
      *
-     * @return null|AbstractDataPointParser
+     * @return null|RowParser
      */
     public function getParser($row)
     {

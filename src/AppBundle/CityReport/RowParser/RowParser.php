@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\PdfScraper\DataPointParser;
+namespace AppBundle\CityReport\RowParser;
 
-abstract class AbstractDataPointParser
+abstract class RowParser
 {
 
     /**
@@ -26,10 +26,6 @@ abstract class AbstractDataPointParser
         $row = $this->clean($row);
 
         $data = explode(" ", $row);
-
-//        dump(get_class($this));
-//        dump($data);
-//        exit;
 
         return $this->makeOutputArray($data);
     }

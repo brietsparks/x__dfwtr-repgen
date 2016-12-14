@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class ListingsUnderContract extends AbstractDataPointParser
+class ListingsUnderContract extends RowParser
 {
 
     protected $columnTitle = 'Listings Under Contract';

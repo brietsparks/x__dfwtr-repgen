@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class NewListings extends AbstractDataPointParser
+class NewListings extends RowParser
 {
 
 

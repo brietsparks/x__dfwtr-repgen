@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class DaysOnMarket extends AbstractDataPointParser
+class DaysOnMarket extends RowParser
 {
 
     protected $columnTitle = 'Days on Market Until Sale';

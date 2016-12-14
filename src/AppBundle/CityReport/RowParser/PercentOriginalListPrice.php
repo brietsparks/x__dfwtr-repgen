@@ -1,7 +1,7 @@
-<?php namespace AppBundle\PdfScraper\DataPointParser;
+<?php namespace AppBundle\CityReport\RowParser;
 
 
-class PercentOriginalListPrice extends AbstractDataPointParser
+class PercentOriginalListPrice extends RowParser
 {
 
     protected $columnTitle = 'Percent of Original List Price Received**';

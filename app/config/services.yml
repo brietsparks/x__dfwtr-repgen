@@ -1,18 +1,17 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/service_container.html
 parameters:
-#    parameter_name: value
-
+    uploads_dir_path: "%kernel.root_dir%/../web/uploads"
 
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
-
     app.pdf_scraper:
         class: AppBundle\PdfScraper\PdfScraper
         arguments: ["@kreatys.pdf_parser", "@app.pdf_scraper.data_point_parser_factory"]
 
     app.pdf_scraper.data_point_parser_factory:
         class: AppBundle\PdfScraper\DataPointParserFactory
+
+    app.importer.default:
+        class: AppBundle\Importer\CityReportImporter
+        arguments:
+          - "@doctrine.orm.default_entity_manager"
+          - "%uploads_dir_path%"

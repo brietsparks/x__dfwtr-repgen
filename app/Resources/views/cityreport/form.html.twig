@@ -86,7 +86,7 @@
     <div class="col-sm-1">{{ form_row(form.medianPrice_ytdChange) }}</div>
 </div>
 <div class="row">
-    <div class="col-sm-6">Percent of Original List Price Received*</div>
+    <div class="col-sm-6">Percent of Original List Price Received</div>
     <div class="col-sm-1">{{ form_row(form.percentReceived_monthPrev) }}</div>
     <div class="col-sm-1">{{ form_row(form.percentReceived_monthCurr) }}</div>
     <div class="col-sm-1">{{ form_row(form.percentReceived_monthChange) }}</div>
@@ -113,7 +113,7 @@
     <div class="col-sm-1">{{ form_row(form.inventory_ytdChange) }}</div>
 </div>
 <div class="row">
-    <div class="col-sm-6">_months Supply of Inventory</div>
+    <div class="col-sm-6">Months Supply of Inventory</div>
     <div class="col-sm-1">{{ form_row(form.monthsSupply_monthPrev) }}</div>
     <div class="col-sm-1">{{ form_row(form.monthsSupply_monthCurr) }}</div>
     <div class="col-sm-1">{{ form_row(form.monthsSupply_monthChange) }}</div>
@@ -130,6 +130,5 @@
         Save and Add <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </button>
 </p>
-
 
 {{ form_end(form) }}

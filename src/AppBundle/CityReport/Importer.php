@@ -2,10 +2,12 @@
 
 namespace AppBundle\CityReport;
 
+use AppBundle\Entity\City;
 use AppBundle\Entity\CityReport;
 use AppBundle\Services\PdfScraper;
 use AppBundle\Services\ScrapeResult;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Importer
@@ -49,14 +51,17 @@ class Importer
                 /** @var CityReport $cityReport */
                 $cityReport = $this->cityReportParser->parse($scraped->getText());
 
+
                 $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : null;
 
-                dump($emptyFields);
-                dump($cityReport->getDataPoints());
+                // set the city relationship
+                $repo = $this->entityManager->getRepository(City::class);
+                $city = $repo->findOneByName($cityReport->city);
+                $cityReport->city = $city;
 
-
-//                $this->entityManager->persist($cityReport);
-//                $this->entityManager->flush();
+                // persist
+                $this->entityManager->persist($cityReport);
+                $this->entityManager->flush();
             }
         }
 

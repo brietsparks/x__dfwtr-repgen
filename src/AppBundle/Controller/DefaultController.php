@@ -30,5 +30,7 @@ class DefaultController extends Controller
 
         dump($q);exit;
 
+//        $this->get('doctrine.orm.entity_manager')->find()
+//            $this->getDoctrine()
     }
 }

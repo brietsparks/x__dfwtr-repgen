@@ -68,9 +68,9 @@ class ScrapeResult
      * @param array $errors
      * @return ScrapeResult
      */
-    public function setErrors($errors)
+    public function addError($errors)
     {
-        $this->errors = $errors;
+        $this->errors[] = $errors;
 
         return $this;
     }

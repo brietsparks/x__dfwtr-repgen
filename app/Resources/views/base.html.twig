@@ -16,7 +16,13 @@
         <![endif]-->
 
         <title>{% block title %}DFWTR{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <style>
+                .city-report-stats input {
+                    width: 135%;
+                }
+            </style>
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>

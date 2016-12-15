@@ -5,10 +5,16 @@ namespace AppBundle\Services;
 use AppBundle\Form\CityReportImportType;
 use Smalot\PdfParser\Parser as PdfParser;
 use Symfony\Component\Debug\Exception\ContextErrorException;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PdfScraper
 {
+
+    /**
+     * @var Filesystem
+     */
+    protected $fileSystem;
 
     /**
      * @var string
@@ -22,14 +28,18 @@ class PdfScraper
 
     /**
      * PdfScraper constructor.
+     *
+     * @param Filesystem $fileSystem
      * @param string $uploadDirPath
      * @param PdfParser $pdfParser
      */
-    public function __construct($uploadDirPath, PdfParser $pdfParser)
+    public function __construct(Filesystem $fileSystem, $uploadDirPath, PdfParser $pdfParser)
     {
+        $this->fileSystem = $fileSystem;
         $this->uploadDirPath = $uploadDirPath;
         $this->pdfParser = $pdfParser;
     }
+
 
     /**
      * @param UploadedFile $file
@@ -39,45 +49,57 @@ class PdfScraper
     {
         $scrapes = [];
 
+        // make the temp folder
+        $tempDirName = time() . rand();
+        $tempUploadDirPath = $this->uploadDirPath . '/' . $tempDirName;
+        $this->fileSystem->mkdir($tempUploadDirPath);
+
+        // put pdfs in that folder
         if ($this->fileIsArchive($file)) {
-            $this->extractFiles($file, $this->uploadDirPath);
-        } else {
-            $file->move($this->uploadDirPath);
+            $this->extractFiles($file, $tempUploadDirPath);
+        } elseif($file->getClientOriginalExtension() === 'pdf') {
+            $file->move($tempUploadDirPath);
         }
 
-        $dir = new \DirectoryIterator($this->uploadDirPath);
-
+        // scrape the files
+        $dir = new \DirectoryIterator($tempUploadDirPath);
         foreach ($dir as $fileInfo) {
-            if(!$fileInfo->isDot() && $fileInfo->getExtension() === 'pdf') {
+            if(!$fileInfo->isDot()) {
                 $scrape = new ScrapeResult($fileInfo->getFilename());
 
                 try {
                     $document = $this->pdfParser->parseFile(
-                        $this->uploadDirPath . '/' . $fileInfo->getFilename()
+                        $tempUploadDirPath . '/' . $fileInfo->getFilename()
                     );
+
                     $scrape->setText($document->getText());
                 } catch (\Exception $e) {
-                    die($e->getMessage());
+                    $scrape->addError($e->getMessage());
                 }
 
                 $scrapes[] = $scrape;
             }
         }
 
+        // delete the temp folder
+        $this->fileSystem->remove($tempUploadDirPath);
+
         return $scrapes;
     }
 
     protected function extractFiles(UploadedFile $file, $path)
     {
-        try {
-            $zip = new \ZipArchive();
-            $zip->open($file);
-            $zip->extractTo($path);
-        } catch (ContextErrorException $e) {
-            die('rar file');
-        } finally {
-            return false;
+        switch ($file->getClientOriginalExtension()) {
+            case 'zip':
+                $zip = new \ZipArchive();
+                $zip->open($file);
+                $zip->extractTo($path);
+                break;
+            case 'rar':
+
+                break;
         }
+
     }
 
     protected function fileIsArchive(UploadedFile $file)

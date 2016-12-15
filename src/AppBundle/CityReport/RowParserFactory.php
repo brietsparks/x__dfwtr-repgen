@@ -32,7 +32,7 @@ class RowParserFactory
      */
     protected $map = [
 //        'All MLS' => City::class,
-//        'The CCAR Pulse' => MonthYear::class,
+        'The CCAR Pulse' => MonthYear::class,
         'Closed Sales (Reported)' => ClosedSalesReported::class,
         'Closed Sales (Projected)' => ClosedSalesProjected::class,
         'Listings Under Contract' => ListingsUnderContract::class,

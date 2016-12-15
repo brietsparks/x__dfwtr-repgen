@@ -1,5 +1,6 @@
 parameters:
-    uploads_dir_path: "%kernel.root_dir%/../web/uploads"
+    temp_uploads_dir_path: "%kernel.root_dir%/../web/temp"
+    carr_report_uploads_path: "%temp_uploads_dir_path%/carr_reports"
 
 
 services:
@@ -20,5 +21,6 @@ services:
     app.services.pdf_scraper:
         class: AppBundle\Services\PdfScraper
         arguments:
-          - "%uploads_dir_path%"
+          - "@filesystem"
+          - "%carr_report_uploads_path%"
           - "@kreatys.pdf_parser"

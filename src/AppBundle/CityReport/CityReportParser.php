@@ -44,6 +44,8 @@ class CityReportParser
 
         $rows = explode("\n", $text);
 
+        $report->city = $rows[17];
+
         foreach ($rows as $row) {
             if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {
                 $parsedFields = $dataPointParser->parse($row);

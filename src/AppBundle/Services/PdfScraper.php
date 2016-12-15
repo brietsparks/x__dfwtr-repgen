@@ -65,7 +65,11 @@ class PdfScraper
         $dir = new \DirectoryIterator($tempUploadDirPath);
         foreach ($dir as $fileInfo) {
             if(!$fileInfo->isDot()) {
-                $scrape = new ScrapeResult($fileInfo->getFilename());
+                $scrape = new ScrapeResult();
+
+                if ($fileInfo->getExtension() !== 'tmp') {
+                    $scrape->setFileName($fileInfo->getFilename());
+                }
 
                 try {
                     $document = $this->pdfParser->parseFile(

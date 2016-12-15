@@ -18,7 +18,44 @@
         </div>
         <div class="col-md-12">
             <h3>Results</h3>
-            {{ results }}
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>File</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Skipped fields</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Errors</strong></p>
+                </div>
+            </div>
+
+            {% for result in results %}
+            <div class="row">
+                <div class="col-md-4">
+                    {% if result.getScrapeResult().getFileName() is not null %}
+                    <p>{{ result.getScrapeResult().getFileName() }}</p>
+                    {% else %}
+                    <p>Imported file</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                    {% for field in result.getEmptyFields()|keys %}
+                        <li>{{ field }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                    {% for error in result.getErrors() %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <hr/>
+            {% endfor %}
         </div>
     </div>
 

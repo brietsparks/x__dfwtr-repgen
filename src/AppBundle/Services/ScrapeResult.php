@@ -18,16 +18,7 @@ class ScrapeResult
     /**
      * @var array
      */
-    protected $errors;
-
-    /**
-     * ScrapeResult constructor.
-     * @param $fileName
-     */
-    public function __construct($fileName)
-    {
-        $this->fileName = $fileName;
-    }
+    protected $errors = [];
 
     /**
      * @return bool
@@ -43,6 +34,26 @@ class ScrapeResult
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+
+    /**
+     * @param string $fileName
+     *
+     * @return ScrapeResult
+     */
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+
+        return $this;
     }
 
     /**

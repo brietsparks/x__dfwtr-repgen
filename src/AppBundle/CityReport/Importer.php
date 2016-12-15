@@ -41,41 +41,51 @@ class Importer
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * Import CityReport(s) from the file and return the import results
+     *
+     * @param UploadedFile $file
+     *
+     * @return array
+     */
     public function import(UploadedFile $file)
     {
+        $results = [];
+
         $scrapes = $this->pdfScraper->scrape($file);
 
         /** @var ScrapeResult $scraped */
         foreach ($scrapes as $scraped) {
-            if (!$scraped->hasErrors()) {
-                /** @var CityReport $cityReport */
-                $cityReport = $this->cityReportParser->parse($scraped->getText());
+            $result = new ImportResult();
+            $result->setScrapeResult($scraped);
 
+            try {
+                if (!$scraped->hasErrors()) {
+                    /** @var CityReport $cityReport */
+                    $cityReport = $this->cityReportParser->parse($scraped->getText());
 
-                $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : null;
+                    $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : [];
+                    $result->setEmptyFields($emptyFields);
 
-                // set the city relationship
-                $repo = $this->entityManager->getRepository(City::class);
-                $city = $repo->findOneByName($cityReport->city);
-                $cityReport->city = $city;
+                    // set the city relationship
+                    $repo = $this->entityManager->getRepository(City::class);
+                    $city = $repo->findOneByName($cityReport->city);
+                    $cityReport->city = $city;
 
-                // persist
-                $this->entityManager->persist($cityReport);
-                $this->entityManager->flush();
+                    // persist
+                    if ($city instanceof City) {
+                        $this->entityManager->persist($cityReport);
+                        $this->entityManager->flush();
+                    }
+                }
+            } catch (\Exception $e) {
+                $result->addErrors($e->getMessage());
             }
+
+            $results[] = $result;
         }
 
-        exit;
-    }
-
-    protected function checkReportCompletion(CityReport $cityReport)
-    {
-
-    }
-
-    public function getResults()
-    {
-
+        return $results;
     }
 
 }

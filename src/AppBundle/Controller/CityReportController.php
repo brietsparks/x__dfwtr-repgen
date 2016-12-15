@@ -176,15 +176,16 @@ class CityReportController extends Controller
         if ($form->isValid()) {
             $importer = $this->get('app.city_report.importer');
 
-            $results = $importer
-                ->import($form->get('upload')->getData())
-                ->getResults();
+            $results = $importer->import($form->get('upload')->getData());
 
-            $request->request->add(['results' => $results]);
-
-            return $this->redirectToRoute('cityreport_import_results', [
+            return $this->render('cityreport/import_results.html.twig', [
                 'results' => $results
-            ], 307);
+            ]);
+//            $request->request->add(['results' => $results]);
+//
+//            return $this->redirectToRoute('cityreport_import_results', [
+//                'results' => $results
+//            ], 307);
         }
 
         return $this->render('cityreport/import.html.twig', array(
@@ -198,6 +199,7 @@ class CityReportController extends Controller
     public function importResultsAction(Request $request)
     {
         $results = $request->query->get('results');
+
         return $this->render('cityreport/import_results.html.twig', array(
             'results' => $results
         ));

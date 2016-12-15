@@ -49,11 +49,18 @@ class Importer
                 /** @var CityReport $cityReport */
                 $cityReport = $this->cityReportParser->parse($scraped->getText());
 
+                $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : null;
 
-                $this->entityManager->persist($cityReport);
-                $this->entityManager->flush();
+                dump($emptyFields);
+                dump($cityReport->getDataPoints());
+
+
+//                $this->entityManager->persist($cityReport);
+//                $this->entityManager->flush();
             }
         }
+
+        exit;
     }
 
     protected function checkReportCompletion(CityReport $cityReport)

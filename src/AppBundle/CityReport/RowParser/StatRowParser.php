@@ -2,7 +2,7 @@
 
 namespace AppBundle\CityReport\RowParser;
 
-abstract class RowParser
+abstract class StatRowParser implements RowParserInterface
 {
 
     /**

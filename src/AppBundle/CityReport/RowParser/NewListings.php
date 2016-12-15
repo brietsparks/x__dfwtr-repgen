@@ -1,7 +1,7 @@
 <?php namespace AppBundle\CityReport\RowParser;
 
 
-class NewListings extends RowParser
+class NewListings extends StatRowParser
 {
 
 

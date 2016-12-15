@@ -1,7 +1,7 @@
 <?php namespace AppBundle\CityReport\RowParser;
 
 
-class ClosedSalesProjected extends RowParser
+class ClosedSalesProjected extends StatRowParser
 {
 
     protected $columnTitle = 'Closed Sales (Projected)*';

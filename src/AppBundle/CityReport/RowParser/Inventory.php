@@ -1,7 +1,7 @@
 <?php namespace AppBundle\CityReport\RowParser;
 
 
-class Inventory extends RowParser
+class Inventory extends StatRowParser
 {
 
     protected $columnTitle = 'Inventory of Homes for Sale';

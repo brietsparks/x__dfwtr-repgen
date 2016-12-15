@@ -46,10 +46,12 @@ class CityReportParser
 
         foreach ($rows as $row) {
             if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {
-                $parsedData = $dataPointParser->parse($row);
+                $parsedFields = $dataPointParser->parse($row);
 
-                foreach ($parsedData as $field => $value) {
-                    $report->$field = $value;
+                foreach ($parsedFields as $field => $value) {
+                    if (property_exists(get_class($report), $field)) {
+                        $report->$field = $value;
+                    }
                 }
             }
         }

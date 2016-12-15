@@ -41,12 +41,43 @@ class CityReport
     public $month;
 
 
-//    /**
-//     * @var int
-//     *
-//     * @ORM\Column(name="newListings_monthPrev", type="integer", nullable=true)
-//     */
-//    public $newListings_monthPrev;
+    /**
+     * @return array
+     */
+    public function getDataPoints()
+    {
+        $props = get_object_vars($this);
+
+        unset($props['id']);
+
+        return $props;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMissingData()
+    {
+        return in_array(null, $this->getDataPoints(), true);
+    }
+
+    /**
+     * @return array
+     */
+    public function getMissingDataFields()
+    {
+        return array_filter($this->getDataPoints(), function ($dataPoint) {
+            return $dataPoint === null;
+        });
+    }
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="newListings_monthPrev", type="integer", nullable=true)
+     */
+    public $newListings_monthPrev;
 
     /**
      * @var int
@@ -111,12 +142,12 @@ class CityReport
      */
     public $monthsSupply_monthPrev;
 
-//    /**
-//     * @var int
-//     *
-//     * @ORM\Column(name="newListings_monthCurr", type="integer", nullable=true)
-//     */
-//    public $newListings_monthCurr;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="newListings_monthCurr", type="integer", nullable=true)
+     */
+    public $newListings_monthCurr;
 
     /**
      * @var int
@@ -182,12 +213,12 @@ class CityReport
     public $monthsSupply_monthCurr;
 
 
-//    /**
-//     * @var float
-//     *
-//     * @ORM\Column(name="newListings_monthChange", type="float", nullable=true)
-//     */
-//    public $newListings_monthChange;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="newListings_monthChange", type="float", nullable=true)
+     */
+    public $newListings_monthChange;
 
     /**
      * @var float
@@ -253,12 +284,12 @@ class CityReport
     public $monthsSupply_monthChange;
 
 
-//    /**
-//     * @var int
-//     *
-//     * @ORM\Column(name="newListings_ytdPrev", type="integer", nullable=true)
-//     */
-//    public $newListings_ytdPrev;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="newListings_ytdPrev", type="integer", nullable=true)
+     */
+    public $newListings_ytdPrev;
 
     /**
      * @var int
@@ -309,27 +340,13 @@ class CityReport
      */
     public $daysOnMarket_ytdPrev;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="inventory_ytdPrev", type="integer", nullable=true)
-     */
-    public $inventory_ytdPrev;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="monthsSupply_ytdPrev", type="integer", nullable=true)
+     * @ORM\Column(name="newListings_ytdCurr", type="integer", nullable=true)
      */
-    public $monthsSupply_ytdPrev;
-
-
-//    /**
-//     * @var int
-//     *
-//     * @ORM\Column(name="newListings_ytdCurr", type="integer", nullable=true)
-//     */
-//    public $newListings_ytdCurr;
+    public $newListings_ytdCurr;
 
     /**
      * @var int
@@ -380,27 +397,13 @@ class CityReport
      */
     public $daysOnMarket_ytdCurr;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="inventory_ytdCurr", type="integer", nullable=true)
-     */
-    public $inventory_ytdCurr;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="monthsSupply_ytdCurr", type="integer", nullable=true)
+     * @ORM\Column(name="newListings_ytdChange", type="float", nullable=true)
      */
-    public $monthsSupply_ytdCurr;
-
-
-//    /**
-//     * @var float
-//     *
-//     * @ORM\Column(name="newListings_ytdChange", type="float", nullable=true)
-//     */
-//    public $newListings_ytdChange;
+    public $newListings_ytdChange;
 
     /**
      * @var float
@@ -450,20 +453,6 @@ class CityReport
      * @ORM\Column(name="daysOnMarket_ytdChange", type="float", nullable=true)
      */
     public $daysOnMarket_ytdChange;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="inventory_ytdChange", type="float", nullable=true)
-     */
-    public $inventory_ytdChange;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="monthsSupply_ytdChange", type="float", nullable=true)
-     */
-    public $monthsSupply_ytdChange;
 
     /**
      * @return int
@@ -1216,46 +1205,6 @@ class CityReport
     /**
      * @return int
      */
-    public function getInventoryYtdPrev()
-    {
-        return $this->inventory_ytdPrev;
-    }
-
-    /**
-     * @param int $inventory_ytdPrev
-     *
-     * @return CityReport
-     */
-    public function setInventoryYtdPrev($inventory_ytdPrev)
-    {
-        $this->inventory_ytdPrev = $inventory_ytdPrev;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMonthsSupplyYtdPrev()
-    {
-        return $this->monthsSupply_ytdPrev;
-    }
-
-    /**
-     * @param int $monthsSupply_ytdPrev
-     *
-     * @return CityReport
-     */
-    public function setMonthsSupplyYtdPrev($monthsSupply_ytdPrev)
-    {
-        $this->monthsSupply_ytdPrev = $monthsSupply_ytdPrev;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
     public function getSalesReportedYtdCurr()
     {
         return $this->salesReported_ytdCurr;
@@ -1389,46 +1338,6 @@ class CityReport
     public function setDaysOnMarketYtdCurr($daysOnMarket_ytdCurr)
     {
         $this->daysOnMarket_ytdCurr = $daysOnMarket_ytdCurr;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getInventoryYtdCurr()
-    {
-        return $this->inventory_ytdCurr;
-    }
-
-    /**
-     * @param int $inventory_ytdCurr
-     *
-     * @return CityReport
-     */
-    public function setInventoryYtdCurr($inventory_ytdCurr)
-    {
-        $this->inventory_ytdCurr = $inventory_ytdCurr;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMonthsSupplyYtdCurr()
-    {
-        return $this->monthsSupply_ytdCurr;
-    }
-
-    /**
-     * @param int $monthsSupply_ytdCurr
-     *
-     * @return CityReport
-     */
-    public function setMonthsSupplyYtdCurr($monthsSupply_ytdCurr)
-    {
-        $this->monthsSupply_ytdCurr = $monthsSupply_ytdCurr;
 
         return $this;
     }
@@ -1569,46 +1478,6 @@ class CityReport
     public function setDaysOnMarketYtdChange($daysOnMarket_ytdChange)
     {
         $this->daysOnMarket_ytdChange = $daysOnMarket_ytdChange;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getInventoryYtdChange()
-    {
-        return $this->inventory_ytdChange;
-    }
-
-    /**
-     * @param float $inventory_ytdChange
-     *
-     * @return CityReport
-     */
-    public function setInventoryYtdChange($inventory_ytdChange)
-    {
-        $this->inventory_ytdChange = $inventory_ytdChange;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getMonthsSupplyYtdChange()
-    {
-        return $this->monthsSupply_ytdChange;
-    }
-
-    /**
-     * @param float $monthsSupply_ytdChange
-     *
-     * @return CityReport
-     */
-    public function setMonthsSupplyYtdChange($monthsSupply_ytdChange)
-    {
-        $this->monthsSupply_ytdChange = $monthsSupply_ytdChange;
 
         return $this;
     }

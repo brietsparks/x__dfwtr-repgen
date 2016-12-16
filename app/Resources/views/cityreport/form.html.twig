@@ -42,6 +42,15 @@
 </div>
 <div class="city-report-stats">
     <div class="row">
+        <div class="col-sm-6">New Listings</div>
+        <div class="col-sm-1">{{ form_row(form.newListings_monthPrev) }}</div>
+        <div class="col-sm-1">{{ form_row(form.newListings_monthCurr) }}</div>
+        <div class="col-sm-1">{{ form_row(form.newListings_monthChange) }}</div>
+        <div class="col-sm-1">{{ form_row(form.newListings_ytdPrev) }}</div>
+        <div class="col-sm-1">{{ form_row(form.newListings_ytdCurr) }}</div>
+        <div class="col-sm-1">{{ form_row(form.newListings_ytdChange) }}</div>
+    </div>
+    <div class="row">
         <div class="col-sm-6">Closed Sales (Reported)</div>
         <div class="col-sm-1">{{ form_row(form.salesReported_monthPrev) }}</div>
         <div class="col-sm-1">{{ form_row(form.salesReported_monthCurr) }}</div>

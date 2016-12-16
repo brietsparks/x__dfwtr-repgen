@@ -1489,4 +1489,120 @@ class CityReport
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getNewListingsMonthPrev()
+    {
+        return $this->newListings_monthPrev;
+    }
+
+    /**
+     * @param int $newListings_monthPrev
+     * @return CityReport
+     */
+    public function setNewListingsMonthPrev($newListings_monthPrev)
+    {
+        $this->newListings_monthPrev = $newListings_monthPrev;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNewListingsMonthCurr()
+    {
+        return $this->newListings_monthCurr;
+    }
+
+    /**
+     * @param int $newListings_monthCurr
+     * @return CityReport
+     */
+    public function setNewListingsMonthCurr($newListings_monthCurr)
+    {
+        $this->newListings_monthCurr = $newListings_monthCurr;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getNewListingsMonthChange()
+    {
+        return $this->newListings_monthChange;
+    }
+
+    /**
+     * @param float $newListings_monthChange
+     * @return CityReport
+     */
+    public function setNewListingsMonthChange($newListings_monthChange)
+    {
+        $this->newListings_monthChange = $newListings_monthChange;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNewListingsYtdPrev()
+    {
+        return $this->newListings_ytdPrev;
+    }
+
+    /**
+     * @param int $newListings_ytdPrev
+     * @return CityReport
+     */
+    public function setNewListingsYtdPrev($newListings_ytdPrev)
+    {
+        $this->newListings_ytdPrev = $newListings_ytdPrev;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNewListingsYtdCurr()
+    {
+        return $this->newListings_ytdCurr;
+    }
+
+    /**
+     * @param int $newListings_ytdCurr
+     * @return CityReport
+     */
+    public function setNewListingsYtdCurr($newListings_ytdCurr)
+    {
+        $this->newListings_ytdCurr = $newListings_ytdCurr;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getNewListingsYtdChange()
+    {
+        return $this->newListings_ytdChange;
+    }
+
+    /**
+     * @param float $newListings_ytdChange
+     * @return CityReport
+     */
+    public function setNewListingsYtdChange($newListings_ytdChange)
+    {
+        $this->newListings_ytdChange = $newListings_ytdChange;
+
+        return $this;
+    }
+
+
+
 }

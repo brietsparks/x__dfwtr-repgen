@@ -26,10 +26,12 @@
          {% endfor %} 
     </div>
 </div>
-    
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+<div class="row">
+    <div class="col-md-6">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
     <p>
         <button type="submit" name="submit" value="save" class="btn btn-primary"> 
             Save <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
@@ -41,6 +43,8 @@
 
 
     {{ form_end(form) }}
+    </div>
+</div>
 
     <hr/>
 

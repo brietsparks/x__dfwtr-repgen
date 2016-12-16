@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,11 +22,15 @@ class City
     protected $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="mls", type="integer")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\City", mappedBy="parent")
      */
-    protected $mls;
+    protected $children;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\City", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    protected $parent;
 
     /**
      * @var string
@@ -33,6 +38,13 @@ class City
      * @ORM\Column(name="name", type="string", nullable=true)
      */
     protected $name;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="mls", type="integer", nullable=true)
+     */
+    protected $mls;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CityReport", mappedBy="city")
@@ -43,6 +55,10 @@ class City
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Subdivision", mappedBy="city")
      */
     protected $subdivisions;
+
+    public function __construct() {
+        $this->children = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -58,6 +74,44 @@ class City
     public function getMls()
     {
         return $this->mls;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     * @return City
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param mixed $children
+     * @return City
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+
+        return $this;
     }
 
     /**

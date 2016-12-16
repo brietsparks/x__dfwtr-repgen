@@ -2,7 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\City;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,7 +19,16 @@ class CityType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('mls')
+            ->add('mls', IntegerType::class, [
+                'required' => false
+            ])
+            ->add('parent', EntityType::class, [
+                'class' => City::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Please choose',
+                'empty_data' => null,
+                'required' => false
+            ])
         ;
     }
     

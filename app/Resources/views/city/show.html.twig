@@ -22,7 +22,7 @@
 
         </div>
         <div class="col-md-6">
-            <p><strong>Mls</strong></p>
+            <p><strong>MLS</strong></p>
             <p>
                 {{ city.mls }}
             </p>
@@ -33,6 +33,28 @@
             <p>
                 {{ city.name }}
             </p>
+
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                {% if city.children is not empty %}
+                <div class="col-md-6">
+                    <p><strong>Child Cities</strong></p>
+                    <ul>
+                        {% for child in city.children %}
+                            <li><a href="{{ path('city_show', {'id': child.id}) }}">{{ child.name }}</a> </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if city.parent is not null %}
+                <div class="col-md-6">
+                    <p><strong>Parent City</strong></p>
+                    <p><a href="{{ path('city_show', {'id': city.parent.id}) }}">{{ city.parent.name }}</a></p>
+                </div>
+                {% endif %}
+            </div>
 
         </div>
     </div>

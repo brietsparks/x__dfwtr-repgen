@@ -2,6 +2,7 @@
 
 namespace AppBundle\CityReport;
 
+use AppBundle\CityReport\RowParser\NewListings;
 use AppBundle\Entity\CityReport;
 
 /**
@@ -46,19 +47,25 @@ class CityReportParser
 
         $report->city = $rows[17];
 
+        $newListingsParser = new NewListings();
+        $this->populateEntity($report, $newListingsParser->parse($rows[3]));
+
         foreach ($rows as $row) {
             if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {
-                $parsedFields = $dataPointParser->parse($row);
-
-                foreach ($parsedFields as $field => $value) {
-                    if (property_exists(get_class($report), $field)) {
-                        $report->$field = $value;
-                    }
-                }
+                $this->populateEntity($report, $dataPointParser->parse($row));
             }
         }
 
         return $report;
+    }
+
+    protected function populateEntity(CityReport $report, array $parsedFields)
+    {
+        foreach ($parsedFields as $field => $value) {
+            if (property_exists(get_class($report), $field)) {
+                $report->$field = $value;
+            }
+        }
     }
 
 }

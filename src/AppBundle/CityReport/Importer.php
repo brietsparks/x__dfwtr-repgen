@@ -69,17 +69,20 @@ class Importer
 
                     // set the city relationship
                     $repo = $this->entityManager->getRepository(City::class);
-                    $city = $repo->findOneByName($cityReport->city);
+                    $cityName = $cityReport->city;
+                    $city = $repo->findOneByName($cityName);
                     $cityReport->city = $city;
 
                     // persist
                     if ($city instanceof City) {
                         $this->entityManager->persist($cityReport);
                         $this->entityManager->flush();
+                    } else {
+                        $result->addError("City \"$cityName\" does not exist in database.");
                     }
                 }
             } catch (\Exception $e) {
-                $result->addErrors($e->getMessage());
+                $result->addError($e->getMessage());
             }
 
             $results[] = $result;

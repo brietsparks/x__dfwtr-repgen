@@ -4,6 +4,6 @@
 class NewListings extends StatRowParser
 {
 
-
+    protected $entityFieldPrefix = 'newListings';
 
 }

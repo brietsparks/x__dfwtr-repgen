@@ -81,9 +81,9 @@ class ImportResult
      *
      * @return ImportResult
      */
-    public function addErrors($error)
+    public function addError($error)
     {
-        $this->errors = $error;
+        $this->errors[] = $error;
 
         return $this;
     }

@@ -8,7 +8,7 @@ abstract class StatRowParser implements RowParserInterface
     /**
      * @var string the text at the beginning of the parsed row
      */
-    protected $columnTitle;
+    protected $columnTitle = '';
 
     /**
      * @var string the prefix of the corresponding field in the CityReport entity. Ex: in avgPrice_monthPrev it is avgPrice

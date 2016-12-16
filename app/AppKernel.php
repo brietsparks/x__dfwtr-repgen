@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
             new Petkopara\MultiSearchBundle\PetkoparaMultiSearchBundle(),
             new Petkopara\CrudGeneratorBundle\PetkoparaCrudGeneratorBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
 
         );
 

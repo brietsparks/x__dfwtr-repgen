@@ -62,6 +62,14 @@ class CityReport
     }
 
     /**
+     * @return bool
+     */
+    public function isMissingData()
+    {
+        return $this->hasMissingData();
+    }
+
+    /**
      * @return array
      */
     public function getMissingDataFields()
@@ -70,7 +78,6 @@ class CityReport
             return $dataPoint === null;
         });
     }
-
 
     /**
      * @var int

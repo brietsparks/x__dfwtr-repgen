@@ -2,10 +2,16 @@
 
 namespace AppBundle\CityReport;
 
+use AppBundle\Entity\CityReport;
 use AppBundle\Services\ScrapeResult;
 
 class ImportResult
 {
+
+    /**
+     * @var CityReport
+     */
+    protected $cityReport;
 
     /**
      * @var ScrapeResult
@@ -15,12 +21,38 @@ class ImportResult
     /**
      * @var array
      */
-    protected $emptyFields;
+    protected $dataNotices = [];
 
     /**
      * @var array
      */
     protected $errors = [];
+
+    /**
+     * @return CityReport
+     */
+    public function getCityReport()
+    {
+        return $this->cityReport;
+    }
+
+    /**
+     * @param CityReport $cityReport
+     * @return ImportResult
+     */
+    public function setCityReport($cityReport)
+    {
+        $this->cityReport = $cityReport;
+
+        $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : [];
+        $emptyFields = array_map(function ($field) {
+            return $field . ' was not parsed';
+        }, $emptyFields);
+
+        $this->setDataNotices($emptyFields);
+
+        return $this;
+    }
 
     /**
      * @return ScrapeResult
@@ -45,19 +77,19 @@ class ImportResult
     /**
      * @return array
      */
-    public function getEmptyFields()
+    public function getDataNotices()
     {
-        return $this->emptyFields;
+        return $this->dataNotices;
     }
 
     /**
-     * @param array $emptyFields
+     * @param array $dataNotices
      *
      * @return ImportResult
      */
-    public function setEmptyFields($emptyFields)
+    public function setDataNotices($dataNotices)
     {
-        $this->emptyFields = $emptyFields;
+        $this->dataNotices = $dataNotices;
 
         return $this;
     }

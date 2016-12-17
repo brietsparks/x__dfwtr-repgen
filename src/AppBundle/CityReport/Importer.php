@@ -80,8 +80,7 @@ class Importer
         $result->setScrapeResult($scraped);
 
         try {
-            $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : [];
-            $result->setEmptyFields($emptyFields);
+            $result->setCityReport($cityReport);
 
             // set the city relationship
             $repo = $this->entityManager->getRepository(City::class);
@@ -97,7 +96,12 @@ class Importer
                 $result->addError("City \"$cityName\" does not exist in database.");
             }
         } catch (\Exception $e) {
-            $result->addError($e->getMessage());
+            $result->addError("
+                {$e->getFile()},\r\n  
+                line {$e->getLine()},\r\n 
+                {$e->getMessage()}
+            ");
+
         }
 
 

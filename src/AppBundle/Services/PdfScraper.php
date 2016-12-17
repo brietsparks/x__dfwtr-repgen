@@ -78,7 +78,11 @@ class PdfScraper
 
                     $scrape->setText($document->getText());
                 } catch (\Exception $e) {
-                    $scrape->addError($e->getMessage());
+                    $scrape->addError("
+                        {$e->getFile()}\r\n
+                        {$e->getLine()}\r\n
+                        {$e->getMessage()}
+                    ");
                 }
 
                 $scrapes[] = $scrape;

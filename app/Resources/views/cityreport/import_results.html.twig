@@ -23,7 +23,7 @@
                     <p><strong>File</strong></p>
                 </div>
                 <div class="col-md-4">
-                    <p><strong>Skipped fields</strong></p>
+                    <p><strong>Data Notices</strong></p>
                 </div>
                 <div class="col-md-4">
                     <p><strong>Errors</strong></p>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-4">
                     <ul>
-                    {% for field in result.getEmptyFields()|keys %}
+                    {% for field in result.getDataNotices() %}
                         <li>{{ field }}</li>
                     {% endfor %}
                     </ul>

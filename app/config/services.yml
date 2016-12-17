@@ -21,6 +21,7 @@ services:
         arguments:
           - "@app.services.pdf_scraper"
           - "@app.city_report.parser"
+          - "@validator"
           - "@doctrine.orm.default_entity_manager"
 
     app.city_report.parser:

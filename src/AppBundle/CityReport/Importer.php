@@ -7,8 +7,8 @@ use AppBundle\Entity\CityReport;
 use AppBundle\Services\PdfScraper;
 use AppBundle\Services\ScrapeResult;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class Importer
 {
@@ -24,6 +24,11 @@ class Importer
     protected $cityReportParser;
 
     /**
+     * @var ValidatorInterface
+     */
+    protected $validator;
+
+    /**
      * @var EntityManagerInterface
      */
     protected $entityManager;
@@ -32,14 +37,17 @@ class Importer
      * Importer constructor.
      * @param PdfScraper $pdfScraper
      * @param CityReportParser $cityReportParser
+     * @param ValidatorInterface $validator
      * @param EntityManagerInterface $entityManager
      */
-    public function __construct(PdfScraper $pdfScraper, CityReportParser $cityReportParser, EntityManagerInterface $entityManager)
+    public function __construct(PdfScraper $pdfScraper, CityReportParser $cityReportParser, ValidatorInterface $validator, EntityManagerInterface $entityManager)
     {
         $this->pdfScraper = $pdfScraper;
         $this->cityReportParser = $cityReportParser;
+        $this->validator = $validator;
         $this->entityManager = $entityManager;
     }
+
 
     /**
      * Import CityReport(s) from the file and return the import results
@@ -80,7 +88,7 @@ class Importer
         $result->setScrapeResult($scraped);
 
         try {
-            $result->setCityReport($cityReport);
+            $result->setCityReport($cityReport)->check($this->validator);
 
             // set the city relationship
             $repo = $this->entityManager->getRepository(City::class);

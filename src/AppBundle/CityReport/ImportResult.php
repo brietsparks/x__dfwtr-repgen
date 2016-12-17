@@ -4,6 +4,8 @@ namespace AppBundle\CityReport;
 
 use AppBundle\Entity\CityReport;
 use AppBundle\Services\ScrapeResult;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ImportResult
 {
@@ -44,14 +46,25 @@ class ImportResult
     {
         $this->cityReport = $cityReport;
 
-        $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : [];
-        $emptyFields = array_map(function ($field) {
-            return $field . ' was not parsed';
-        }, $emptyFields);
-
-        $this->setDataNotices($emptyFields);
-
         return $this;
+    }
+
+    public function check(ValidatorInterface $validator)
+    {
+        $cityReport = $this->cityReport;
+
+        foreach ((array) $cityReport->getMissingDataFields() as $field) {
+            $this->addDataNotice($field . ' was not parsed');
+        }
+
+        $errors = $validator->validate($cityReport);
+
+        /** @var ConstraintViolation $error */
+        foreach ($errors as $error) {
+            $this->addDataNotice("
+                {$error->getPropertyPath()} parsed value is {$error->getInvalidValue()}. {$error->getMessage()}.
+            ");
+        }
     }
 
     /**
@@ -83,13 +96,13 @@ class ImportResult
     }
 
     /**
-     * @param array $dataNotices
+     * @param mixed $dataNotice
      *
      * @return ImportResult
      */
-    public function setDataNotices($dataNotices)
+    public function addDataNotice($dataNotice)
     {
-        $this->dataNotices = $dataNotices;
+        $this->dataNotices[] = $dataNotice;
 
         return $this;
     }

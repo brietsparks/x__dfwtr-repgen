@@ -1,4 +1,4 @@
-<?php namespace App\Spinner;
+<?php namespace SpinnerBundle\Spinner;
 
 /**
 *  The MIT License (MIT)

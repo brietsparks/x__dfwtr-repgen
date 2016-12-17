@@ -1,7 +1,7 @@
-<?php namespace App\Spinner\Model;
+<?php namespace SpinnerBundle\Spinner\Model;
 
-use App\Spinner\Spinner;
-use App\Spinner\Inflect;
+use SpinnerBundle\Spinner\Spinner;
+use SpinnerBundle\Spinner\Inflect;
 
 class Sentence {
 

@@ -1,7 +1,7 @@
-<?php namespace App\Spinner\Model\Passages;
+<?php namespace SpinnerBundle\Spinner\Model\Passages;
 
-use App\Spinner\Model\NounPhrases\ContractListings as Subject;
-use App\Spinner\Model\Passages\TemplatePassage;
+use SpinnerBundle\Spinner\Model\NounPhrases\ContractListings as Subject;
+use SpinnerBundle\Spinner\Model\Passages\TemplatePassage;
 
 class ContractListings extends TemplatePassage{
 

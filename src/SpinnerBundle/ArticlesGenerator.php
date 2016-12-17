@@ -1,9 +1,9 @@
-<?php namespace App;
+<?php namespace SpinnerBundle;
 
-use App\Scraper\PdfScraper;
-use App\Models\City;
-use App\Spinner\Spinner;
-use App\Models\Article;
+use SpinnerBundle\Scraper\PdfScraper;
+use SpinnerBundle\Models\City;
+use SpinnerBundle\Spinner\Spinner;
+use SpinnerBundle\Models\Article;
 
 
 

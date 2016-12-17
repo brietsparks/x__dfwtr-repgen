@@ -1,4 +1,4 @@
-<?php namespace App\Spinner;
+<?php namespace SpinnerBundle\Spinner;
 /**
  * Spintax - A helper class to process Spintax strings.
  * @name Spintax

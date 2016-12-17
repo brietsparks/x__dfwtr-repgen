@@ -1,4 +1,4 @@
-<?php namespace App\Cleaner;
+<?php namespace SpinnerBundle\Cleaner;
 
 
 class Cleaner {

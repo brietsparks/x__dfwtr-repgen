@@ -1,23 +1,23 @@
-<?php namespace App\Models;
+<?php namespace SpinnerBundle\Models;
 
 
-use App\Spinner\Inflect;
-use App\Spinner\Spinner;
+use SpinnerBundle\Spinner\Inflect;
+use SpinnerBundle\Spinner\Spinner;
 
-use App\Spinner\Model\Words\Nouns\House;
-use App\Spinner\Model\Phrases\PercentDifferenceFactory as Difference;
-use App\Spinner\Model\Passages\SalesReported;
-use App\Spinner\Model\Passages\SalesProjected;
-use App\Spinner\Model\Passages\NewListings;
-use App\Spinner\Model\Passages\ContractListings;
-use App\Spinner\Model\Passages\MonthsSupply;
-use App\Spinner\Model\Passages\Inventory;
-use App\Spinner\Model\Passages\PercentReceived;
-use App\Spinner\Model\Passages\DaysOnMarket;
+use SpinnerBundle\Spinner\Model\Words\Nouns\House;
+use SpinnerBundle\Spinner\Model\Phrases\PercentDifferenceFactory as Difference;
+use SpinnerBundle\Spinner\Model\Passages\SalesReported;
+use SpinnerBundle\Spinner\Model\Passages\SalesProjected;
+use SpinnerBundle\Spinner\Model\Passages\NewListings;
+use SpinnerBundle\Spinner\Model\Passages\ContractListings;
+use SpinnerBundle\Spinner\Model\Passages\MonthsSupply;
+use SpinnerBundle\Spinner\Model\Passages\Inventory;
+use SpinnerBundle\Spinner\Model\Passages\PercentReceived;
+use SpinnerBundle\Spinner\Model\Passages\DaysOnMarket;
 
-use App\Spinner\Model\Passages\AveragePrice;
+use SpinnerBundle\Spinner\Model\Passages\AveragePrice;
 
-use App\Cleaner\Cleaner;
+use SpinnerBundle\Cleaner\Cleaner;
 
 class Article {
 

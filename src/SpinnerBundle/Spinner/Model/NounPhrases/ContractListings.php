@@ -1,7 +1,7 @@
-<?php namespace App\Spinner\Model\NounPhrases;
+<?php namespace SpinnerBundle\Spinner\Model\NounPhrases;
 
-use App\Spinner\Model\NounPhrase;
-use App\Spinner\Model\Words\Nouns\House;
+useSpinnerBundle\Spinner\Model\NounPhrase;
+useSpinnerBundle\Spinner\Model\Words\Nouns\House;
 
 class ContractListings extends NounPhrase {
 

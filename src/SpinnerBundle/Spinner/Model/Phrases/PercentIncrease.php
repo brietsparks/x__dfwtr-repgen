@@ -1,4 +1,4 @@
-<?php namespace App\Spinner\Model\Phrases;
+<?php namespace SpinnerBundle\Spinner\Model\Phrases;
 
 class PercentIncrease extends PercentDifference {
 

@@ -1,11 +1,11 @@
-<?php namespace App\Spinner\Model\Passages;
+<?php namespace SpinnerBundle\Spinner\Model\Passages;
 
-use App\Models\City;
-use App\Spinner\Model\NounPhrase;
-use App\Spinner\Model\Passage;
-use App\Spinner\Model\Phrases\PercentDifferenceFactory as Difference;
-use App\Spinner\Model\Words\Nouns\House;
-use App\Cleaner\Cleaner;
+use SpinnerBundle\Models\City;
+use SpinnerBundle\Spinner\Model\NounPhrase;
+use SpinnerBundle\Spinner\Model\Passage;
+use SpinnerBundle\Spinner\Model\Phrases\PercentDifferenceFactory as Difference;
+use SpinnerBundle\Spinner\Model\Words\Nouns\House;
+use SpinnerBundle\Cleaner\Cleaner;
 
 abstract class TemplatePassage extends Passage {
 

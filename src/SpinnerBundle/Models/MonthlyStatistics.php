@@ -1,4 +1,4 @@
-<?php namespace App\Models;
+<?php namespace SpinnerBundle\Models;
 
 class MonthlyStatistics {
 	public $month;

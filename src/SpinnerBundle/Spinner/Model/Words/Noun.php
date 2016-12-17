@@ -1,7 +1,7 @@
-<?php namespace App\Spinner\Model\Words;
+<?php namespace SpinnerBundle\Spinner\Model\Words;
 
-use App\Spinner\Model\Word;
-use App\Spinner\Inflect;
+use SpinnerBundle\Spinner\Model\Word;
+use SpinnerBundle\Spinner\Inflect;
 
 class Noun extends Word {
 

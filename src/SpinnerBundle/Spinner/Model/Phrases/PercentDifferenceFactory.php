@@ -1,9 +1,9 @@
-<?php namespace App\Spinner\Model\Phrases;
+<?php namespace SpinnerBundle\Spinner\Model\Phrases;
 
-use App\Spinner\Model\Phrases\PercentDifference;
-use App\Spinner\Model\Phrases\PercentDecrease;
-use App\Spinner\Model\Phrases\PercentIncrease;
-use App\Spinner\Model\Phrases\PercentHold;
+use SpinnerBundle\Spinner\Model\Phrases\PercentDifference;
+use SpinnerBundle\Spinner\Model\Phrases\PercentDecrease;
+use SpinnerBundle\Spinner\Model\Phrases\PercentIncrease;
+use SpinnerBundle\Spinner\Model\Phrases\PercentHold;
 
 class PercentDifferenceFactory {
 

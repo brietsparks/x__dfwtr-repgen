@@ -1,6 +1,6 @@
-<?php namespace App\Spinner\Model\Words;
+<?php namespace SpinnerBundle\Spinner\Model\Words;
 
-use App\Spinner\Model\Word;
+use SpinnerBundle\Spinner\Model\Word;
 
 class Verb extends Word {
 

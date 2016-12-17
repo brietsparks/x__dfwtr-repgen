@@ -1,6 +1,6 @@
-<?php namespace App;
+<?php namespace SpinnerBundle;
 
-use App\Scraper\PdfScraper;
+use SpinnerBundle\Scraper\PdfScraper;
 
 class Service {
 

@@ -1,8 +1,8 @@
-<?php namespace App\Scraper;
-use App\Models\CityMeta;
+<?php namespace SpinnerBundle\Scraper;
+use SpinnerBundle\Models\CityMeta;
 use Smalot\PdfParser\Document;
 use Smalot\PdfParser\Parser;
-use App\Models\City;
+use SpinnerBundle\Models\City;
 
 class PdfScraper {
 

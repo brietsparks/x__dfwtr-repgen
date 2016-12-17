@@ -1,6 +1,6 @@
-<?php namespace App\Spinner\Model\NounPhrases;
+<?php namespace SpinnerBundle\Spinner\Model\NounPhrases;
 
-use App\Spinner\Model\NounPhrase;
+use SpinnerBundle\Spinner\Model\NounPhrase;
 
 class PercentReceived extends NounPhrase {
 

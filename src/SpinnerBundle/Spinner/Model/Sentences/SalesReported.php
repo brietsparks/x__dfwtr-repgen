@@ -1,8 +1,8 @@
-<?php namespace App\Spinner\Model\Sentences;
+<?php namespace SpinnerBundle\Spinner\Model\Sentences;
 
-use App\Spinner\Model\Sentence;
-use App\Spinner\Model\Words\Nouns\House;
-use App\Spinner\Model\Words\Nouns\Housing;
+use SpinnerBundle\Spinner\Model\Sentence;
+use SpinnerBundle\Spinner\Model\Words\Nouns\House;
+use SpinnerBundle\Spinner\Model\Words\Nouns\Housing;
 
 class salesReported extends Sentence {
 

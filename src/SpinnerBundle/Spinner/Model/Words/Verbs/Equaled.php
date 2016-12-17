@@ -1,6 +1,6 @@
-<?php namespace App\Spinner\Model\Words\Verbs;
+<?php namespace SpinnerBundle\Spinner\Model\Words\Verbs;
 
-use App\Spinner\Model\Words\Verb;
+use SpinnerBundle\Spinner\Model\Words\Verb;
 
 class Equaled extends Verb {
 

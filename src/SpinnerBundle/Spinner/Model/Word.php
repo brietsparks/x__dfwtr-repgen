@@ -1,6 +1,6 @@
-<?php namespace App\Spinner\Model;
+<?php namespace SpinnerBundle\Spinner\Model;
 
-use App\Spinner\Spinner;
+use SpinnerBundle\Spinner\Spinner;
 
 class Word implements Spinnable {
 	/**

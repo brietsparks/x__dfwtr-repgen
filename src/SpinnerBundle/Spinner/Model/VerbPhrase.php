@@ -1,4 +1,4 @@
-<?php namespace App\Spinner\Model;
+<?php namespace SpinnerBundle\Spinner\Model;
 
 
 class VerbPhrase extends Phrase {

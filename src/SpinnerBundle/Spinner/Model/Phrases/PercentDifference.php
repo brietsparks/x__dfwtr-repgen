@@ -1,6 +1,6 @@
-<?php namespace App\Spinner\Model\Phrases;
+<?php namespace SpinnerBundle\Spinner\Model\Phrases;
 
-use App\Spinner\Model\Phrase;
+use SpinnerBundle\Spinner\Model\Phrase;
 
 class PercentDifference extends Phrase {
 

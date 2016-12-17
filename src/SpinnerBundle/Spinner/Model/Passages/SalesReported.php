@@ -1,6 +1,6 @@
-<?php namespace App\Spinner\Model\Passages;
+<?php namespace SpinnerBundle\Spinner\Model\Passages;
 
-use App\Spinner\Model\NounPhrases\SalesReported as Subject;
+use SpinnerBundle\Spinner\Model\NounPhrases\SalesReported as Subject;
 
 class SalesReported extends TemplatePassage {
 

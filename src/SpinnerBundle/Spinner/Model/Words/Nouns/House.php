@@ -1,6 +1,6 @@
-<?php namespace App\Spinner\Model\Words\Nouns;
+<?php namespace SpinnerBundle\Spinner\Model\Words\Nouns;
 
-use App\Spinner\Model\Words\Noun;
+use SpinnerBundle\Spinner\Model\Words\Noun;
 
 class House extends Noun {
 

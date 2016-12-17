@@ -1,8 +1,8 @@
-<?php namespace App\Spinner\Model\NounPhrases;
+<?php namespace SpinnerBundle\Spinner\Model\NounPhrases;
 
-use App\Spinner\Model\NounPhrase;
-use App\Spinner\Model\Words\Nouns\House;
-use App\Spinner\Model\Words\Nouns\Housing;
+use SpinnerBundle\Spinner\Model\NounPhrase;
+use SpinnerBundle\Spinner\Model\Words\Nouns\House;
+use SpinnerBundle\Spinner\Model\Words\Nouns\Housing;
 
 class AveragePrice extends NounPhrase {
 

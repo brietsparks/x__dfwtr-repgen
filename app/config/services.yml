@@ -39,3 +39,11 @@ services:
           - "@filesystem"
           - "%carr_report_uploads_path%"
           - "@kreatys.pdf_parser"
+
+    app.spinner:
+        class: AppBundle\Spinner\Spinner
+        arguments:
+          - "@legacy_spinner"
+
+    legacy_spinner:
+        class: SpinnerBundle\ArticlesGenerator

@@ -19,16 +19,16 @@
                 <tr>
                     <th colspan="1"><a href="{{ path('city_show', {'id': cityReport.city.id }) }}">{{ cityReport.city.name }}</a></th>
                     <th colspan="3">Month {{ cityReport.month }}</th>
-                    <th colspan="3">YTD</th>
+                    <th colspan="3">YTD {{ cityReport.year }}</th>
                 </tr>
                 <tr>
                     <th></th>
                     <th>{{ cityReport.year -1 }}</th>
                     <th>{{ cityReport.year }}</th>
-                    <th>+/-</th>
+                    <th>% +/-</th>
                     <th>{{ cityReport.year -1 }}</th>
                     <th>{{ cityReport.year }}</th>
-                    <th>+/-</th>
+                    <th>% +/-</th>
                 </tr>
             </thead>
             <tbody>

@@ -149,9 +149,21 @@ abstract class TemplatePassage extends Passage {
 		$j = $i === 1 ? 0 : 1;
 		$arr[$i] = $this->monthPassage();
 		$arr[$j] = $this->ytdPassage();
-		$text = concatenate($arr);
+		$text = $this->concatenate($arr);
 		return $text;
 	}
+
+    /**
+     * @param $array
+     * @return string
+     */
+    protected function concatenate($array) {
+        $concatenated = "";
+        foreach($array as $elem) {
+            $concatenated .= $elem . " ";
+        }
+        return $concatenated;
+    }
 
 	public function adjective() {
 		return $this->spinner->spinArray($this->adjectives);

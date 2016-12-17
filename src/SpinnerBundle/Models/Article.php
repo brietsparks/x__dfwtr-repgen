@@ -65,19 +65,10 @@ class Article {
 
 
 	public function generate() {
-
-		$article = '';
-
-		$article .= $this->title();
-			$article .= "\r\n";
-		$article .= $this->city->fullTableOutput();
-			$article .= "\r\n";
-		$article .= $this->body();
-			$article .= "\r\n";
-		$article .= $this->footer();
-			$article .= "\r\n\r\n";
-
-		return $article;
+		return [
+		    'title' => $this->title(),
+            'body' => $this->body()
+        ];
 	}
 
 
@@ -91,7 +82,7 @@ class Article {
 		$month = $report->city->getMonthReport()->getCurrentYear()->month;
 		$year = $report->city->getMonthReport()->getCurrentYear()->year;
 		$title = "{$report->city->name} <%residential %>{housing|home|property} sales for $month $year <%are %>{$difference->adjPhrase()}";
-		$title = "TITLE: " . ucwords($this->spinner->spinString($title));
+		$title = ucwords($this->spinner->spinString($title));
 		$this->title = $title;
 		return $title;
 	}
@@ -117,10 +108,22 @@ class Article {
 			PercentReceived::make()->setCity($city)->fullPassage(),
 			'</p>'
 		);
-		$body = concatenate($passage);
+		$body = $this->concatenate($passage);
 		$this->body = $body;
 		return $body;
 	}
+
+    /**
+     * @param $array
+     * @return string
+     */
+    protected function concatenate($array) {
+        $concatenated = "";
+        foreach($array as $elem) {
+            $concatenated .= $elem . " ";
+        }
+        return $concatenated;
+    }
 
 	/**
 	 * @return string

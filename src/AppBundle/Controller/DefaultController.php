@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CityReport;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Smalot\PdfParser\Object;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -13,24 +13,15 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{city}", name="homepage")
+     * @Route("/", name="homepage")
      */
     public function indexAction(Request $request, $city)
     {
-        $fileName = "$city.pdf";
-        $filePath = $this->get('kernel')->getRootDir() . "\\..\\web\\uploads\\" . $fileName;
+        $repo = $this->getDoctrine()->getRepository(CityReport::class);
 
-        $file = $this->get('file_locator')->locate($filePath);
+        $rep = $repo->find(215);
 
-        $text = $this->get('kreatys.pdf_parser')->parseFile($filePath)->getText();
-
-        $scraper = $this->get('app.pdf_scraper');
-
-        $q = $scraper->scrape($text);
-
-        dump($q);exit;
-
-//        $this->get('doctrine.orm.entity_manager')->find()
-//            $this->getDoctrine()
+        $article = $this->get('app.spinner')->spin($rep);
+        dump($article);exit;
     }
 }

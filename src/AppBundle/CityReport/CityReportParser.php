@@ -52,6 +52,8 @@ class CityReportParser
 
         $rows = explode("\n", $text);
 
+//        dump($rows);
+
         $names = $this->resolveCityNames($rows[17], $this->cityMapping);
 
         foreach ($names as $name) {
@@ -63,14 +65,17 @@ class CityReportParser
 
             $this->populateEntity($report, $newListingsParser->parse($rows[3]));
 
-            foreach ($rows as $row) {
-                if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {
+            for ($i = 0; $i < count($rows); $i++) {
+                $row = $rows[$i];
+                if ($i < 18 && $dataPointParser = $this->dataPointParserFactory->getParser($row)) {
                     $this->populateEntity($report, $dataPointParser->parse($row));
                 }
             }
 
             $reports[] = $report;
         }
+
+//        exit;
 
         return $reports;
     }

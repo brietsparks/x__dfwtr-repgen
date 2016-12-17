@@ -18,6 +18,7 @@ class LoadCityData implements FixtureInterface
         'Celina'  => 60,
         'Coppell' => 31,
         'Corinth' => 31,
+        'Dallas' => null,
         'Denton' => 31,
         'Fairview'  => 52,
         'Farmers Branch' => 22,
@@ -26,6 +27,7 @@ class LoadCityData implements FixtureInterface
         'Frisco' => 55,
         'Garland' => 24,
         'Grapevine' => 5,
+        'Highland Park' => 25,
         'Highland Village' => 22,
         'Irving'  => 54,
         'Lavon'  => 56,
@@ -45,7 +47,7 @@ class LoadCityData implements FixtureInterface
         'Sachse' => 8,
         'Sherman'  => 37,
         'The Colony' => 9,
-        'Dallas' => null,
+        'University Park' => 25,
         'Wylie'  => 50,
     ];
 

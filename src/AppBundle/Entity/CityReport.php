@@ -82,7 +82,7 @@ class CityReport
 
         return array_keys($fields);
     }
-
+    
     /**
      * @var int
      *
@@ -247,7 +247,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="newListings_monthChange", type="float", nullable=true)
      */
     public $newListings_monthChange;
@@ -255,7 +255,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="salesReported_monthChange", type="float", nullable=true)
      */
     public $salesReported_monthChange;
@@ -263,7 +263,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="salesProjected_monthChange", type="float", nullable=true)
      */
     public $salesProjected_monthChange;
@@ -271,7 +271,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="contractListings_monthChange", type="float", nullable=true)
      */
     public $contractListings_monthChange;
@@ -279,7 +279,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="avgPrice_monthChange", type="float", nullable=true)
      */
     public $avgPrice_monthChange;
@@ -287,7 +287,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="medianPrice_monthChange", type="float", nullable=true)
      */
     public $medianPrice_monthChange;
@@ -295,7 +295,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="percentReceived_monthChange", type="float", nullable=true)
      */
     public $percentReceived_monthChange;
@@ -303,7 +303,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="daysOnMarket_monthChange", type="float", nullable=true)
      */
     public $daysOnMarket_monthChange;
@@ -311,7 +311,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="inventory_monthChange", type="float", nullable=true)
      */
     public $inventory_monthChange;
@@ -319,7 +319,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="monthsSupply_monthChange", type="float", nullable=true)
      */
     public $monthsSupply_monthChange;
@@ -458,7 +458,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="newListings_ytdChange", type="float", nullable=true)
      */
     public $newListings_ytdChange;
@@ -466,7 +466,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="salesReported_ytdChange", type="float", nullable=true)
      */
     public $salesReported_ytdChange;
@@ -474,7 +474,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="salesProjected_ytdChange", type="float", nullable=true)
      */
     public $salesProjected_ytdChange;
@@ -482,7 +482,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="contractListings_ytdChange", type="float", nullable=true)
      */
     public $contractListings_ytdChange;
@@ -490,7 +490,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="avgPrice_ytdChange", type="float", nullable=true)
      */
     public $avgPrice_ytdChange;
@@ -498,7 +498,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="medianPrice_ytdChange", type="float", nullable=true)
      */
     public $medianPrice_ytdChange;
@@ -506,7 +506,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="percentReceived_ytdChange", type="float", nullable=true)
      */
     public $percentReceived_ytdChange;
@@ -514,7 +514,7 @@ class CityReport
     /**
      * @var float
      *
-     * @Range(min=0,max=100)
+     * @Range(min=-10000,max=10000)
      * @ORM\Column(name="daysOnMarket_ytdChange", type="float", nullable=true)
      */
     public $daysOnMarket_ytdChange;

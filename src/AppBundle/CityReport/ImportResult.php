@@ -23,7 +23,12 @@ class ImportResult
     /**
      * @var array
      */
-    protected $dataNotices = [];
+    protected $skippedFields = [];
+
+    /**
+     * @var array
+     */
+    protected $badFields = [];
 
     /**
      * @var array
@@ -54,15 +59,13 @@ class ImportResult
         $cityReport = $this->cityReport;
 
         foreach ((array) $cityReport->getMissingDataFields() as $field) {
-            $this->addDataNotice($field . ' was not parsed');
+            $this->addSkippedField($field);
         }
 
-        $errors = $validator->validate($cityReport);
-
         /** @var ConstraintViolation $error */
-        foreach ($errors as $error) {
-            $this->addDataNotice("
-                {$error->getPropertyPath()} parsed value is {$error->getInvalidValue()}. {$error->getMessage()}.
+        foreach ($validator->validate($cityReport) as $error) {
+            $this->addBadField("
+                {$error->getPropertyPath()} parsed value is {$error->getInvalidValue()}. {$error->getMessage()}
             ");
         }
     }
@@ -90,22 +93,41 @@ class ImportResult
     /**
      * @return array
      */
-    public function getDataNotices()
+    public function getSkippedFields()
     {
-        return $this->dataNotices;
+        return $this->skippedFields;
     }
 
     /**
-     * @param mixed $dataNotice
-     *
-     * @return ImportResult
+     * @param $skippedField
+     * @return $this
      */
-    public function addDataNotice($dataNotice)
+    public function addSkippedField($skippedField)
     {
-        $this->dataNotices[] = $dataNotice;
+        $this->skippedFields[] = $skippedField;
 
         return $this;
     }
+
+    /**
+     * @return array
+     */
+    public function getBadFields()
+    {
+        return $this->badFields;
+    }
+
+    /**
+     * @param $badField
+     * @return $this
+     */
+    public function addBadField($badField)
+    {
+        $this->badFields[] = $badField;
+
+        return $this;
+    }
+
 
     /**
      * @param bool $merge

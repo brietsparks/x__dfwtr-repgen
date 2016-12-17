@@ -27,6 +27,7 @@ abstract class StatRowParser implements RowParserInterface
 
         $data = explode(" ", $row);
 
+//        dump($this->makeOutputArray($data));
         return $this->makeOutputArray($data);
     }
 
@@ -96,7 +97,7 @@ abstract class StatRowParser implements RowParserInterface
      */
     protected function removeNulls($str) 
     {
-        return str_replace("--", "", $str);
+        return str_replace("--", " 0 ", $str);
     }
 
     /**

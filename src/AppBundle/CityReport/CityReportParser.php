@@ -20,6 +20,11 @@ class CityReportParser
     protected $dataPointParserFactory;
 
     /**
+     * @var
+     */
+    protected $cityMapping;
+
+    /**
      * @var string
      */
     protected $city;
@@ -27,36 +32,47 @@ class CityReportParser
     /**
      * CityReportParser constructor.
      * @param RowParserFactory $dataPointParserFactory
+     * @param $cityMapping
      */
-    public function __construct(RowParserFactory $dataPointParserFactory)
+    public function __construct(RowParserFactory $dataPointParserFactory, $cityMapping)
     {
         $this->dataPointParserFactory = $dataPointParserFactory;
+        $this->cityMapping = $cityMapping;
     }
 
     /**
-     * Takes the parsed text from a report and returns the parsed data via CityReport entity
+     * Takes the parsed text from a report and returns the parsed data via an array of CityReport entities
      *
      * @param string $text
-     * @return CityReport
+     * @return array of CityReport
      */
     public function parse($text)
     {
-        $report = new CityReport();
+        $reports = [];
 
         $rows = explode("\n", $text);
 
-        $report->city = $rows[17];
+        $names = $this->resolveCityNames($rows[17], $this->cityMapping);
 
-        $newListingsParser = new NewListings();
-        $this->populateEntity($report, $newListingsParser->parse($rows[3]));
+        foreach ($names as $name) {
+            $report = new CityReport();
 
-        foreach ($rows as $row) {
-            if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {
-                $this->populateEntity($report, $dataPointParser->parse($row));
+            $report->city = $name;
+
+            $newListingsParser = new NewListings();
+
+            $this->populateEntity($report, $newListingsParser->parse($rows[3]));
+
+            foreach ($rows as $row) {
+                if ($dataPointParser = $this->dataPointParserFactory->getParser($row)) {
+                    $this->populateEntity($report, $dataPointParser->parse($row));
+                }
             }
+
+            $reports[] = $report;
         }
 
-        return $report;
+        return $reports;
     }
 
     protected function populateEntity(CityReport $report, array $parsedFields)
@@ -65,6 +81,25 @@ class CityReportParser
             if (property_exists(get_class($report), $field)) {
                 $report->$field = $value;
             }
+        }
+    }
+
+    /**
+     * Resolve the entity city name(s) based on the parsed city names
+     *
+     * Some reports such as "Carrollton / Farmers Branch" have multiple cities
+     * Other reports such as "Dallas NE" have a alias "Lake Highlands"
+     *
+     * @param $name
+     * @param array $mappings
+     * @return array of String
+     */
+    protected function resolveCityNames($name, array $mappings)
+    {
+        if (array_key_exists($name, $mappings)) {
+            return $mappings[$name];
+        } else {
+            return [$name];
         }
     }
 

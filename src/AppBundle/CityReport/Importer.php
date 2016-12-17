@@ -56,39 +56,52 @@ class Importer
 
         /** @var ScrapeResult $scraped */
         foreach ($scrapes as $scraped) {
-            $result = new ImportResult();
-            $result->setScrapeResult($scraped);
+            if (!$scraped->hasErrors()) {
+                $cityReports = $this->cityReportParser->parse($scraped->getText());
 
-            try {
-                if (!$scraped->hasErrors()) {
-                    /** @var CityReport $cityReport */
-                    $cityReport = $this->cityReportParser->parse($scraped->getText());
-
-                    $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : [];
-                    $result->setEmptyFields($emptyFields);
-
-                    // set the city relationship
-                    $repo = $this->entityManager->getRepository(City::class);
-                    $cityName = $cityReport->city;
-                    $city = $repo->findOneByName($cityName);
-                    $cityReport->city = $city;
-
-                    // persist
-                    if ($city instanceof City) {
-                        $this->entityManager->persist($cityReport);
-                        $this->entityManager->flush();
-                    } else {
-                        $result->addError("City \"$cityName\" does not exist in database.");
-                    }
+                 /** @var CityReport $cityReport */
+                foreach ($cityReports as $cityReport) {
+                    $results[] = $this->importOne($cityReport, $scraped);
                 }
-            } catch (\Exception $e) {
-                $result->addError($e->getMessage());
             }
-
-            $results[] = $result;
         }
 
         return $results;
+    }
+
+    /**
+     * @param CityReport $cityReport
+     * @param ScrapeResult $scraped
+     * @return ImportResult
+     */
+    public function importOne(CityReport $cityReport, ScrapeResult $scraped)
+    {
+        $result = new ImportResult();
+        $result->setScrapeResult($scraped);
+
+        try {
+            $emptyFields = $cityReport->hasMissingData() ? $cityReport->getMissingDataFields() : [];
+            $result->setEmptyFields($emptyFields);
+
+            // set the city relationship
+            $repo = $this->entityManager->getRepository(City::class);
+            $cityName = $cityReport->city;
+            $city = $repo->findOneByName($cityName);
+            $cityReport->city = $city;
+
+            // persist
+            if ($city instanceof City) {
+                $this->entityManager->persist($cityReport);
+                $this->entityManager->flush();
+            } else {
+                $result->addError("City \"$cityName\" does not exist in database.");
+            }
+        } catch (\Exception $e) {
+            $result->addError($e->getMessage());
+        }
+
+
+        return $result;
     }
 
 }

@@ -2,6 +2,18 @@ parameters:
     temp_uploads_dir_path: "%kernel.root_dir%/../web/temp"
     carr_report_uploads_path: "%temp_uploads_dir_path%/carr_reports"
 
+    carr_city_mappings:
+        'Carrollton / Farmers Branch': ['Carrollton', 'Farmers Branch']
+        'Carrollton / ': ['Carrollton','Farmers Branch']
+        'SE Denton County': ['Lewisville']
+        'Rowlett/Sachse': ['Rowlett', 'Sachse']
+        'Aubrey/Pilot Point': ['Aubrey', 'Pilot Point']
+        'Dallas NE': ['Lake Highlands']
+        'Park Cities': ['Highland Park', 'University Park']
+        'Dallas Uptown': ['Dallas Uptown']
+        'Dallas NW': ['Dallas Northwest']
+        'Fairview/Lucas': ['Fairview', 'Lucas']
+        'Lavon/Nevada': ['Lavon','Nevada']
 
 services:
     app.city_report.importer:
@@ -13,7 +25,9 @@ services:
 
     app.city_report.parser:
         class: AppBundle\CityReport\CityReportParser
-        arguments: ["@app.pdf_scraper.row_parser_factory"]
+        arguments:
+          - "@app.pdf_scraper.row_parser_factory"
+          - "%carr_city_mappings%"
 
     app.pdf_scraper.row_parser_factory:
         class: AppBundle\CityReport\RowParserFactory

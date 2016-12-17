@@ -63,8 +63,6 @@ class CityReportType extends AbstractType
             ->add('medianPrice_ytdPrev', null, ['label' => false,])
             ->add('percentReceived_ytdPrev', null, ['label' => false,])
             ->add('daysOnMarket_ytdPrev', null, ['label' => false,])
-//            ->add('inventory_ytdPrev', null, ['label' => false,])
-//            ->add('monthsSupply_ytdPrev', null, ['label' => false,])
             ->add('newListings_ytdCurr', null, ['label' => false,])
             ->add('salesReported_ytdCurr', null, ['label' => false,])
             ->add('salesProjected_ytdCurr', null, ['label' => false,])
@@ -73,8 +71,6 @@ class CityReportType extends AbstractType
             ->add('medianPrice_ytdCurr', null, ['label' => false,])
             ->add('percentReceived_ytdCurr', null, ['label' => false,])
             ->add('daysOnMarket_ytdCurr', null, ['label' => false,])
-//            ->add('inventory_ytdCurr', null, ['label' => false,])
-//            ->add('monthsSupply_ytdCurr', null, ['label' => false,])
             ->add('newListings_ytdChange', null, ['label' => false,])
             ->add('salesReported_ytdChange', null, ['label' => false,])
             ->add('salesProjected_ytdChange', null, ['label' => false,])
@@ -83,8 +79,6 @@ class CityReportType extends AbstractType
             ->add('medianPrice_ytdChange', null, ['label' => false,])
             ->add('percentReceived_ytdChange', null, ['label' => false,])
             ->add('daysOnMarket_ytdChange', null, ['label' => false,])
-//            ->add('inventory_ytdChange', null, ['label' => false,])
-//            ->add('monthsSupply_ytdChange', null, ['label' => false,])
         ;
     }
     

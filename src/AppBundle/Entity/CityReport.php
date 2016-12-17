@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Range;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -74,14 +76,17 @@ class CityReport
      */
     public function getMissingDataFields()
     {
-        return array_filter($this->getDataPoints(), function ($dataPoint) {
+        $fields = array_filter($this->getDataPoints(), function ($dataPoint) {
             return $dataPoint === null;
         });
+
+        return array_keys($fields);
     }
 
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="newListings_monthPrev", type="integer", nullable=true)
      */
     public $newListings_monthPrev;
@@ -89,6 +94,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesReported_monthPrev", type="integer", nullable=true)
      */
     public $salesReported_monthPrev;
@@ -96,6 +102,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesProjected_monthPrev", type="integer", nullable=true)
      */
     public $salesProjected_monthPrev;
@@ -103,6 +110,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="contractListings_monthPrev", type="integer", nullable=true)
      */
     public $contractListings_monthPrev;
@@ -110,6 +118,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="avgPrice_monthPrev", type="integer", nullable=true)
      */
     public $avgPrice_monthPrev;
@@ -117,6 +126,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="medianPrice_monthPrev", type="integer", nullable=true)
      */
     public $medianPrice_monthPrev;
@@ -124,6 +134,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="percentReceived_monthPrev", type="float", nullable=true)
      */
     public $percentReceived_monthPrev;
@@ -131,6 +142,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="daysOnMarket_monthPrev", type="float", nullable=true)
      */
     public $daysOnMarket_monthPrev;
@@ -138,6 +150,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="inventory_monthPrev", type="integer", nullable=true)
      */
     public $inventory_monthPrev;
@@ -145,6 +158,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="monthsSupply_monthPrev", type="integer", nullable=true)
      */
     public $monthsSupply_monthPrev;
@@ -152,6 +166,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="newListings_monthCurr", type="integer", nullable=true)
      */
     public $newListings_monthCurr;
@@ -159,6 +174,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesReported_monthCurr", type="integer", nullable=true)
      */
     public $salesReported_monthCurr;
@@ -166,6 +182,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesProjected_monthCurr", type="integer", nullable=true)
      */
     public $salesProjected_monthCurr;
@@ -173,6 +190,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="contractListings_monthCurr", type="integer", nullable=true)
      */
     public $contractListings_monthCurr;
@@ -180,6 +198,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="avgPrice_monthCurr", type="integer", nullable=true)
      */
     public $avgPrice_monthCurr;
@@ -187,6 +206,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="medianPrice_monthCurr", type="integer", nullable=true)
      */
     public $medianPrice_monthCurr;
@@ -194,6 +214,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="percentReceived_monthCurr", type="float", nullable=true)
      */
     public $percentReceived_monthCurr;
@@ -201,6 +222,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="daysOnMarket_monthCurr", type="float", nullable=true)
      */
     public $daysOnMarket_monthCurr;
@@ -208,6 +230,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="inventory_monthCurr", type="integer", nullable=true)
      */
     public $inventory_monthCurr;
@@ -215,6 +238,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="monthsSupply_monthCurr", type="integer", nullable=true)
      */
     public $monthsSupply_monthCurr;
@@ -223,6 +247,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="newListings_monthChange", type="float", nullable=true)
      */
     public $newListings_monthChange;
@@ -230,6 +255,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="salesReported_monthChange", type="float", nullable=true)
      */
     public $salesReported_monthChange;
@@ -237,6 +263,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="salesProjected_monthChange", type="float", nullable=true)
      */
     public $salesProjected_monthChange;
@@ -244,6 +271,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="contractListings_monthChange", type="float", nullable=true)
      */
     public $contractListings_monthChange;
@@ -251,6 +279,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="avgPrice_monthChange", type="float", nullable=true)
      */
     public $avgPrice_monthChange;
@@ -258,6 +287,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="medianPrice_monthChange", type="float", nullable=true)
      */
     public $medianPrice_monthChange;
@@ -265,6 +295,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="percentReceived_monthChange", type="float", nullable=true)
      */
     public $percentReceived_monthChange;
@@ -272,6 +303,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="daysOnMarket_monthChange", type="float", nullable=true)
      */
     public $daysOnMarket_monthChange;
@@ -279,6 +311,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="inventory_monthChange", type="float", nullable=true)
      */
     public $inventory_monthChange;
@@ -286,6 +319,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="monthsSupply_monthChange", type="float", nullable=true)
      */
     public $monthsSupply_monthChange;
@@ -294,6 +328,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="newListings_ytdPrev", type="integer", nullable=true)
      */
     public $newListings_ytdPrev;
@@ -301,6 +336,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesReported_ytdPrev", type="integer", nullable=true)
      */
     public $salesReported_ytdPrev;
@@ -308,6 +344,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesProjected_ytdPrev", type="integer", nullable=true)
      */
     public $salesProjected_ytdPrev;
@@ -315,6 +352,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="contractListings_ytdPrev", type="integer", nullable=true)
      */
     public $contractListings_ytdPrev;
@@ -322,6 +360,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="avgPrice_ytdPrev", type="integer", nullable=true)
      */
     public $avgPrice_ytdPrev;
@@ -329,6 +368,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="medianPrice_ytdPrev", type="integer", nullable=true)
      */
     public $medianPrice_ytdPrev;
@@ -336,6 +376,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="percentReceived_ytdPrev", type="float", nullable=true)
      */
     public $percentReceived_ytdPrev;
@@ -343,6 +384,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="daysOnMarket_ytdPrev", type="float", nullable=true)
      */
     public $daysOnMarket_ytdPrev;
@@ -351,6 +393,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="newListings_ytdCurr", type="integer", nullable=true)
      */
     public $newListings_ytdCurr;
@@ -358,6 +401,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesReported_ytdCurr", type="integer", nullable=true)
      */
     public $salesReported_ytdCurr;
@@ -365,6 +409,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="salesProjected_ytdCurr", type="integer", nullable=true)
      */
     public $salesProjected_ytdCurr;
@@ -372,6 +417,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="contractListings_ytdCurr", type="integer", nullable=true)
      */
     public $contractListings_ytdCurr;
@@ -379,6 +425,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="avgPrice_ytdCurr", type="integer", nullable=true)
      */
     public $avgPrice_ytdCurr;
@@ -386,6 +433,7 @@ class CityReport
     /**
      * @var int
      *
+     * @Range(min=0)
      * @ORM\Column(name="medianPrice_ytdCurr", type="integer", nullable=true)
      */
     public $medianPrice_ytdCurr;
@@ -393,6 +441,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="percentReceived_ytdCurr", type="float", nullable=true)
      */
     public $percentReceived_ytdCurr;
@@ -400,6 +449,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0)
      * @ORM\Column(name="daysOnMarket_ytdCurr", type="float", nullable=true)
      */
     public $daysOnMarket_ytdCurr;
@@ -408,6 +458,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="newListings_ytdChange", type="float", nullable=true)
      */
     public $newListings_ytdChange;
@@ -415,6 +466,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="salesReported_ytdChange", type="float", nullable=true)
      */
     public $salesReported_ytdChange;
@@ -422,6 +474,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="salesProjected_ytdChange", type="float", nullable=true)
      */
     public $salesProjected_ytdChange;
@@ -429,6 +482,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="contractListings_ytdChange", type="float", nullable=true)
      */
     public $contractListings_ytdChange;
@@ -436,6 +490,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="avgPrice_ytdChange", type="float", nullable=true)
      */
     public $avgPrice_ytdChange;
@@ -443,6 +498,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="medianPrice_ytdChange", type="float", nullable=true)
      */
     public $medianPrice_ytdChange;
@@ -450,6 +506,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="percentReceived_ytdChange", type="float", nullable=true)
      */
     public $percentReceived_ytdChange;
@@ -457,6 +514,7 @@ class CityReport
     /**
      * @var float
      *
+     * @Range(min=0,max=100)
      * @ORM\Column(name="daysOnMarket_ytdChange", type="float", nullable=true)
      */
     public $daysOnMarket_ytdChange;

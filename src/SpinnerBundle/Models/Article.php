@@ -97,7 +97,6 @@ class Article {
 	protected function body() {
 		$city = $this->city;
 		$passage = array(
-			'<p>',
 			SalesReported::make()->setCity($city)->setCompare()->fullPassage(),
 			SalesProjected::make()->setCity($city)->fullPassage(),
 			NewListings::make()->setCity($city)->fullPassage(),
@@ -106,7 +105,6 @@ class Article {
 			Inventory::make()->setCity($city)->monthPassage(),
 			DaysOnMarket::make()->setCity($city)->setCompare()->monthPassage(),
 			PercentReceived::make()->setCity($city)->fullPassage(),
-			'</p>'
 		);
 		$body = $this->concatenate($passage);
 		$this->body = $body;

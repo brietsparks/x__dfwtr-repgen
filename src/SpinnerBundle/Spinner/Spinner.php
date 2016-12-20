@@ -9,6 +9,15 @@
 class Spinner
 {
 
+    public function spin($spinnable)
+    {
+        if (is_array($spinnable)) {
+            return $this->spinArray($spinnable);
+        } else {
+            return $this->spinString($spinnable);
+        }
+    }
+
 	/**
 	 * @param $string
 	 * @return string

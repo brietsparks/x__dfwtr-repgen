@@ -19,6 +19,11 @@ class Words extends Spinner
         $this->spinner = new Spinner();
     }
 
+    public function pluralize($sing)
+    {
+        return Inflect::pluralize($sing);
+    }
+
     public function house()
     {
         return $this->spin([
@@ -28,7 +33,7 @@ class Words extends Spinner
 
     public function houses()
     {
-        return Inflect::pluralize($this->house());
+        return $this->pluralize($this->house());
     }
 
     public function minMax()
@@ -71,9 +76,27 @@ class Words extends Spinner
 
     public function price()
     {
-        return $this->spin([
-            'price', 'rate'
+        return "price" . $this->freq(' tag', 15);
+    }
+
+    public function cheapestPriciest()
+    {
+        $cheapest = $this->spin([
+            'cheapest', 'least expensive', 'lowest priced'
         ]);
+
+        $priciest = [
+            'cheapest' => 'priciest',
+            'least expensive' => 'most expensive',
+            'lowest priced' => 'highest priced'
+        ];
+
+        $priciest = $priciest[$cheapest];
+
+        return [
+            'cheapest' => $cheapest,
+            'priciest' => $priciest
+        ];
     }
 
     public function dom()
@@ -98,14 +121,24 @@ class Words extends Spinner
         ]);
     }
 
+    public function approx()
+    {
+        return $this->freq($this->approximately(), 20);
+    }
+
     public function was()
+    {
+        return "{$this->approx()} was";
+    }
+
+    public function freq($str, $perc)
     {
         $r = rand(0,100);
 
-        if ($r < 20 ) {
-            return "was {$this->approximately()}";
+        if ($r < $perc ) {
+            return $str;
         } else {
-            return "was";
+            return "";
         }
     }
 

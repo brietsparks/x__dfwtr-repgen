@@ -47,3 +47,6 @@ services:
 
     legacy_spinner:
         class: SpinnerBundle\ArticlesGenerator
+
+    subdiv_article_generator:
+        class: SpinnerBundle\SubdivSpinner\ArticleGenerator

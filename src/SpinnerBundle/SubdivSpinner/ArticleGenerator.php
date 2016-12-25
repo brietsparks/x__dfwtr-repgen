@@ -6,33 +6,31 @@ class ArticleGenerator
 {
 
     /**
-     * @var SubdivisionReport
+     * @var Sentences
      */
-    protected $subdivisionReport;
+    protected $sentences;
 
-    public function generate()
+    public function __construct()
     {
-
+        $this->sentences = new Sentences();
     }
 
-    /**
-     * @return SubdivisionReport
-     */
-    public function getSubdivisionReport()
+    public function generate(SubdivisionReport $sr)
     {
-        return $this->subdivisionReport;
+        $sentences = $this->sentences;
+
+        $article = [
+            $sentences->sqftParagraph($sr),
+            $sentences->priceParagraph($sr),
+            $sentences->pricePerSqftParagraph($sr),
+            $sentences->domParagraph($sr),
+            $sentences->yearParagraph($sr)
+        ];
+
+        shuffle($article);
+
+        return implode(' ', $article);
+
     }
-
-    /**
-     * @param SubdivisionReport $subdivisionReport
-     * @return ArticleGenerator
-     */
-    public function setSubdivisionReport($subdivisionReport)
-    {
-        $this->subdivisionReport = $subdivisionReport;
-
-        return $this;
-    }
-
 
 }

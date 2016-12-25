@@ -5,7 +5,7 @@ namespace SpinnerBundle\SubdivSpinner;
 use SpinnerBundle\Spinner\Inflect;
 use SpinnerBundle\Spinner\Spinner;
 
-class Words extends Spinner
+class Words extends SubdivSpinner
 {
 
     /**
@@ -24,10 +24,19 @@ class Words extends Spinner
         return Inflect::pluralize($sing);
     }
 
+    public function contrastingPair(array $arr)
+    {
+        $key = array_rand($arr);
+
+        return [
+            $key, $arr[$key]
+        ];
+    }
+
     public function house()
     {
         return $this->spin([
-            'house', 'home', 'unit'
+            'house', 'home'
         ]);
     }
 
@@ -60,45 +69,6 @@ class Words extends Spinner
         ]);
     }
 
-    public function size()
-    {
-        return $this->spin([
-            'size', 'square footage', 'area'
-        ]);
-    }
-
-    public function biggest()
-    {
-        return $this->spin([
-            'biggest', 'largest'
-        ]);
-    }
-
-    public function price()
-    {
-        return "price" . $this->freq(' tag', 15);
-    }
-
-    public function cheapestPriciest()
-    {
-        $cheapest = $this->spin([
-            'cheapest', 'least expensive', 'lowest priced'
-        ]);
-
-        $priciest = [
-            'cheapest' => 'priciest',
-            'least expensive' => 'most expensive',
-            'lowest priced' => 'highest priced'
-        ];
-
-        $priciest = $priciest[$cheapest];
-
-        return [
-            'cheapest' => $cheapest,
-            'priciest' => $priciest
-        ];
-    }
-
     public function dom()
     {
         return $this->spin([
@@ -117,18 +87,25 @@ class Words extends Spinner
     {
         return $this->spin([
             'approximately', 'nearly', 'roughly', 'about', 'near', 'around',
-            'in the ballpark of', 'almost', 'close to', 'loosely'
+            'in the ballpark of', 'almost', 'close to'
         ]);
     }
 
-    public function approx()
+    public function approx($freq = 20)
     {
-        return $this->freq($this->approximately(), 20);
+        return $this->freq($this->approximately(), $freq);
     }
 
-    public function was()
+    public function was($approx = true)
     {
-        return "{$this->approx()} was";
+        $approx = $approx ? $this->approx() : '';
+        return "was $approx";
+    }
+
+    public function were($approx = true)
+    {
+        $approx = $approx ? $this->approx() : '';
+        return "were $approx";
     }
 
     public function freq($str, $perc)
@@ -140,11 +117,6 @@ class Words extends Spinner
         } else {
             return "";
         }
-    }
-
-    public function spin(array $arr)
-    {
-        return $this->spinner->spinArray($arr);
     }
 
 }

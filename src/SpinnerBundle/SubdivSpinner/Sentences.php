@@ -7,9 +7,9 @@ class Sentences extends Words
 
     public function sqftParagraph(SubdivisionReport $report)
     {
-        $minSqft = $report->minSqft;
-        $maxSqft = $report->maxSqft;
-        $avgSqft = $report->avgSqft;
+        $minSqft = $report->minSqft . " square feet";
+        $maxSqft = $report->maxSqft . " square feet";
+        $avgSqft = $report->avgSqft . " square feet";
 
         $house = $this->house();
         $houses = $this->houses();
@@ -23,18 +23,18 @@ class Sentences extends Words
         ]);
 
         $average = $this->spin([
-            "on average, $house sizes {$this->were(false)} {$this->approx(75)} $avgSqft square feet",
-            "on average, $houses were {$this->approx(75)} $avgSqft square feet {$this->freq("in $size", 15)}",
-            "the average $house size {$this->was()} $avgSqft square feet",
-            "$house sizes {$this->were(false)} {$this->approx(75)} $avgSqft square feet on average"
+            "on average, $house sizes {$this->were(false)} {$this->approx(75)} $avgSqft",
+            "on average, $houses were {$this->approx(75)} $avgSqft {$this->freq("in $size", 15)}",
+            "the average $house size {$this->was()} $avgSqft",
+            "$house sizes {$this->were(false)} {$this->approx(75)} $avgSqft on average"
         ]);
 
         $sentences = [
-            "the $size of $biggest $house {$this->was()} $maxSqft square feet,
+            "the $size of $biggest $house {$this->was()} $maxSqft,
             the smallest {$this->was()} $minSqft, 
             and the average was $avgSqft.",
 
-            "on average, $houses {$this->were()} $avgSqft square feet. 
+            "on average, $houses {$this->were()} $avgSqft. 
             The $biggest {$this->was()} $maxSqft, and the smallest was $minSqft.",
 
             "$house sizes ranged from $minSqft to $maxSqft square feet, with the average

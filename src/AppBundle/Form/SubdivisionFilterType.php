@@ -14,17 +14,15 @@ class SubdivisionFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', Filters\NumberFilterType::class)
-            ->add('name', Filters\TextFilterType::class)
+            ->add('name', Filters\TextFilterType::class, [
+                'label' => 'Subdivision Name'
+            ])
         
             ->add('city', Filters\EntityFilterType::class, array(
+                    'label' => 'City Name',
                     'class' => 'AppBundle\Entity\City',
                     'choice_label' => 'name',
-            )) 
-            ->add('reports', Filters\EntityFilterType::class, array(
-                    'class' => 'AppBundle\Entity\SubdivisionReport',
-                    'choice_label' => 'id',
-            )) 
+            ))
         ;
         $builder->setMethod("GET");
 

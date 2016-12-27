@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\CityReportImportType;
+use AppBundle\Form\SubdivisionReportImportType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,31 +12,31 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrap3View;
 
-use AppBundle\Entity\CityReport;
+use AppBundle\Entity\SubdivisionReport;
 
 /**
- * CityReport controller.
+ * SubdivisionReport controller.
  *
- * @Route("/cityreport")
+ * @Route("/subdivisionreport")
  */
-class CityReportController extends Controller
+class SubdivisionReportController extends Controller
 {
     /**
-     * Lists all CityReport entities.
+     * Lists all SubdivisionReport entities.
      *
-     * @Route("/", name="cityreport")
+     * @Route("/", name="subdivisionreport")
      * @Method("GET")
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $queryBuilder = $em->getRepository('AppBundle:CityReport')->createQueryBuilder('e');
+        $queryBuilder = $em->getRepository('AppBundle:SubdivisionReport')->createQueryBuilder('e');
         
         list($filterForm, $queryBuilder) = $this->filter($queryBuilder, $request);
-        list($cityReports, $pagerHtml) = $this->paginator($queryBuilder, $request);
+        list($subdivisionReports, $pagerHtml) = $this->paginator($queryBuilder, $request);
         
-        return $this->render('cityreport/index.html.twig', array(
-            'cityReports' => $cityReports,
+        return $this->render('subdivisionreport/index.html.twig', array(
+            'subdivisionReports' => $subdivisionReports,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
 
@@ -50,11 +50,11 @@ class CityReportController extends Controller
     protected function filter($queryBuilder, Request $request)
     {
         $session = $request->getSession();
-        $filterForm = $this->createForm('AppBundle\Form\CityReportFilterType');
+        $filterForm = $this->createForm('AppBundle\Form\SubdivisionReportFilterType');
 
         // Reset filter
         if ($request->get('filter_action') == 'reset') {
-            $session->remove('CityReportControllerFilter');
+            $session->remove('SubdivisionReportControllerFilter');
         }
 
         // Filter action
@@ -67,12 +67,12 @@ class CityReportController extends Controller
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
                 // Save filter to session
                 $filterData = $filterForm->getData();
-                $session->set('CityReportControllerFilter', $filterData);
+                $session->set('SubdivisionReportControllerFilter', $filterData);
             }
         } else {
             // Get filter from session
-            if ($session->has('CityReportControllerFilter')) {
-                $filterData = $session->get('CityReportControllerFilter');
+            if ($session->has('SubdivisionReportControllerFilter')) {
+                $filterData = $session->get('SubdivisionReportControllerFilter');
                 
                 foreach ($filterData as $key => $filter) { //fix for entityFilterType that is loaded from session
                     if (is_object($filter)) {
@@ -80,7 +80,7 @@ class CityReportController extends Controller
                     }
                 }
                 
-                $filterForm = $this->createForm('AppBundle\Form\CityReportFilterType', $filterData);
+                $filterForm = $this->createForm('AppBundle\Form\SubdivisionReportFilterType', $filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
         }
@@ -117,7 +117,7 @@ class CityReportController extends Controller
         {
             $requestParams = $request->query->all();
             $requestParams['pcg_page'] = $page;
-            return $me->generateUrl('cityreport', $requestParams);
+            return $me->generateUrl('subdivisionreport', $requestParams);
         };
 
         // Paginator - view
@@ -134,72 +134,72 @@ class CityReportController extends Controller
     
 
     /**
-     * Displays a form to create a new CityReport entity.
+     * Displays a form to create a new SubdivisionReport entity.
      *
-     * @Route("/new", name="cityreport_new")
+     * @Route("/new", name="subdivisionreport_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
     
-        $cityReport = new CityReport();
-        $form   = $this->createForm('AppBundle\Form\CityReportType', $cityReport);
+        $subdivisionReport = new SubdivisionReport();
+        $form   = $this->createForm('AppBundle\Form\SubdivisionReportType', $subdivisionReport);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($cityReport);
+            $em->persist($subdivisionReport);
             $em->flush();
             
-            $editLink = $this->generateUrl('cityreport_edit', array('id' => $cityReport->getId()));
-            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New report was created successfully.</a>" );
+            $editLink = $this->generateUrl('subdivisionreport_edit', array('id' => $subdivisionReport->getId()));
+            $this->get('session')->getFlashBag()->add('success', "<a href='$editLink'>New subdivisionReport was created successfully.</a>" );
             
-            $nextAction=  $request->get('submit') == 'save' ? 'cityreport' : 'cityreport_new';
+            $nextAction=  $request->get('submit') == 'save' ? 'subdivisionreport' : 'subdivisionreport_new';
             return $this->redirectToRoute($nextAction);
         }
-        return $this->render('cityreport/new.html.twig', array(
-            'report' => $cityReport,
+        return $this->render('subdivisionreport/new.html.twig', array(
+            'subdivisionReport' => $subdivisionReport,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * @Route("/import", name="cityreport_import")
+     * @Route("/import", name="subdivisionreport_import")
      * @Method({"GET", "POST"})
      */
     public function importAction(Request $request)
     {
-        $form = $this->createForm(CityReportImportType::class)->add('Upload', SubmitType::class);
+        $form = $this->createForm(SubdivisionReportImportType::class)->add('Upload', SubmitType::class);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $importer = $this->get('app.city_report.importer');
+            $importer = $this->get('app.subdivision_report.importer');
 
             $results = $importer->import($form->get('upload')->getData());
 
-            return $this->render('cityreport/import_results.html.twig', [
+            return $this->render('subdivisionreport/import_results.html.twig', [
                 'results' => $results
             ]);
         }
 
-        return $this->render('cityreport/import.html.twig', array(
+        return $this->render('subdivisionreport/import.html.twig', array(
             'form'   => $form->createView(),
         ));
     }
     
 
     /**
-     * Finds and displays a CityReport entity.
+     * Finds and displays a SubdivisionReport entity.
      *
-     * @Route("/{id}", name="cityreport_show")
+     * @Route("/{id}", name="subdivisionreport_show")
      * @Method("GET")
      */
-    public function showAction(CityReport $cityReport)
+    public function showAction(SubdivisionReport $subdivisionReport)
     {
-        $deleteForm = $this->createDeleteForm($cityReport);
-        return $this->render('cityreport/show.html.twig', array(
-            'report' => $cityReport,
+        $deleteForm = $this->createDeleteForm($subdivisionReport);
+        return $this->render('subdivisionreport/show.html.twig', array(
+            'subdivisionReport' => $subdivisionReport,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -207,27 +207,27 @@ class CityReportController extends Controller
     
 
     /**
-     * Displays a form to edit an existing CityReport entity.
+     * Displays a form to edit an existing SubdivisionReport entity.
      *
-     * @Route("/{id}/edit", name="cityreport_edit")
+     * @Route("/{id}/edit", name="subdivisionreport_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, CityReport $cityReport)
+    public function editAction(Request $request, SubdivisionReport $subdivisionReport)
     {
-        $deleteForm = $this->createDeleteForm($cityReport);
-        $editForm = $this->createForm('AppBundle\Form\CityReportType', $cityReport);
+        $deleteForm = $this->createDeleteForm($subdivisionReport);
+        $editForm = $this->createForm('AppBundle\Form\SubdivisionReportType', $subdivisionReport);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($cityReport);
+            $em->persist($subdivisionReport);
             $em->flush();
             
             $this->get('session')->getFlashBag()->add('success', 'Edited Successfully!');
-            return $this->redirectToRoute('cityreport_edit', array('id' => $cityReport->getId()));
+            return $this->redirectToRoute('subdivisionreport_edit', array('id' => $subdivisionReport->getId()));
         }
-        return $this->render('cityreport/edit.html.twig', array(
-            'report' => $cityReport,
+        return $this->render('subdivisionreport/edit.html.twig', array(
+            'subdivisionReport' => $subdivisionReport,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -236,70 +236,70 @@ class CityReportController extends Controller
     
 
     /**
-     * Deletes a CityReport entity.
+     * Deletes a SubdivisionReport entity.
      *
-     * @Route("/{id}", name="cityreport_delete")
+     * @Route("/{id}", name="subdivisionreport_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, CityReport $cityReport)
+    public function deleteAction(Request $request, SubdivisionReport $subdivisionReport)
     {
     
-        $form = $this->createDeleteForm($cityReport);
+        $form = $this->createDeleteForm($subdivisionReport);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($cityReport);
+            $em->remove($subdivisionReport);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'The CityReport was deleted successfully');
+            $this->get('session')->getFlashBag()->add('success', 'The SubdivisionReport was deleted successfully');
         } else {
-            $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the CityReport');
+            $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the SubdivisionReport');
         }
         
-        return $this->redirectToRoute('cityreport');
+        return $this->redirectToRoute('subdivisionreport');
     }
     
     /**
-     * Creates a form to delete a CityReport entity.
+     * Creates a form to delete a SubdivisionReport entity.
      *
-     * @param CityReport $cityReport The CityReport entity
+     * @param SubdivisionReport $subdivisionReport The SubdivisionReport entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(CityReport $cityReport)
+    private function createDeleteForm(SubdivisionReport $subdivisionReport)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('cityreport_delete', array('id' => $cityReport->getId())))
+            ->setAction($this->generateUrl('subdivisionreport_delete', array('id' => $subdivisionReport->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;
     }
     
     /**
-     * Delete CityReport by id
+     * Delete SubdivisionReport by id
      *
-     * @Route("/delete/{id}", name="cityreport_by_id_delete")
+     * @Route("/delete/{id}", name="subdivisionreport_by_id_delete")
      * @Method("GET")
      */
-    public function deleteByIdAction(CityReport $cityReport){
+    public function deleteByIdAction(SubdivisionReport $subdivisionReport){
         $em = $this->getDoctrine()->getManager();
         
         try {
-            $em->remove($cityReport);
+            $em->remove($subdivisionReport);
             $em->flush();
-            $this->get('session')->getFlashBag()->add('success', 'The CityReport was deleted successfully');
+            $this->get('session')->getFlashBag()->add('success', 'The SubdivisionReport was deleted successfully');
         } catch (Exception $ex) {
-            $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the CityReport');
+            $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the SubdivisionReport');
         }
 
-        return $this->redirect($this->generateUrl('cityreport'));
+        return $this->redirect($this->generateUrl('subdivisionreport'));
 
     }
     
 
     /**
     * Bulk Action
-    * @Route("/bulk-action/", name="cityreport_bulk_action")
+    * @Route("/bulk-action/", name="subdivisionreport_bulk_action")
     * @Method("POST")
     */
     public function bulkAction(Request $request)
@@ -310,22 +310,22 @@ class CityReportController extends Controller
         if ($action == "delete") {
             try {
                 $em = $this->getDoctrine()->getManager();
-                $repository = $em->getRepository('AppBundle:CityReport');
+                $repository = $em->getRepository('AppBundle:SubdivisionReport');
 
                 foreach ($ids as $id) {
-                    $cityReport = $repository->find($id);
-                    $em->remove($cityReport);
+                    $subdivisionReport = $repository->find($id);
+                    $em->remove($subdivisionReport);
                     $em->flush();
                 }
 
-                $this->get('session')->getFlashBag()->add('success', 'cityReports was deleted successfully!');
+                $this->get('session')->getFlashBag()->add('success', 'subdivisionReports was deleted successfully!');
 
             } catch (Exception $ex) {
-                $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the cityReports ');
+                $this->get('session')->getFlashBag()->add('error', 'Problem with deletion of the subdivisionReports ');
             }
         }
 
-        return $this->redirect($this->generateUrl('cityreport'));
+        return $this->redirect($this->generateUrl('subdivisionreport'));
     }
     
 

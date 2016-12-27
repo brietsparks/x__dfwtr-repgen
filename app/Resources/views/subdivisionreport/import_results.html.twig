@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Import Results
+{% endblock %}
+
+{% block body %}
+
+    <div id="top" class="row">
+        <div class="page-header">
+            <h2>Import Subdivision Report <span class="glyphicon glyphicon-import" aria-hidden="true"></span></h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('subdivisionreport_import') }}">Run another import</a>
+        </div>
+        <div class="col-md-12">
+            <h3>Results</h3>
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>File</strong></p>
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Skipped Fields</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Bad Data</strong></p>
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Errors</strong></p>
+                </div>
+            </div>
+
+            {% for result in results %}
+                <div class="row">
+                    <div class="col-md-2">
+                        {% if result.getScrapeResult().getFileName() is not null %}
+                            <p>{{ result.getScrapeResult().getFileName() }}</p>
+                        {% else %}
+                            <p>Imported file</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <ul>
+                            {% for field in result.getSkippedFields() %}
+                                <li>{{ field }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul>
+                            {% for field in result.getBadFields() %}
+                                <li>{{ field }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        {% if result.getErrors()|length > 0 %}
+                            {{ dump(result.getErrors()) }}
+                        {% endif %}
+                        {#<ul>#}
+                        {#{% for error in result.getErrors() %}#}
+                        {#<li>{{ error }}</li>#}
+                        {#{% endfor %}#}
+                        {#</ul>#}
+                    </div>
+                </div>
+                <hr/>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

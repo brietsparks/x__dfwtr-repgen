@@ -2,7 +2,7 @@
 
 namespace AppBundle\CityReport;
 
-use AppBundle\Entity\CityReport;
+use AppBundle\Entity\ReportInterface;
 use AppBundle\Services\ScrapeResult;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -11,9 +11,9 @@ class ImportResult
 {
 
     /**
-     * @var CityReport
+     * @var ReportInterface
      */
-    protected $cityReport;
+    protected $report;
 
     /**
      * @var ScrapeResult
@@ -36,34 +36,35 @@ class ImportResult
     protected $errors = [];
 
     /**
-     * @return CityReport
+     * @return ReportInterface
      */
-    public function getCityReport()
+    public function getReport()
     {
-        return $this->cityReport;
+        return $this->report;
     }
 
     /**
-     * @param CityReport $cityReport
+     * @param ReportInterface $report
      * @return ImportResult
      */
-    public function setCityReport($cityReport)
+    public function setReport($report)
     {
-        $this->cityReport = $cityReport;
+        $this->report = $report;
 
         return $this;
     }
+    
 
     public function check(ValidatorInterface $validator)
     {
-        $cityReport = $this->cityReport;
+        $report = $this->report;
 
-        foreach ((array) $cityReport->getMissingDataFields() as $field) {
+        foreach ((array) $report->getMissingDataFields() as $field) {
             $this->addSkippedField($field);
         }
 
         /** @var ConstraintViolation $error */
-        foreach ($validator->validate($cityReport) as $error) {
+        foreach ($validator->validate($report) as $error) {
             $this->addBadField("
                 {$error->getPropertyPath()} parsed value is {$error->getInvalidValue()}. {$error->getMessage()}
             ");

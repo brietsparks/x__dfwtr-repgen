@@ -1,11 +1,13 @@
 <?php
 
-namespace AppBundle\CityReport;
+namespace AppBundle\SubdivisionReport;
 
-use AppBundle\Entity\City;
-use AppBundle\Entity\CityReport;
+use AppBundle\CityReport\ImportResult;
 use AppBundle\Entity\ReportInterface;
+use AppBundle\Entity\Subdivision;
+use AppBundle\Entity\SubdivisionReport;
 use AppBundle\Services\Scraper;
+use AppBundle\Services\ScrapeResult;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use AppBundle\Services\Importer as Base;
@@ -14,12 +16,7 @@ class Importer extends Base
 {
 
     /**
-     * @var Scraper
-     */
-    protected $scraper;
-
-    /**
-     * @var CityReportParser
+     * @var SubdivisionReportParser
      */
     protected $cityReportParser;
 
@@ -35,14 +32,12 @@ class Importer extends Base
 
     /**
      * Importer constructor.
-     * @param Scraper $scraper
-     * @param CityReportParser $cityReportParser
+     * @param SubdivisionReportParser $cityReportParser
      * @param ValidatorInterface $validator
      * @param EntityManagerInterface $entityManager
      */
-    public function __construct(Scraper $scraper, CityReportParser $cityReportParser, ValidatorInterface $validator, EntityManagerInterface $entityManager)
+    public function __construct(SubdivisionReportParser $cityReportParser, ValidatorInterface $validator, EntityManagerInterface $entityManager)
     {
-        $this->scraper = $scraper;
         $this->cityReportParser = $cityReportParser;
         $this->validator = $validator;
         $this->entityManager = $entityManager;
@@ -50,24 +45,21 @@ class Importer extends Base
 
     public function doImport(ReportInterface $report, ImportResult $result)
     {
-        // set the city relationship
-        $repo = $this->entityManager->getRepository(City::class);
+        $repo = $this->entityManager->getRepository(Subdivision::class);
 
-        /** @var CityReport $report */
-        $cityName = $report->city;
-        $city = $repo->findOneByName($cityName);
-        $report->city = $city;
+        /** @var SubdivisionReport $report */
+        $subdivisionName = $report->subdivision;
+        $subdivision = $repo->findOneByName($subdivisionName);
+        $report->subdivision = $subdivision;
 
         // persist
-        if ($city instanceof City) {
+        if ($subdivision instanceof Subdivision) {
             $this->entityManager->persist($report);
             $this->entityManager->flush();
         } else {
-            $result->addError("City \"$cityName\" does not exist in database.");
+            $result->addError("Subdivision \"$subdivisionName\" does not exist in database.");
         }
     }
-
-
 
 
 }

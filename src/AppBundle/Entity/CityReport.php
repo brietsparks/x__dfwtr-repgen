@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="city_report")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CityReportRepository")
  */
-class CityReport
+class CityReport implements ReportInterface
 {
 
     /**

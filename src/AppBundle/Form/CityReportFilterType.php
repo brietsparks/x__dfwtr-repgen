@@ -27,7 +27,6 @@ class CityReportFilterType extends AbstractType
         ;
         $builder->setMethod("GET");
 
-
     }
 
     public function getBlockPrefix()

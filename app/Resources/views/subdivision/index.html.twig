@@ -1,7 +1,7 @@
-{% extends 'PetkoparaCrudGeneratorBundle::base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
-{{ parent() }} - subdivision index
+{{ parent() }} - Subdivisions
 {% endblock %}
 
 {% block body %}
@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="page-header">
-            <h2><a href="{{ path('subdivision') }}">Subdivision</a></h2>
+            <h2><a href="{{ path('subdivision') }}">Subdivisions</a></h2>
         </div>
     </div>       
 
@@ -20,15 +20,12 @@
 
         <form class="well" action="{{ path('subdivision') }}" method="get" >
             <div class="row">
-                 
-                    <div class="col-md-6">{{ form_row(filterForm.id) }}</div>
+                <div class="col-md-6">{{ form_row(filterForm.city) }}</div>
+                <div class="col-md-6">{{ form_row(filterForm.name) }}</div>
 
-                 
-                    <div class="col-md-6">{{ form_row(filterForm.name) }}</div>
-
-                                <div class="col-md-6">
-                    {{ form_rest(filterForm) }}
-                </div>
+                {#<div class="col-md-6">#}
+                    {#{{ form_rest(filterForm) }}#}
+                {#</div>#}
                 <div class="col-md-12">
                     <div class="form-group">
                         <button type="submit" class="btn btn-warning" name="filter_action" value="filter"> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter</button>
@@ -65,7 +62,7 @@
 
 <div class="col-md-3">
 
-            <a class="btn btn-primary h3 pull-right" href="{{ path('subdivision_new') }}" style="margin-bottom:10px">
+        <a class="btn btn-primary h3 pull-right" href="{{ path('subdivision_new') }}" style="margin-bottom:10px">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New
         </a>
         <a class="btn dropdown-toggle pull-right h3" data-toggle="collapse" data-target="#filters">
@@ -73,11 +70,6 @@
         <span class="caret"></span>
     </a>
 </div>
-
-
-
-
-
 
 
     
@@ -115,8 +107,8 @@
                         <th width="20px"><input type="checkbox" class="check-all" onclick="toggleAll(this)"></th>
 
                 {% import "PetkoparaCrudGeneratorBundle::macros/th_sortable.html.twig" as macros %}
-                            <th>{{macros.th_sortable('id',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'subdivision')}}</th>
-                            <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'subdivision')}}</th>
+                        <th>{{macros.th_sortable('city',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'subdivision')}}</th>
+                        <th>{{macros.th_sortable('name',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'subdivision')}}</th>
     
                        
                         <th width = "130px">List</th>
@@ -124,10 +116,12 @@
                 </thead>
                 <tbody>
                     {% for subdivision in subdivisions %}
-                    <tr>
+                    <tr onclick="window.document.location='{{ path('subdivision_show', {'id': subdivision.id}) }}';"
+                        style="cursor:pointer;"
+                    >
                         <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all" value="{{subdivision.id}}"/></td>
-                        <td><a href="{{ path('subdivision_edit', { 'id': subdivision.id }) }}">{{ subdivision.id }}</a></td>
-                        <td>{{ subdivision.name }}</td>
+                        <td><a href="{{ path('city_show', {'id': subdivision.city.id}) }}">{{ subdivision.city.name }}</a></td>
+                        <td><a href="{{ path('subdivision_show', { 'id': subdivision.id }) }}">{{ subdivision.name }}</a></td>
     
                         <td class="actions">
                             <a  onclick="return confirm('Are you sure!');" title="Delete" class="btn btn-danger btn-sm" href="{{ path('subdivision_by_id_delete', { 'id': subdivision.id}) }}">

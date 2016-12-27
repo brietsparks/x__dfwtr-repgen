@@ -40,6 +40,12 @@ services:
           - "%carr_report_uploads_path%"
           - "@kreatys.pdf_parser"
 
+    app.services.json_scraper:
+        class: AppBundle\Services\JsonFileScraper
+
+    app.subdivision_report.importer:
+        class: AppBundle\SubdivisionReport\Importer
+
     app.spinner:
         class: AppBundle\Spinner\Spinner
         arguments:

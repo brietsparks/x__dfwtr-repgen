@@ -4,6 +4,7 @@ namespace AppBundle\CityReport;
 
 use AppBundle\CityReport\RowParser\NewListings;
 use AppBundle\Entity\CityReport;
+use AppBundle\Services\ReportParserInterface;
 
 /**
  * Parses city report text row by row into a CityReport object
@@ -11,7 +12,7 @@ use AppBundle\Entity\CityReport;
  * Class CityReportParser
  * @package AppBundle\CityReportParser
  */
-class CityReportParser
+class CityReportParser implements ReportParserInterface
 {
 
     /**

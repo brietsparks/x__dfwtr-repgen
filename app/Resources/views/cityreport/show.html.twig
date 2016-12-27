@@ -8,8 +8,8 @@
 
     <div id="top" class="row">
         <div class="page-header">
-            <h2>View City Report <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> (id: {{ cityReport.id }})</h2>
-            <a href="{{ path('cityreport_edit', {id: cityReport.id}) }}">Edit</a>
+            <h2>View City Report <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> (id: {{ report.id }})</h2>
+            <a href="{{ path('cityreport_edit', {id: report.id}) }}">Edit</a>
         </div>
     </div>
 
@@ -17,107 +17,107 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th colspan="1"><a href="{{ path('city_show', {'id': cityReport.city.id }) }}">{{ cityReport.city.name }}</a></th>
-                    <th colspan="3">Month {{ cityReport.month }}</th>
-                    <th colspan="3">YTD {{ cityReport.year }}</th>
+                    <th colspan="1"><a href="{{ path('city_show', {'id': report.city.id }) }}">{{ report.city.name }}</a></th>
+                    <th colspan="3">Month {{ report.month }}</th>
+                    <th colspan="3">YTD {{ report.year }}</th>
                 </tr>
                 <tr>
                     <th></th>
-                    <th>{{ cityReport.year -1 }}</th>
-                    <th>{{ cityReport.year }}</th>
+                    <th>{{ report.year -1 }}</th>
+                    <th>{{ report.year }}</th>
                     <th>% +/-</th>
-                    <th>{{ cityReport.year -1 }}</th>
-                    <th>{{ cityReport.year }}</th>
+                    <th>{{ report.year -1 }}</th>
+                    <th>{{ report.year }}</th>
                     <th>% +/-</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>New Listings</td>
-                    <td>{{ cityReport.newListingsMonthPrev }}</td>
-                    <td>{{ cityReport.newListingsMonthCurr }}</td>
-                    <td>{{ cityReport.newListingsMonthChange }}</td>
-                    <td>{{ cityReport.newListingsYtdPrev }}</td>
-                    <td>{{ cityReport.newListingsYtdCurr }}</td>
-                    <td>{{ cityReport.newListingsYtdChange }}</td>
+                    <td>{{ report.newListingsMonthPrev }}</td>
+                    <td>{{ report.newListingsMonthCurr }}</td>
+                    <td>{{ report.newListingsMonthChange }}</td>
+                    <td>{{ report.newListingsYtdPrev }}</td>
+                    <td>{{ report.newListingsYtdCurr }}</td>
+                    <td>{{ report.newListingsYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Closed Sales (Reported)</td>
-                    <td>{{ cityReport.salesReportedMonthPrev }}</td>
-                    <td>{{ cityReport.salesReportedMonthCurr }}</td>
-                    <td>{{ cityReport.salesReportedMonthChange }}</td>
-                    <td>{{ cityReport.salesReportedYtdPrev }}</td>
-                    <td>{{ cityReport.salesReportedYtdCurr }}</td>
-                    <td>{{ cityReport.salesReportedYtdChange }}</td>
+                    <td>{{ report.salesReportedMonthPrev }}</td>
+                    <td>{{ report.salesReportedMonthCurr }}</td>
+                    <td>{{ report.salesReportedMonthChange }}</td>
+                    <td>{{ report.salesReportedYtdPrev }}</td>
+                    <td>{{ report.salesReportedYtdCurr }}</td>
+                    <td>{{ report.salesReportedYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Closed Sales (Projected)</td>
-                    <td>{{ cityReport.salesProjectedMonthPrev }}</td>
-                    <td>{{ cityReport.salesProjectedMonthCurr }}</td>
-                    <td>{{ cityReport.salesProjectedMonthChange }}</td>
-                    <td>{{ cityReport.salesProjectedYtdPrev }}</td>
-                    <td>{{ cityReport.salesProjectedYtdCurr }}</td>
-                    <td>{{ cityReport.salesProjectedYtdChange }}</td>
+                    <td>{{ report.salesProjectedMonthPrev }}</td>
+                    <td>{{ report.salesProjectedMonthCurr }}</td>
+                    <td>{{ report.salesProjectedMonthChange }}</td>
+                    <td>{{ report.salesProjectedYtdPrev }}</td>
+                    <td>{{ report.salesProjectedYtdCurr }}</td>
+                    <td>{{ report.salesProjectedYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Listings Under Contract</td>
-                    <td>{{ cityReport.ContractListingsMonthPrev }}</td>
-                    <td>{{ cityReport.ContractListingsMonthCurr }}</td>
-                    <td>{{ cityReport.ContractListingsMonthChange }}</td>
-                    <td>{{ cityReport.ContractListingsYtdPrev }}</td>
-                    <td>{{ cityReport.ContractListingsYtdCurr }}</td>
-                    <td>{{ cityReport.ContractListingsYtdChange }}</td>
+                    <td>{{ report.ContractListingsMonthPrev }}</td>
+                    <td>{{ report.ContractListingsMonthCurr }}</td>
+                    <td>{{ report.ContractListingsMonthChange }}</td>
+                    <td>{{ report.ContractListingsYtdPrev }}</td>
+                    <td>{{ report.ContractListingsYtdCurr }}</td>
+                    <td>{{ report.ContractListingsYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Average Sales Price</td>
-                    <td>{{ cityReport.AvgPriceMonthPrev }}</td>
-                    <td>{{ cityReport.AvgPriceMonthCurr }}</td>
-                    <td>{{ cityReport.AvgPriceMonthChange }}</td>
-                    <td>{{ cityReport.AvgPriceYtdPrev }}</td>
-                    <td>{{ cityReport.AvgPriceYtdCurr }}</td>
-                    <td>{{ cityReport.AvgPriceYtdChange }}</td>
+                    <td>{{ report.AvgPriceMonthPrev }}</td>
+                    <td>{{ report.AvgPriceMonthCurr }}</td>
+                    <td>{{ report.AvgPriceMonthChange }}</td>
+                    <td>{{ report.AvgPriceYtdPrev }}</td>
+                    <td>{{ report.AvgPriceYtdCurr }}</td>
+                    <td>{{ report.AvgPriceYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Median Sales Price</td>
-                    <td>{{ cityReport.MedianPriceMonthPrev }}</td>
-                    <td>{{ cityReport.MedianPriceMonthCurr }}</td>
-                    <td>{{ cityReport.MedianPriceMonthChange }}</td>
-                    <td>{{ cityReport.MedianPriceYtdPrev }}</td>
-                    <td>{{ cityReport.MedianPriceYtdCurr }}</td>
-                    <td>{{ cityReport.MedianPriceYtdChange }}</td>
+                    <td>{{ report.MedianPriceMonthPrev }}</td>
+                    <td>{{ report.MedianPriceMonthCurr }}</td>
+                    <td>{{ report.MedianPriceMonthChange }}</td>
+                    <td>{{ report.MedianPriceYtdPrev }}</td>
+                    <td>{{ report.MedianPriceYtdCurr }}</td>
+                    <td>{{ report.MedianPriceYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Percent of Original List Price Received*</td>
-                    <td>{{ cityReport.PercentReceivedMonthPrev }}</td>
-                    <td>{{ cityReport.PercentReceivedMonthCurr }}</td>
-                    <td>{{ cityReport.PercentReceivedMonthChange }}</td>
-                    <td>{{ cityReport.PercentReceivedYtdPrev }}</td>
-                    <td>{{ cityReport.PercentReceivedYtdCurr }}</td>
-                    <td>{{ cityReport.PercentReceivedYtdChange }}</td>
+                    <td>{{ report.PercentReceivedMonthPrev }}</td>
+                    <td>{{ report.PercentReceivedMonthCurr }}</td>
+                    <td>{{ report.PercentReceivedMonthChange }}</td>
+                    <td>{{ report.PercentReceivedYtdPrev }}</td>
+                    <td>{{ report.PercentReceivedYtdCurr }}</td>
+                    <td>{{ report.PercentReceivedYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Days on Market Until Sale</td>
-                    <td>{{ cityReport.DaysOnMarketMonthPrev }}</td>
-                    <td>{{ cityReport.DaysOnMarketMonthCurr }}</td>
-                    <td>{{ cityReport.DaysOnMarketMonthChange }}</td>
-                    <td>{{ cityReport.DaysOnMarketYtdPrev }}</td>
-                    <td>{{ cityReport.DaysOnMarketYtdCurr }}</td>
-                    <td>{{ cityReport.DaysOnMarketYtdChange }}</td>
+                    <td>{{ report.DaysOnMarketMonthPrev }}</td>
+                    <td>{{ report.DaysOnMarketMonthCurr }}</td>
+                    <td>{{ report.DaysOnMarketMonthChange }}</td>
+                    <td>{{ report.DaysOnMarketYtdPrev }}</td>
+                    <td>{{ report.DaysOnMarketYtdCurr }}</td>
+                    <td>{{ report.DaysOnMarketYtdChange }}</td>
                 </tr>
                 <tr>
                     <td>Inventory of Homes for Sale</td>
-                    <td>{{ cityReport.InventoryMonthPrev }}</td>
-                    <td>{{ cityReport.InventoryMonthCurr }}</td>
-                    <td>{{ cityReport.InventoryMonthChange }}</td>
+                    <td>{{ report.InventoryMonthPrev }}</td>
+                    <td>{{ report.InventoryMonthCurr }}</td>
+                    <td>{{ report.InventoryMonthChange }}</td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>Months Supply of Inventory</td>
-                    <td>{{ cityReport.MonthsSupplyMonthPrev }}</td>
-                    <td>{{ cityReport.MonthsSupplyMonthCurr }}</td>
-                    <td>{{ cityReport.MonthsSupplyMonthChange }}</td>
+                    <td>{{ report.MonthsSupplyMonthPrev }}</td>
+                    <td>{{ report.MonthsSupplyMonthCurr }}</td>
+                    <td>{{ report.MonthsSupplyMonthChange }}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -134,7 +134,7 @@
             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
             Back to list
         </a>
-        <a class="btn btn-primary" href="{{ path('cityreport_edit', { 'id':  cityReport.id }) }}">
+        <a class="btn btn-primary" href="{{ path('cityreport_edit', { 'id':  report.id }) }}">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             Edit
         </a>
@@ -142,7 +142,7 @@
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             New
         </a>
-        <form action="{{ path('cityreport_delete', { 'id': cityReport.id }) }}" method="post"
+        <form action="{{ path('cityreport_delete', { 'id': report.id }) }}" method="post"
               style="display: inline-block">
             <input type="hidden" name="_method" value="DELETE"/>
             {{ form_widget(delete_form) }}

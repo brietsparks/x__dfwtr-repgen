@@ -30,17 +30,14 @@ class PdfScraper extends Scraper
      */
     public function __construct(Filesystem $fileSystem, $uploadDirPath, PdfParser $pdfParser)
     {
-        $this->fileSystem = $fileSystem;
-        $this->uploadDirPath = $uploadDirPath;
+        parent::__construct($fileSystem,$uploadDirPath);
         $this->pdfParser = $pdfParser;
     }
 
-    public function doScrape($tempUploadDirPath, \SplFileInfo $fileInfo, ScrapeResult $scrape)
+    public function doScrape($filePath, ScrapeResult $scrape)
     {
         try {
-            $document = $this->pdfParser->parseFile(
-                $tempUploadDirPath . '/' . $fileInfo->getFilename()
-            );
+            $document = $this->pdfParser->parseFile($filePath);
 
             $scrape->setText($document->getText());
         } catch (\Exception $e) {

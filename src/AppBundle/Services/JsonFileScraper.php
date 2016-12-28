@@ -2,8 +2,6 @@
 
 namespace AppBundle\Services;
 
-use Symfony\Component\Finder\Finder;
-
 class JsonFileScraper extends Scraper
 {
 
@@ -12,14 +10,12 @@ class JsonFileScraper extends Scraper
      */
     protected $fileExtension = 'json';
 
-    public function doScrape($tempUploadDirPath, \SplFileInfo $fileInfo, ScrapeResult $scrape)
+    public function doScrape($filePath, ScrapeResult $scrape)
     {
         try {
-            $text = file_get_contents($tempUploadDirPath);
+            $text = file_get_contents($filePath);
 
-            dump($text);exit;
-
-//            $scrape->setText($document->getText());
+            $scrape->setText($text);
         } catch (\Exception $e) {
             $scrape->addError("
                         {$e->getFile()}\r\n

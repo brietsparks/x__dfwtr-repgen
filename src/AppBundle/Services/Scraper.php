@@ -26,13 +26,24 @@ abstract class Scraper
     protected $fileExtension;
 
     /**
+     * PdfScraper constructor.
+     *
+     * @param Filesystem $fileSystem
+     * @param string $uploadDirPath
+     */
+    public function __construct(Filesystem $fileSystem, $uploadDirPath)
+    {
+        $this->fileSystem = $fileSystem;
+        $this->uploadDirPath = $uploadDirPath;
+    }
+
+    /**
      * Steps for scraping, implement in subclass
      *
-     * @param string $tempUploadDirPath
-     * @param \SplFileInfo $fileInfo
+     * @param string $filepath
      * @param ScrapeResult $scrape
      */
-    abstract public function doScrape($tempUploadDirPath, \SplFileInfo $fileInfo, ScrapeResult $scrape);
+    abstract public function doScrape($filepath, ScrapeResult $scrape);
 
     /**
      * Overwrite in subclass
@@ -57,6 +68,9 @@ abstract class Scraper
         $tempUploadDirPath = $this->uploadDirPath . '/' . $tempDirName;
         $this->fileSystem->mkdir($tempUploadDirPath);
 
+        $this->fileSystem->chmod($tempUploadDirPath, '222');
+        $this->fileSystem->remove($tempUploadDirPath);
+
         // put pdfs in that folder
         if ($this->fileIsArchive($file)) {
             $this->extractFiles($file, $tempUploadDirPath);
@@ -74,7 +88,7 @@ abstract class Scraper
                     $scrape->setFileName($fileInfo->getFilename());
                 }
 
-                $this->doScrape($tempUploadDirPath, $fileInfo, $scrape);
+                $this->doScrape($tempUploadDirPath . '/' . $fileInfo->getFilename(), $scrape);
 
                 $scrapes[] = $scrape;
             }

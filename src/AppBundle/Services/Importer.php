@@ -31,6 +31,14 @@ abstract class Importer
      */
     protected $entityManager;
 
+    public function __construct(Scraper $scraper, ReportParserInterface $parser, ValidatorInterface $validator, EntityManagerInterface $entityManager)
+    {
+        $this->scraper = $scraper;
+        $this->parser = $parser;
+        $this->validator = $validator;
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * Import CityReport(s) from the file and return the import results
      *

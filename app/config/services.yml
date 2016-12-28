@@ -1,6 +1,7 @@
 parameters:
     temp_uploads_dir_path: "%kernel.root_dir%/../web/temp"
     carr_report_uploads_path: "%temp_uploads_dir_path%/carr_reports"
+    subdivision_report_uploads_path: "%temp_uploads_dir_path%/subdiv_reports"
 
     carr_city_mappings:
         'Carrollton / Farmers Branch': ['Carrollton', 'Farmers Branch']
@@ -40,11 +41,22 @@ services:
           - "%carr_report_uploads_path%"
           - "@kreatys.pdf_parser"
 
-    app.services.json_scraper:
-        class: AppBundle\Services\JsonFileScraper
-
     app.subdivision_report.importer:
         class: AppBundle\SubdivisionReport\Importer
+        arguments:
+          - "@app.services.json_scraper"
+          - "@app.subdivision_report.parser"
+          - "@validator"
+          - "@doctrine.orm.default_entity_manager"
+
+    app.services.json_scraper:
+        class: AppBundle\Services\JsonFileScraper
+        arguments:
+          - "@filesystem"
+          - "%subdivision_report_uploads_path%"
+
+    app.subdivision_report.parser:
+        class: AppBundle\SubdivisionReport\SubdivisionReportParser
 
     app.spinner:
         class: AppBundle\Spinner\Spinner

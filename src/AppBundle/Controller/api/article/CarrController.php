@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * CityReport controller.
+ * Carr CityReport controller.
  *
  * @Route("api/v1/article/carr")
  */

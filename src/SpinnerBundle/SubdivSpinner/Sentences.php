@@ -91,9 +91,9 @@ class Sentences extends Words
 
     public function pricePerSqftParagraph(SubdivisionReport $report)
     {
-        $minPricePerSqft = "$" . $report->minPricePerSqft . "per square foot";
-        $maxPricePerSqft = "$" . $report->maxPricePerSqft . "per square foot";
-        $avgPricePerSqft = "$" . $report->avgPricePerSqft . "per square foot";
+        $minPricePerSqft = "$" . $report->minPricePerSqft . " per square foot";
+        $maxPricePerSqft = "$" . $report->maxPricePerSqft . " per square foot";
+        $avgPricePerSqft = "$" . $report->avgPricePerSqft . " per square foot";
 
         $house = $this->house();
         $houses = $this->houses();
@@ -129,9 +129,9 @@ class Sentences extends Words
 
     public function domParagraph(SubdivisionReport $report)
     {
-        $minDom = $report->minDom . "days";
-        $maxDom = $report->maxDom . "days";
-        $avgDom = $report->avgDom . "days";
+        $minDom = $report->minDom . " days";
+        $maxDom = $report->maxDom . " days";
+        $avgDom = $report->avgDom . " days";
 
         $house = $this->house();
         $houses = $this->houses();

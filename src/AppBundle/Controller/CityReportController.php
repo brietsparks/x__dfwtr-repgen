@@ -214,9 +214,9 @@ class CityReportController extends Controller
         $teamRealty = $this->get('exporter.team_realty')->generate($report);
 
         $article = ""
-            . "HOME VALUES \r\n" . $homeValues . "\r\n"
-            . "ACTIVE RAIN \r\n" . $activeRain . "\r\n"
-            . "TEAM REALTY \r\n" . $teamRealty . "\r\n"
+            . "*** HOME VALUES *** \r\n" . $homeValues . "\r\n"
+            . "*** ACTIVE RAIN *** \r\n" . $activeRain . "\r\n"
+            . "*** TEAM REALTY *** \r\n" . $teamRealty . "\r\n"
         ;
 
         $response = new Response();

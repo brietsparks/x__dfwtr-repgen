@@ -10,6 +10,39 @@
         <div class="page-header">
             <h2>View City Report <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> (id: {{ report.id }})</h2>
             <a href="{{ path('cityreport_edit', {id: report.id}) }}">Edit</a>
+
+            <div>
+                <div class="col-md-4 pull-right">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="pull-right">Spin:</h3>
+                        </div>
+
+                        <div class="col-md-4">
+                            <a class="btn btn-primary h3" href="{{ path('api_city_article_show', {
+                                'name': report.city.name,
+                                'year': report.year,
+                                'month': report.month
+                            }) }}" style="margin-bottom:10px">
+                                <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Json API
+                            </a>
+                        </div>
+
+                        <div class="col-md-4">
+                            <a class="btn btn-primary h3" href="{{ path('cityreport_export', {
+                                'name': report.city.name,
+                                'year': report.year,
+                                'month': report.month
+                            }) }}" style="margin-bottom:10px">
+                                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Text File
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\City;
 use AppBundle\Form\CityReportImportType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrap3View;
 
 use AppBundle\Entity\CityReport;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * CityReport controller.
@@ -187,7 +189,45 @@ class CityReportController extends Controller
             'form'   => $form->createView(),
         ));
     }
-    
+
+
+    /**
+     * @Route("/export/{name}/{year}/{month}", name="cityreport_export")
+     */
+    public function exportAction($name, $year, $month )
+    {
+        $cityRepo = $this->getDoctrine()->getRepository(City::class);
+        $reportRepo = $this->getDoctrine()->getRepository(CityReport::class);
+
+        /** @var City $city */
+        $city = $cityRepo->findOneByName($name);
+
+        $report = $reportRepo->findOneBy([
+            'city' => $city,
+            'year' => $year,
+            'month' => $month
+        ]);
+
+
+        $homeValues = $this->get('exporter.home_values')->generate($report);
+        $activeRain = $this->get('exporter.active_rain')->generate($report);
+        $teamRealty = $this->get('exporter.team_realty')->generate($report);
+
+        $article = ""
+            . "HOME VALUES \r\n" . $homeValues . "\r\n"
+            . "ACTIVE RAIN \r\n" . $activeRain . "\r\n"
+            . "TEAM REALTY \r\n" . $teamRealty . "\r\n"
+        ;
+
+        $response = new Response();
+
+        $response->setContent($article);
+        $response->setStatusCode(Response::HTTP_OK);
+
+        $response->headers->set('Content-Type', 'text/plain');
+
+        return $response;
+    }
 
     /**
      * Finds and displays a CityReport entity.

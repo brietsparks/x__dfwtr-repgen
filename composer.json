@@ -19,7 +19,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "kreatys/pdf-parser-bundle": "^0.1.0",
         "petkopara/crud-generator-bundle": "^3.0",
-        "doctrine/doctrine-fixtures-bundle": "^2.3"
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "friendsofsymfony/user-bundle": "^1.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

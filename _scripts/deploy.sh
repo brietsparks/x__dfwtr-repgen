@@ -1,8 +1,7 @@
 #!/bin/bash
 set -x
 if [ $TRAVIS_BRANCH == 'master' ] ; then
-    ## Initialize a new git repo in _site, and push it to our server.
-    cd _site
+
     git init
 
     git remote add deploy "depoloy@138.197.83.56:/var/www/dfwtr"

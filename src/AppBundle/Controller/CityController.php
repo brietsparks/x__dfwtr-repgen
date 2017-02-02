@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -15,6 +16,7 @@ use AppBundle\Entity\City;
 /**
  * City controller.
  *
+ * @Security("has_role('ROLE_USER')")
  * @Route("/city")
  */
 class CityController extends Controller

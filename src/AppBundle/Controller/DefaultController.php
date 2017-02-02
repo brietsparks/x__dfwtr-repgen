@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route("/home")
+ * @Route("/")
  */
 class DefaultController extends Controller
 {
@@ -18,24 +18,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request, $city)
     {
-        $repo = $this->getDoctrine()->getRepository(CityReport::class);
+        if ($this->userIsAuthenticated()) {
+            return $this->redirectToRoute("city");
+        }
 
-        $rep = $repo->find(215);
-
-        $article = $this->get('app.spinner')->spin($rep);
-        dump($article);exit;
+        return $this->redirectToRoute('fos_user_security_login');
     }
 
     /**
-     * @Route("/foo")
+     * @return bool
      */
-    public function fooAction()
+    protected function userIsAuthenticated()
     {
-        $sr = new SubdivisionReport();
-
-        $article = $this->get('subdiv_article_generator')->generate($sr);
-
-        dump($article);exit;
-
+        return $this->container->get('security.authorization_checker')
+            ->isGranted('IS_AUTHENTICATED_FULLY');
     }
+
+
 }

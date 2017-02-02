@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\SubdivisionReportImportType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,6 +18,7 @@ use AppBundle\Entity\SubdivisionReport;
 /**
  * SubdivisionReport controller.
  *
+ * @Security("has_role('ROLE_USER')")
  * @Route("/subdivisionreport")
  */
 class SubdivisionReportController extends Controller

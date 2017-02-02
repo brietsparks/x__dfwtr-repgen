@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\City;
 use AppBundle\Form\CityReportImportType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * CityReport controller.
  *
+ * @Security("has_role('ROLE_USER')")
  * @Route("/cityreport")
  */
 class CityReportController extends Controller

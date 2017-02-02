@@ -76,7 +76,7 @@ class ScrapeResult
     }
 
     /**
-     * @param array $errors
+     * @param $errors
      * @return ScrapeResult
      */
     public function addError($errors)

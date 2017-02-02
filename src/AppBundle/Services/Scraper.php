@@ -56,6 +56,16 @@ abstract class Scraper
     }
 
     /**
+     * @return array
+     */
+    public function getArchiveMimeTypes()
+    {
+        return [
+            'application/zip'
+        ];
+    }
+
+    /**
      * @param UploadedFile $file
      * @return array
      */
@@ -106,12 +116,13 @@ abstract class Scraper
      */
     protected function fileIsArchive(UploadedFile $file)
     {
-        return in_array($file->getMimeType(), $this->getFileMimeTypes());
+        return in_array($file->getMimeType(), $this->getArchiveMimeTypes());
     }
 
     /**
      * @param UploadedFile $file
      * @param string $path
+     * @throws \Exception
      */
     protected function extractFiles(UploadedFile $file, $path)
     {
@@ -122,7 +133,7 @@ abstract class Scraper
                 $zip->extractTo($path);
                 break;
             case 'rar':
-
+                throw new \Exception("RAR import not supported yet");
                 break;
         }
 

@@ -38,6 +38,30 @@ class SubdivisionReport implements ReportInterface
      */
     public $end;
 
+    /**
+     * @return int
+     */
+    public function getEndMonth()
+    {
+        return intval($this->getEnd()->format('m'));
+    }
+
+    /**
+     * @return int
+     */
+    public function getEndYear()
+    {
+        return intval($this->getEnd()->format('Y'));
+    }
+
+    /**
+     * @return int
+     */
+    public function getEndDay()
+    {
+        return intval($this->getEnd()->format('d'));
+    }
+
     public function getMissingDataFields()
     {
         // TODO: Implement getMissingDataFields() method.

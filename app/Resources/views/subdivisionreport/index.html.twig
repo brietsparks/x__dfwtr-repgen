@@ -133,7 +133,7 @@
                     </thead>
                     <tbody>
                     {% for subdivisionReport in subdivisionReports %}
-                        <tr onclick="window.document.location='{{ path('subdivisionreport_edit', {'id': subdivisionReport.id}) }}';"
+                        <tr onclick="window.document.location='{{ path('subdivisionreport_show', {'id': subdivisionReport.id}) }}';"
                             style="cursor:pointer;"
                         >
                             <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all"

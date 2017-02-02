@@ -137,7 +137,7 @@
                     </thead>
                     <tbody>
                     {% for report in cityReports %}
-                        <tr onclick="window.document.location='{{ path('cityreport_edit', {'id': report.id}) }}';"
+                        <tr onclick="window.document.location='{{ path('cityreport_show', {'id': report.id}) }}';"
                             style="cursor:pointer;"
                                 {% if report.missingData == true %}
                                     class="city-report-missing-data"

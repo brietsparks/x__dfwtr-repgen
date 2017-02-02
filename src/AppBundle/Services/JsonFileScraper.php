@@ -18,10 +18,10 @@ class JsonFileScraper extends Scraper
             $scrape->setText($text);
         } catch (\Exception $e) {
             $scrape->addError("
-                        {$e->getFile()}\r\n
-                        {$e->getLine()}\r\n
-                        {$e->getMessage()}
-                    ");
+                {$e->getFile()}\r\n
+                {$e->getLine()}\r\n
+                {$e->getMessage()}
+            ");
         }
     }
 

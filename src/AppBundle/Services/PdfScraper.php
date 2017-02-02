@@ -42,10 +42,10 @@ class PdfScraper extends Scraper
             $scrape->setText($document->getText());
         } catch (\Exception $e) {
             $scrape->addError("
-                        {$e->getFile()}\r\n
-                        {$e->getLine()}\r\n
-                        {$e->getMessage()}
-                    ");
+                {$e->getFile()}\r\n
+                {$e->getLine()}\r\n
+                {$e->getMessage()}
+            ");
         }
     }
 

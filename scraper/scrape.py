@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import time
 import json
 import sys
+import os
 
 
 def scrape(SOLD_START_DATE, SOLD_END_DATE, SUBDIVISION, CITY):
@@ -12,7 +13,8 @@ def scrape(SOLD_START_DATE, SOLD_END_DATE, SUBDIVISION, CITY):
     # CITY = 'Lewisville'
 
     # inputs
-    OUTPUT_DIR = 'C:/Users/bsapaka/Documents/Other/dfwtr'
+    OUTPUT_DIR = os.getcwd() + '\scrapes' #'C:/Users/bsapaka/Documents/Other/dfwtr'
+
     LOGIN_USERNAME = '0501010'
     LOGIN_PASSWORD = 'Winter16'
     URL_MATRIX = 'http://matrix.ntreis.net/Matrix/Search/Residential/Quick'
@@ -29,8 +31,12 @@ def scrape(SOLD_START_DATE, SOLD_END_DATE, SUBDIVISION, CITY):
 
     driver.get(URL_MATRIX)
 
+    time.sleep(1)
+
     driver.find_element_by_id(ELEM_ID_USERNAME).send_keys(LOGIN_USERNAME)
     driver.find_element_by_id(ELEM_ID_PASSWORD).click()
+
+    time.sleep(1)
     driver.find_element_by_id(ELEM_ID_PASSWORD).send_keys(LOGIN_PASSWORD)
     driver.find_element_by_id(ELEM_ID_LOGIN).click()
 
@@ -54,7 +60,7 @@ def scrape(SOLD_START_DATE, SOLD_END_DATE, SUBDIVISION, CITY):
     driver.find_element_by_name(ELEM_NAME_SOLD_TEXTBOX).send_keys(SOLD_START_DATE + '-' + SOLD_END_DATE)
 
     driver.find_element_by_name(ELEM_NAME_SUBDIVISION_TEXTBOX).click()
-    driver.find_element_by_name(ELEM_NAME_SUBDIVISION_TEXTBOX).send_keys(SUBDIVISION)
+    driver.find_element_by_name(ELEM_NAME_SUBDIVISION_TEXTBOX).send_keys('*' + SUBDIVISION + '*')
 
     driver.find_element_by_id(ELEM_ID_CITY_TEXTBOX).click()
     driver.find_element_by_id(ELEM_ID_CITY_TEXTBOX).send_keys(CITY)

@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use \DateTime;
+use AppBundle\Entity\City;
+use AppBundle\Entity\Subdivision;
 use AppBundle\Form\SubdivisionReportImportType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -188,6 +191,54 @@ class SubdivisionReportController extends Controller
         return $this->render('subdivisionreport/import.html.twig', array(
             'form'   => $form->createView(),
         ));
+    }
+
+    /**
+     * @Route("export/{cityName}/{subdivisionName}/{endMonth}/{endDay}/{endYear}", name="subdivisionreport_export")
+     */
+    public function exportAction($cityName, $subdivisionName, $endMonth, $endDay, $endYear)
+    {
+        $cityRepo = $this->getDoctrine()->getRepository(City::class);
+        $subdivRepo = $this->getDoctrine()->getRepository(Subdivision::class);
+        $reportRepo = $this->getDoctrine()->getRepository(SubdivisionReport::class);
+
+        /** @var City $city */
+        $city = $cityRepo->findOneByName($cityName);
+
+        /** @var Subdivision $subdivision */
+        $subdivision = $subdivRepo->findOneBy([
+            'name' => $subdivisionName,
+            'city' => $city
+        ]);
+
+        $endDate = new DateTime("$endMonth/$endDay/$endYear");
+
+        $report = $reportRepo->findOneBy([
+            'subdivision' => $subdivision,
+            'end' => $endDate
+        ]);
+
+
+        dump($report);exit;
+
+        $homeValues = $this->get('exporter.home_values')->generate($report);
+        $activeRain = $this->get('exporter.active_rain')->generate($report);
+        $teamRealty = $this->get('exporter.team_realty')->generate($report);
+
+        $article = ""
+            . "*** HOME VALUES *** \r\n" . $homeValues . "\r\n"
+            . "*** ACTIVE RAIN *** \r\n" . $activeRain . "\r\n"
+            . "*** TEAM REALTY *** \r\n" . $teamRealty . "\r\n"
+        ;
+
+        $response = new Response();
+
+        $response->setContent($article);
+        $response->setStatusCode(Response::HTTP_OK);
+
+        $response->headers->set('Content-Type', 'text/plain');
+
+        return $response;
     }
     
 

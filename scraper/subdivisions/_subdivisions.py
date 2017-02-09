@@ -1,1 +1,2 @@
-from Lewisville import Lewisville
+from Lewisville import LewisvilleSubs
+from Frisco import FriscoSubs

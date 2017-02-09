@@ -30,6 +30,17 @@
                                 <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> Json API
                             </a>
                         </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-primary h3" href="{{ path('subdivisionreport_export', {
+                                'cityName': subdivisionReport.subdivision.city.name,
+                                'subdivisionName': subdivisionReport.subdivision.name,
+                                'endMonth': subdivisionReport.getEndMonth(),
+                                'endDay': subdivisionReport.getEndDay(),
+                                'endYear': subdivisionReport.getEndYear()
+                            }) }}" style="margin-bottom:10px">
+                                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Text File
+                            </a>
+                        </div>
 
                     </div>
 

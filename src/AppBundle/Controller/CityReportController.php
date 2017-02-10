@@ -211,9 +211,9 @@ class CityReportController extends Controller
         ]);
 
 
-        $homeValues = $this->get('exporter.home_values')->generate($report);
-        $activeRain = $this->get('exporter.active_rain')->generate($report);
-        $teamRealty = $this->get('exporter.team_realty')->generate($report);
+        $homeValues = $this->get('city_report_exporter.home_values')->generate($report);
+        $activeRain = $this->get('city_report_exporter.active_rain')->generate($report);
+        $teamRealty = $this->get('city_report_exporter.team_realty')->generate($report);
 
         $article = ""
             . "*** HOME VALUES *** \r\n" . $homeValues . "\r\n"

@@ -17,6 +17,7 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\View\TwitterBootstrap3View;
 
 use AppBundle\Entity\SubdivisionReport;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * SubdivisionReport controller.
@@ -218,12 +219,9 @@ class SubdivisionReportController extends Controller
             'end' => $endDate
         ]);
 
-
-        dump($report);exit;
-
-        $homeValues = $this->get('exporter.home_values')->generate($report);
-        $activeRain = $this->get('exporter.active_rain')->generate($report);
-        $teamRealty = $this->get('exporter.team_realty')->generate($report);
+        $homeValues = $this->get('sub_report_exporter.home_values')->generate($report);
+        $activeRain = $this->get('sub_report_exporter.active_rain')->generate($report);
+        $teamRealty = $this->get('sub_report_exporter.team_realty')->generate($report);
 
         $article = ""
             . "*** HOME VALUES *** \r\n" . $homeValues . "\r\n"

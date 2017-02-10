@@ -7,7 +7,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class SubdivisionsFixture implements FixtureInterface, OrderedFixtureInterface
+abstract class SubdivisionsFixture implements FixtureInterface, OrderedFixtureInterface
 {
     protected $subs = [];
 
@@ -20,7 +20,7 @@ class SubdivisionsFixture implements FixtureInterface, OrderedFixtureInterface
     {
         $cityRepo = $manager->getRepository(City::class);
 
-        $city = $cityRepo->findOneByName($this->cityName);
+        $city = $cityRepo->findOneByName($this->getCityName());
 
         foreach ($this->subs as $subName) {
             $sub = new Subdivision();

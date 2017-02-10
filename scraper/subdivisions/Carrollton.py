@@ -1,0 +1,16 @@
+CarrolltonSubs = [
+    'Arbor Creek',
+    'Austin Waters',
+    'Booth Creek',
+    'Carillon Hills',
+    'High Country',
+    'Homestead At Carrollton',
+    'Kingspoint',
+    'Moore Farm',
+    'Nob Hill',
+    'Oak Hills',
+    'Rosemeade',
+    'Indian Creek',
+    'Palisades',
+    'Trafalgar Square',
+]

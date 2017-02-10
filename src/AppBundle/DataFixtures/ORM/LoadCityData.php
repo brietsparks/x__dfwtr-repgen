@@ -4,9 +4,10 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\City;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadCityData implements FixtureInterface 
+class LoadCityData implements FixtureInterface, OrderedFixtureInterface
 {
     protected $cities = [
         'Allen' => 51,
@@ -59,6 +60,12 @@ class LoadCityData implements FixtureInterface
         'Lake Highlands'  => 18,
         'Dallas North'  => 11,
     ];
+
+    public function getOrder()
+    {
+        return 1;
+    }
+
 
     public function load(ObjectManager $manager)
     {

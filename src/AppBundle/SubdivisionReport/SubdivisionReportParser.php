@@ -17,8 +17,8 @@ class SubdivisionReportParser implements ReportParserInterface
     {
         $tableArray = json_decode($text);
 
-        $maxRow = $this->getMinRow($tableArray);
-        $minRow = $this->getMaxRow($tableArray);
+        $minRow = $this->getMinRow($tableArray);
+        $maxRow = $this->getMaxRow($tableArray);
         $avgRow = $this->getAvgRow($tableArray);
 
         $subdivisionReport = new SubdivisionReport();
@@ -62,6 +62,7 @@ class SubdivisionReportParser implements ReportParserInterface
     {
         $str = str_replace('$', '', $str);
         $str = str_replace(',', '', $str);
+        $str = str_replace(' ', '', $str);
         $str = floatval($str);
 
         return $str;

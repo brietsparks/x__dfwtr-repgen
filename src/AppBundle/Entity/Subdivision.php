@@ -63,7 +63,7 @@ class Subdivision
     }
 
     /**
-     * @return mixed
+     * @return City
      */
     public function getCity()
     {

@@ -40,6 +40,18 @@ class ArticleGenerator
         return $this->generate($spinnerReport);
     }
 
+    public function getTitle(EntityReport $report)
+    {
+        $year = $report->getEndYear();
+        $thisYear = $year + 1;
+        $subName = $report->getSubdivision()->getName();
+        $cityName = $report->getSubdivision()->getCity()->getName();
+
+        $title = "$subName Subdivision in $cityName, Texas Home Sales Trends $thisYear Report (Year-Ending $year)";
+
+        return $title;
+    }
+
     public function generate(SpinnerReport $sr)
     {
         $sentences = $this->sentences;

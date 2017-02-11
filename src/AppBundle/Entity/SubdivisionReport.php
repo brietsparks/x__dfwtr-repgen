@@ -77,7 +77,7 @@ class SubdivisionReport implements ReportInterface
     }
 
     /**
-     * @return mixed
+     * @return Subdivision
      */
     public function getSubdivision()
     {

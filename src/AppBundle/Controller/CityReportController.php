@@ -210,7 +210,6 @@ class CityReportController extends Controller
             'month' => $month
         ]);
 
-
         $homeValues = $this->get('city_report_exporter.home_values')->generate($report);
         $activeRain = $this->get('city_report_exporter.active_rain')->generate($report);
         $teamRealty = $this->get('city_report_exporter.team_realty')->generate($report);

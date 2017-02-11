@@ -43,11 +43,15 @@ class SubdivController extends Controller
             'end' => $endDate
         ]);
 
+        $title = $this->get('subdiv_article_generator')->getTitle($report);
         $article = $this->get('subdiv_article_generator')->spin($report);
 
         $data = [
             'data' => $report,
-            'article' => $article
+            'article' => [
+                'title' => $title,
+                'body' => $article
+            ]
         ];
 
         return new JsonResponse($data);

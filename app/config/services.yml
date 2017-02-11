@@ -69,17 +69,33 @@ services:
     subdiv_article_generator:
         class: SpinnerBundle\SubdivSpinner\ArticleGenerator
 
-    exporter.home_values:
+    city_report_exporter.home_values:
         class: AppBundle\ArticleSet\City\Type\HomeValues
         arguments:
             - "@app.spinner"
 
-    exporter.team_realty:
+    city_report_exporter.team_realty:
         class: AppBundle\ArticleSet\City\Type\TeamRealty
         arguments:
             - "@app.spinner"
 
-    exporter.active_rain:
+    city_report_exporter.active_rain:
         class: AppBundle\ArticleSet\City\Type\ActiveRainArticle
         arguments:
             - "@app.spinner"
+
+    sub_report_exporter.home_values:
+        class: AppBundle\ArticleSet\Subdivision\Type\HomeValues
+        arguments:
+            - "@subdiv_article_generator"
+
+    sub_report_exporter.team_realty:
+        class: AppBundle\ArticleSet\Subdivision\Type\TeamRealty
+        arguments:
+            - "@subdiv_article_generator"
+
+    sub_report_exporter.active_rain:
+        class: AppBundle\ArticleSet\Subdivision\Type\ActiveRain
+        arguments:
+            - "@subdiv_article_generator"
+

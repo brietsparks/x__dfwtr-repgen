@@ -23,14 +23,20 @@ abstract class AbstractArticle
 
     public function generate(SubdivisionReport $report)
     {
-//        $title = $this->getTitle
+        $title = $this->spinner->getTitle($report);
         $body = $this->spinner->spin($report);
-//        $footer = $this->getFooter();
+        $footer = $this->getFooter($report);
 
-        return $body;
+        $article = (
+            $title . "\r\n" . "\r\n" .
+            "<p>" . $body . "</p>" . "\r\n" .
+            $footer
+        );
+
+        return $article;
     }
 
-//    abstract function getFooter();
+    abstract function getFooter(SubdivisionReport $report);
 
 
 }

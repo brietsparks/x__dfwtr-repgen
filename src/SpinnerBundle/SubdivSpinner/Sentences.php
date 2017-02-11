@@ -195,7 +195,6 @@ class Sentences extends Words
     }
 
     protected function sentenceCase($string) {
-
         $string = ucfirst(strtolower($string));
 
         $string = preg_replace_callback('/[.!?].*?\w/', create_function('$matches', 'return strtoupper($matches[0]);'),$string);

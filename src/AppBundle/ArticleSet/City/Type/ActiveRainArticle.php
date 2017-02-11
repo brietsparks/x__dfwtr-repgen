@@ -12,7 +12,7 @@ class ActiveRainArticle extends AbstractArticle
     {
         $domain = "http://www.dfwhomevaluesreport.com";
 
-        $lcCityName = $cityName;
+        $lcCityName = $this->getLcCityName($cityName);
 
         $reportMonthName = $this->getMonthName($reportMonthNumber);
         $lcReportMonthName = $this->getLcMonthNamce($reportMonthNumber);

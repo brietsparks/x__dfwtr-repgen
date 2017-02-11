@@ -13,7 +13,7 @@ class HomeValues extends AbstractArticle
         $homeValuesDomain = "http://www.dfawhomevaluesreport.com";
         $teamRealtyDomain = "http://dfwteamrealty.com"; 
 
-        $lcCityName = $cityName;
+        $lcCityName = $this->getLcCityName($cityName);
 
         $reportMonthName = $this->getMonthName($reportMonthNumber);
         $lcReportMonthName = $this->getLcMonthNamce($reportMonthNumber);

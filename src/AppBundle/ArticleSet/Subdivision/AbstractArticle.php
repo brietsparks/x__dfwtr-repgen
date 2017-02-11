@@ -38,5 +38,13 @@ abstract class AbstractArticle
 
     abstract function getFooter(SubdivisionReport $report);
 
+    protected function getLcSubdivName($subName)
+    {
+        $lcCityName = strtolower($subName);
+        $lcCityName = str_replace(" ", "-", $lcCityName);
+
+        return $lcCityName;
+    }
+
 
 }

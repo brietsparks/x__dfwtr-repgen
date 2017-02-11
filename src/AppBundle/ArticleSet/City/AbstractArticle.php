@@ -67,6 +67,14 @@ abstract class AbstractArticle
         return $monthName;
     }
 
+    protected function getLcCityName($cityName)
+    {
+        $lcCityName = strtolower($cityName);
+        $lcCityName = str_replace(" ", "-", $lcCityName);
+
+        return $lcCityName;
+    }
+
     /**
      * @param $monthNum
      * @return string

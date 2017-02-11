@@ -145,18 +145,23 @@
                             <td>{%- if subdivisionReport.end %}{{ subdivisionReport.end|date('Y-m-d') }}{% endif %}</td>
 
                             <td class="actions">
-                                <a onclick="return confirm('Are you sure!');" title="Delete"
-                                   class="btn btn-danger btn-sm"
-                                   href="{{ path('subdivisionreport_by_id_delete', { 'id': subdivisionReport.id}) }}">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </a>
-                                <a title='Show' class="btn btn-info btn-sm"
+                                <a title='Show' class="btn btn-primary btn-sm"
                                    href="{{ path('subdivisionreport_show', { 'id': subdivisionReport.id }) }}">
                                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                 </a>
                                 <a title='Edit' class="btn btn-primary btn-sm"
                                    href="{{ path('subdivisionreport_edit', { 'id': subdivisionReport.id }) }}">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </a>
+                                <a title='Text' class="btn btn-info btn-sm"
+                                   href="{{ path('subdivisionreport_export', {
+                                       'cityName': subdivisionReport.subdivision.city.name,
+                                       'subdivisionName': subdivisionReport.subdivision.name,
+                                       'endMonth': subdivisionReport.getEndMonth(),
+                                       'endDay': subdivisionReport.getEndDay(),
+                                       'endYear': subdivisionReport.getEndYear()
+                                   }) }}">
+                                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                                 </a>
                             </td>
 

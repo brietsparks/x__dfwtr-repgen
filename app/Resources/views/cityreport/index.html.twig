@@ -153,18 +153,21 @@
                             <td>{{ report.month }}</td>
 
                             <td class="actions">
-                                <a onclick="return confirm('Are you sure!');" title="Delete"
-                                   class="btn btn-danger btn-sm"
-                                   href="{{ path('cityreport_by_id_delete', { 'id': report.id}) }}">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </a>
-                                <a title='Show' class="btn btn-info btn-sm"
+                                <a title='Show' class="btn btn-primary btn-sm"
                                    href="{{ path('cityreport_show', { 'id': report.id }) }}">
                                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                 </a>
                                 <a title='Edit' class="btn btn-primary btn-sm"
                                    href="{{ path('cityreport_edit', { 'id': report.id }) }}">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </a>
+                                <a title='Text' class="btn btn-info btn-sm"
+                                   href="{{ path('cityreport_export', {
+                                       'name': report.city.name,
+                                       'year': report.year,
+                                       'month': report.month
+                                   }) }}">
+                                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                                 </a>
                             </td>
                         </tr>

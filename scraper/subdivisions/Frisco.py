@@ -1,3 +1,0 @@
-FriscoSubs = [
-    'Chapel Creek'
-]

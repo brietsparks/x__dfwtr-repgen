@@ -99,3 +99,7 @@ services:
         arguments:
             - "@subdiv_article_generator"
 
+    twig.extension.debug:
+        class: Twig_Extension_Debug
+        tags:
+            - { name: 'twig.extension' }

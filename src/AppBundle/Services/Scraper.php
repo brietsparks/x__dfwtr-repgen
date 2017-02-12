@@ -78,7 +78,7 @@ abstract class Scraper
         $tempUploadDirPath = $this->uploadDirPath . '/' . $tempDirName;
         $this->fileSystem->mkdir($tempUploadDirPath);
 
-        $this->fileSystem->chmod($tempUploadDirPath, '222');
+        $this->fileSystem->chmod($tempUploadDirPath, '777');
         $this->fileSystem->remove($tempUploadDirPath);
 
         // put pdfs in that folder

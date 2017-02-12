@@ -124,6 +124,7 @@
 
                         {% import "PetkoparaCrudGeneratorBundle::macros/th_sortable.html.twig" as macros %}
                         <th>{{ macros.th_sortable('subdivision',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'subdivisionreport') }}</th>
+                        <th>City</th>
                         <th>{{ macros.th_sortable('start',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'subdivisionreport') }}</th>
                         <th>{{ macros.th_sortable('end',app.request.get('pcg_sort_col'), app.request.get('pcg_sort_order') , 'subdivisionreport') }}</th>
 
@@ -145,6 +146,7 @@
                             <td>
                                 <a href="{{ path('subdivision_show', { 'id': subdivisionReport.subdivision.id }) }}">{{ subdivisionReport.subdivision.name }}</a>
                             </td>
+                            <td>{{ subdivisionReport.subdivision.city.name }}</td>
                             <td>{%- if subdivisionReport.start %}{{ subdivisionReport.start|date('Y-m-d') }}{% endif %}</td>
                             <td>{%- if subdivisionReport.end %}{{ subdivisionReport.end|date('Y-m-d') }}{% endif %}</td>
 

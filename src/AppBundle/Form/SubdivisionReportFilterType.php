@@ -14,25 +14,9 @@ class SubdivisionReportFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', Filters\NumberFilterType::class)
             ->add('start', Filters\DateFilterType::class)
             ->add('end', Filters\DateFilterType::class)
-            ->add('sqft_min', Filters\NumberFilterType::class)
-            ->add('sqft_max', Filters\NumberFilterType::class)
-            ->add('sqft_avg', Filters\NumberFilterType::class)
-            ->add('price_min', Filters\NumberFilterType::class)
-            ->add('price_max', Filters\NumberFilterType::class)
-            ->add('price_avg', Filters\NumberFilterType::class)
-            ->add('pricePerSqft_min', Filters\NumberFilterType::class)
-            ->add('pricePerSqft_max', Filters\NumberFilterType::class)
-            ->add('pricePerSqft_avg', Filters\NumberFilterType::class)
-            ->add('dom_min', Filters\NumberFilterType::class)
-            ->add('dom_max', Filters\NumberFilterType::class)
-            ->add('dom_avg', Filters\NumberFilterType::class)
-            ->add('year_min', Filters\NumberFilterType::class)
-            ->add('year_max', Filters\NumberFilterType::class)
-            ->add('year_avg', Filters\NumberFilterType::class)
-        
+
             ->add('subdivision', Filters\EntityFilterType::class, array(
                     'class' => 'AppBundle\Entity\Subdivision',
                     'choice_label' => 'name',

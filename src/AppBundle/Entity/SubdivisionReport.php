@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class SubdivisionReport implements ReportInterface
 {
 
+    use CanHaveMissingDataTrait;
+
     /**
      * @var int
      *

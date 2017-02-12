@@ -42,6 +42,7 @@ class SubdivisionReportController extends Controller
         list($subdivisionReports, $pagerHtml) = $this->paginator($queryBuilder, $request);
         
         return $this->render('subdivisionreport/index.html.twig', array(
+            'validator' => $this->get('validator'),
             'subdivisionReports' => $subdivisionReports,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),

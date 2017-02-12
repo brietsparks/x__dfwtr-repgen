@@ -137,10 +137,11 @@
                     </thead>
                     <tbody>
                     {% for report in cityReports %}
+                        {% set reportHasBadData = validator.validate(report)|length > 0 %}
                         <tr onclick="window.document.location='{{ path('cityreport_show', {'id': report.id}) }}';"
                             style="cursor:pointer;"
-                                {% if report.missingData == true %}
-                                    class="city-report-missing-data"
+                                {% if report.missingData == true or reportHasBadData == true %}
+                                    class="report-missing-data"
                                 {% endif %}
                         >
                             <td><input type="checkbox" name="ids[]" onclick='bulkSubmitBtnManage();' class="check-all"

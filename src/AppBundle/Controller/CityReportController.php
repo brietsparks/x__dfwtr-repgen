@@ -40,6 +40,7 @@ class CityReportController extends Controller
         list($cityReports, $pagerHtml) = $this->paginator($queryBuilder, $request);
         
         return $this->render('cityreport/index.html.twig', array(
+            'validator' => $this->get('validator'),
             'cityReports' => $cityReports,
             'pagerHtml' => $pagerHtml,
             'filterForm' => $filterForm->createView(),
